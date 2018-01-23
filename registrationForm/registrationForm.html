@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>參賽報名表</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="../js/datejs/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <h1 class="text-center">參賽報名表</h1>
+
+    <form>
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputName" class="control-label">姓名 name</label>
+                            <div class="">
+                                <input type="text" id="name" class="form-control" placeholder="姓名 name">
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="inputBirthday" class="control-label">出生日期 Date of birth</label>
+                            <div class="">
+                                <input type="text" id="birthday" class="form-control" placeholder="出生日期 Date of birth" onclick="WdatePicker()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputGender" class="control-label">性別 Gender</label>
+                            <div class="" style="height: 34px;">
+                                <label style="margin-right:50px;" class="control-label">
+                                    <input type="radio" checked name="gender" id="gender0" value="0">&nbsp;男
+                                </label>
+                                <label class="control-label">
+                                    <input type="radio" name="gender" id="gender1" value="1">&nbsp;女
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="inputNationality" class="control-label">國籍 Nationality</label>
+                            <div class="">
+                                <input type="text" id="nationality" class="form-control" placeholder="國籍 Nationality">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputAge" class="control-label">年齡 Age</label>
+                            <div class="">
+                                <input type="number" id="age" class="form-control" placeholder="年齡 Age">
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="inputNational" class="control-label">民族 National</label>
+                            <div class="">
+                                <input type="text" id="national" class="form-control" placeholder="民族 National">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputAge" class="control-label">照片 Photo（兩寸白底彩色免冠照片）</label>
+                            <div class="">
+                                <img data-src="holder.js/140x140" class="img-thumbnail" alt="兩寸白底彩色免冠照片" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjAzOWE2NmNlZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2MDM5YTY2Y2VlIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4="
+                                    data-holder-rendered="true" style="height: 140px;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+                <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputTelNo" class="control-label">家庭電話 TelNo</label>
+                                <div class="">
+                                    <input type="text" id="telNo" class="form-control" placeholder="家庭電話 Tel No.">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputMobileNo" class="control-label">手機號碼Mobile No.</label>
+                                <div class="">
+                                    <input type="text" id="mobile" class="form-control" placeholder="手機號碼Mobile No.">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputId" class="control-label">身份證 ID</label>
+                                <div class="">
+                                    <input type="text" id="id" class="form-control" placeholder="身份證 ID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputAddress" class="control-label">郵寄地址 Address</label>
+                                <div class="">
+                                    <input type="text" id="address" class="form-control" placeholder="郵寄地址 Address">
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+            
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputEmail" class="control-label">郵箱 Email</label>
+                            <div class="">
+                                <input type="text" id="email" class="form-control" placeholder="郵箱 Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputOtherContact" class="control-label">其它聯繫方式</label>
+                            <div class="">
+                                <input type="text" id="otherContact" class="form-control" placeholder="其它聯繫方式（如 QQ 等）">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputPassport" class="control-label">護照號碼 Passport No.</label>
+                            <div class="">
+                                <input type="text" id="passport" class="form-control" placeholder="護照號碼 Passport No.">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputIssueDate" class="control-label">護照簽發日期 Date of Issue</label>
+                            <div class="">
+                                <input type="text" id="issueDate" class="form-control" placeholder="護照簽發日期 Date of Issue" onclick="WdatePicker()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputExpiryDate" class="control-label">護照有效日期 Date of Expiry</label>
+                            <div class="">
+                                <input type="text" id="expiryDate" class="form-control" placeholder="護照有效日期 Date of Expiry (有效期八個月以上)" onclick="WdatePicker()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+                 
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputFile" class="control-label">身份證照片、護照照片上傳（身份證照片和護照照片各1張）</label>
+                            <div class="margin-top-20">
+                                <input type="file" id="exampleInputFile">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="">
+                                <img data-src="holder.js/180x180" class="img-thumbnail" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjAzOWE2NmNlZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2MDM5YTY2Y2VlIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4="
+                                data-holder-rendered="true" style="width: 180px; height: 180px;">
+                                <img data-src="holder.js/180x180" class="img-thumbnail" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjAzOWE2NmNlZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2MDM5YTY2Y2VlIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4="
+                                data-holder-rendered="true" style="width: 180px; height: 180px;">
+                                照片預覽處
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+                <div class="row">                    
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="inputSchool" class="control-label">學校單位 School/Company</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">                                
+                            <div class="radio">
+                                <label class="control-label">
+                                    <input type="radio" name="schoolRadios" id="schoolRadios0" value="0" checked>小學/Primary School
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">                                
+                            <div class="radio">
+                                <label class="control-label">
+                                    <input type="radio" name="schoolRadios" id="schoolRadios1" value="1">中學/High School
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">                                
+                            <div class="radio">
+                                <label class="control-label">
+                                    <input type="radio" name="schoolRadios" id="schoolRadios2" value="2">大學/University
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">                                
+                            <div class="radio">
+                                <label class="control-label">
+                                    <input type="radio" name="schoolRadios" id="schoolRadios3" value="3">單位/Company
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">                
+                    <div class="col-md-6">
+                        <div class="form-group">                                
+                            <div class="">
+                                <input type="text" id="school" class="form-control" placeholder="學校/單位 School/Company">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+                <div class="row">                    
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="inputSchool" class="control-label">年級/職務 Grade/Duty</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">                                
+                            <div class="radio">
+                                <label class="control-label">
+                                    <input type="radio" name="gradeRadios" id="gradeRadios0" value="0" checked>大專
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">                                
+                            <div class="radio">
+                                <label class="control-label">
+                                    <input type="radio" name="gradeRadios" id="gradeRadios1" value="1">大本
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">                                
+                            <div class="radio">
+                                <label class="control-label">
+                                    <input type="radio" name="gradeRadios" id="gradeRadios2" value="2">研究生
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">                                
+                            <div class="radio">
+                                <label class="control-label">
+                                    <input type="radio" name="gradeRadios" id="gradeRadios3" value="3">博士
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">                        
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputGuardianName" class="control-label">家長姓名/Guardian Name</label>
+                            <div class="">
+                                <input type="text" id="guardianName" class="form-control" placeholder="家長電話/Guardian Name">
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputGuardianGender" class="control-label">性別/Gender</label>
+                            <div class="">
+                                <input type="text" id="guardianGender" class="form-control" placeholder="性別/Gender">
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputGuardianTel" class="control-label">電話號碼/Tel No.</label>
+                            <div class="">
+                                <input type="text" id="guardianTel" class="form-control" placeholder="電話號碼/Tel No.">
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputGuardianMobile" class="control-label">手機號碼/Mobile Not.</label>
+                            <div class="">
+                                <input type="text" id="guardianMobile" class="form-control" placeholder="手機號碼/Mobile Not.">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        
+        <!-- 參賽方向 start -->
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+                <div class="row">                 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="inputSchool" class="control-label">參賽方向 Application Direction</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="name">管弦乐大赛</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="javascript:;">钢琴大赛</a></li>
+                                    <li><a href="javascript:;">民乐大赛</a></li>
+                                    <li><a href="javascript:;">声乐大赛</a></li>
+                                    <li><a href="javascript:;">舞蹈大赛</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        sdfdf
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- 參賽方向 end -->
+        
+        
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="inputSchool" class="control-label">參賽組別名  Competition Category Name</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputAdult" class="control-label">成人組 Adult</label>                            
+                            <!-- <label class="control-label">
+                                <input type="checkbox" id="adult" value="adult"> 成人組 Adult
+                            </label> -->
+                        </div>                         
+                        <div class="form-group col-sm-4">
+                            <label for="inputProfessional" class="control-label">職業 Professional</label>
+                            <div class="">
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="checkbox" id="actor" value="actor"> 演員
+                                </label>
+                                &nbsp;&nbsp;
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="checkbox" id="teacher" value="teacher"> 教師
+                                </label>
+                            </div>
+                        </div>                   
+                        <div class="form-group col-sm-4">
+                            <label for="inputGraduate" class="control-label">研究生 Graduate</label>
+                            <div class="">
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="checkbox" id="performance" value="performance"> 表演
+                                </label>
+                                &nbsp;&nbsp;
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="checkbox" id="sound" value="sound"> 音效
+                                </label>
+                            </div>
+                        </div>
+                                   
+                        <div class="form-group col-sm-4">
+                            <label for="inputNonProfessional" class="control-label">非職業  Non-professional</label>
+                            <div class="">
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="checkbox" id="nonProfessional" value="nonProfessional"> 非職業
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputSchool" class="control-label">高等院校組 Colleges or Universities</label>
+                        </div>                      
+                        <div class="form-group col-sm-4">
+                            <label for="inputArtCollegesOrUniversities" class="control-label">藝術院校 Art colleges or Universities</label>
+                            <div class="">
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="checkbox" id="performance1" value="performance1"> 表演
+                                </label>
+                                &nbsp;&nbsp;
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="checkbox" id="sound1" value="sound1"> 音效
+                                </label>
+                            </div>
+                        </div>                   
+                        <div class="form-group col-sm-4">
+                            <label for="inputNormalCollegesOrUniversities" class="control-label">師範院校 Normal colleges or Universities</label>
+                            <div class="">
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="checkbox" id="performance2" value="performance2"> 表演
+                                </label>
+                                &nbsp;&nbsp;
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="checkbox" id="sound2" value="sound2"> 音效
+                                </label>
+                            </div>
+                        </div>
+                                   
+                        <div class="form-group col-sm-4">
+                                <label for="inputCollegesOrUniversities" class="control-label">普通院校 Colleges or Universities</label>
+                            <div class="">
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="checkbox" id="collegesOrUniversities" value="collegesOrUniversities"> 普通院校
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label" style="font-weight:normal;">
+                            <input type="checkbox" id="artHellSchool" value="artHellSchool"> 藝術高中 Art High School
+                        </label>
+                        &nbsp;&nbsp;
+                        <label class="control-label" style="font-weight:normal;">
+                            <input type="checkbox" id="highSchool" value="highSchool"> 普通高中 High School
+                        </label>
+                        &nbsp;&nbsp;
+                        <label class="control-label" style="font-weight:normal;">
+                            <input type="checkbox" id="artJuniorHighSchool" value="artJuniorHighSchool"> 藝術初中 Art Junior High School
+                        </label>
+                        &nbsp;&nbsp;
+                        <label class="control-label" style="font-weight:normal;">
+                            <input type="checkbox" id="juniorHighSchool" value="juniorHighSchool"> 普通初中 Junior High School
+                        </label>
+                        &nbsp;&nbsp;
+                        <label class="control-label" style="font-weight:normal;">
+                            <input type="checkbox" id="primarySchoolSenior" value="primarySchoolSenior"> 小學高 Primary School Senior
+                        </label>
+                        &nbsp;&nbsp;
+                        <label class="control-label" style="font-weight:normal;">
+                            <input type="checkbox" id="primarySchoolMiddle" value="primarySchoolMiddle"> 小學中 Primary School Middle
+                        </label>
+                        &nbsp;&nbsp;
+                        <label class="control-label" style="font-weight:normal;">
+                            <input type="checkbox" id="primarySchoolJunior" value="primarySchoolJunior"> 小學低 Primary School Junior
+                        </label>
+                        &nbsp;&nbsp;
+                        <label class="control-label" style="font-weight:normal;">
+                            <input type="checkbox" id="preschool" value="preschool"> 幼兒組 Preschool
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="inputSpecial" class="control-label">參賽專業 Special</label>
+                            <div class="">
+                                <input type="text" id="special" class="form-control" placeholder="參賽專業 Special">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="inputReper" class="control-label">比賽曲目 Repertoire</label>
+                            <div class="">
+                                <textarea class="form-control" id="repertoire" rows="5" placeholder="比賽曲目 Repertoire"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                            <div class="">
+                                <input type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+                <div class="row">                    
+                    <div class="col-md-12">             
+                        <div class="form-group">
+                            <label for="inputOtherProfessional" class="control-label">兼報 Other Professional</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-12">
+                        <label class="control-label" style="font-weight:normal;">
+                            <input type="checkbox" id="hasOtherPressional" value="hasOtherPressional"> 有兼報
+                        </label>
+                        &nbsp;&nbsp;
+                        <label class="control-label" style="font-weight:normal;">
+                            <input type="checkbox" id="notHasOtherPressional" value="notHasOtherPressional"> 無兼報
+                        </label>
+                        &nbsp;&nbsp;
+                        【凡有兼報的選手請另行詳細填寫一張報名表，並在報名表的左上方清晰注明“兼報”二字，並一起提交。】兼報選手需另行交費                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-default margin-20">
+            <div class="panel-body">
+                
+                    <div class="row">
+                    
+                        <div class="form-group col-sm-6">
+                                <label for="inputapplyForCreationPize" class="control-label">申請編創獎 Apply For Creation Pize （需另行交費）</label>
+                            <div class="">
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="radio" name="pize" id="applyPize" value="applyPize"> 是
+                                </label>
+                                &nbsp;&nbsp;
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="radio" name="pize" id="unapplyPize" value="unapplyPize" checked> 否
+                                </label>
+                            </div>
+                        </div>                   
+                        <div class="form-group col-sm-6">
+                            <label for="inputApplyForGuidancePrize" class="control-label">申請指導獎 Apply For Guidance Prize （需另行交費）</label>
+                            <div class="">
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="radio" name="guidancePize" id="applyGuidancePize" value="applyGuidancePize"> 是
+                                </label>
+                                &nbsp;&nbsp;
+                                <label class="control-label" style="font-weight:normal;">
+                                    <input type="radio" name="guidancePize" id="unapplyGuidancePize" value="unapplyGuidancePize" checked> 否
+                                </label>
+                            </div>
+                        </div>
+                                    
+                </div>
+            </div>
+        </div>
+
+        <div class="panel margin-20">
+            <div class="panel-body">
+                <div class="row text-center">
+                    <button type="button" id="submit" class="btn btn-primary">確定提交</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="../js/datejs/WdatePicker.js"></script>
+    
+    <script src="js/main.js"></script>
+</body>
+
+</html>
