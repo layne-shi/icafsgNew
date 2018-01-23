@@ -1,0 +1,12 @@
+﻿# 缓存文件不同步
+
+data/cache/*
+data/sitemap/*
+data/language/*
+data/attachment/*
+data/backup/*
+data/bak/*
+application/cache/*
+application/config/database.php
+application/config/config.php
+.vscode/*
