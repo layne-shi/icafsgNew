@@ -22,24 +22,24 @@
     <link href="../js/datejs/skin/WdatePicker.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
+<body ng-app="myApp">
     <h1 class="text-center">參賽報名表</h1>
 
-    <form>
-        <div class="panel panel-default margin-20">
+    <form ng-controller="myctrl">
+        <div class="panel panel-primary margin-20">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="inputName" class="control-label">姓名 name</label>
                             <div class="">
-                                <input type="text" id="name" class="form-control" placeholder="姓名 name">
+                                <input ng-model="baomingObj.name.value" type="text" id="name" class="form-control" placeholder="姓名 name">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label for="inputBirthday" class="control-label">出生日期 Date of birth</label>
                             <div class="">
-                                <input type="text" id="birthday" class="form-control" placeholder="出生日期 Date of birth" onclick="WdatePicker()">
+                                <input ng-model="baomingObj.birth.value" type="text" id="birthday" class="form-control" placeholder="出生日期 Date of birth" onclick="WdatePicker()">
                             </div>
                         </div>
                     </div>
@@ -48,17 +48,17 @@
                             <label for="inputGender" class="control-label">性別 Gender</label>
                             <div class="" style="height: 34px;">
                                 <label style="margin-right:50px;" class="control-label">
-                                    <input type="radio" checked name="gender" id="gender0" value="0">&nbsp;男
+                                    <input ng-model="baomingObj.gender.value" type="radio" checked name="gender" id="gender0" value="男">&nbsp;男
                                 </label>
                                 <label class="control-label">
-                                    <input type="radio" name="gender" id="gender1" value="1">&nbsp;女
+                                    <input ng-model="baomingObj.gender.value" type="radio" name="gender" id="gender1" value="女">&nbsp;女
                                 </label>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label for="inputNationality" class="control-label">國籍 Nationality</label>
                             <div class="">
-                                <input type="text" id="nationality" class="form-control" placeholder="國籍 Nationality">
+                                <input ng-model="baomingObj.nationality.value" type="text" id="nationality" class="form-control" placeholder="國籍 Nationality">
                             </div>
                         </div>
                     </div>
@@ -66,13 +66,13 @@
                         <div class="form-group">
                             <label for="inputAge" class="control-label">年齡 Age</label>
                             <div class="">
-                                <input type="number" id="age" class="form-control" placeholder="年齡 Age">
+                                <input ng-model="baomingObj.age.value" type="number" id="age" class="form-control" placeholder="年齡 Age">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label for="inputNational" class="control-label">民族 National</label>
                             <div class="">
-                                <input type="text" id="national" class="form-control" placeholder="民族 National">
+                                <input ng-model="baomingObj.national.value" type="text" id="national" class="form-control" placeholder="民族 National">
                             </div>
                         </div>
                     </div>
@@ -80,8 +80,7 @@
                         <div class="form-group">
                             <label for="inputAge" class="control-label">照片 Photo（兩寸白底彩色免冠照片）</label>
                             <div class="">
-                                <img data-src="holder.js/140x140" class="img-thumbnail" alt="兩寸白底彩色免冠照片" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjAzOWE2NmNlZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2MDM5YTY2Y2VlIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4="
-                                    data-holder-rendered="true" style="height: 140px;">
+                                <img src="{{baomingObj.avatar.value}}" class="img-thumbnail" alt="兩寸白底彩色免冠照片" data-holder-rendered="true" style="height: 140px;">
                             </div>
                         </div>
                     </div>
@@ -90,14 +89,14 @@
             </div>
         </div>
         
-        <div class="panel panel-default margin-20">
+        <div class="panel panel-primary margin-20">
             <div class="panel-body">
                 <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="inputTelNo" class="control-label">家庭電話 TelNo</label>
                                 <div class="">
-                                    <input type="text" id="telNo" class="form-control" placeholder="家庭電話 Tel No.">
+                                    <input ng-model="baomingObj.telNo.value" type="text" id="telNo" class="form-control" placeholder="家庭電話 Tel No.">
                                 </div>
                             </div>
                         </div>
@@ -105,7 +104,7 @@
                             <div class="form-group">
                                 <label for="inputMobileNo" class="control-label">手機號碼Mobile No.</label>
                                 <div class="">
-                                    <input type="text" id="mobile" class="form-control" placeholder="手機號碼Mobile No.">
+                                    <input ng-model="baomingObj.mobileNo.value" type="text" id="mobile" class="form-control" placeholder="手機號碼Mobile No.">
                                 </div>
                             </div>
                         </div>
@@ -113,7 +112,7 @@
                             <div class="form-group">
                                 <label for="inputId" class="control-label">身份證 ID</label>
                                 <div class="">
-                                    <input type="text" id="id" class="form-control" placeholder="身份證 ID">
+                                    <input ng-model="baomingObj.identity.value" type="text" id="identity" class="form-control" placeholder="身份證 ID">
                                 </div>
                             </div>
                         </div>
@@ -121,7 +120,7 @@
                             <div class="form-group">
                                 <label for="inputAddress" class="control-label">郵寄地址 Address</label>
                                 <div class="">
-                                    <input type="text" id="address" class="form-control" placeholder="郵寄地址 Address">
+                                    <input ng-model="baomingObj.address.value" type="text" id="address" class="form-control" placeholder="郵寄地址 Address">
                                 </div>
                             </div>
                         </div>
@@ -129,7 +128,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default margin-20">
+        <div class="panel panel-primary margin-20">
             <div class="panel-body">
             
                 <div class="row">
@@ -137,7 +136,7 @@
                         <div class="form-group">
                             <label for="inputEmail" class="control-label">郵箱 Email</label>
                             <div class="">
-                                <input type="text" id="email" class="form-control" placeholder="郵箱 Email">
+                                <input ng-model="baomingObj.email.value" type="text" id="email" class="form-control" placeholder="郵箱 Email">
                             </div>
                         </div>
                     </div>
@@ -145,7 +144,7 @@
                         <div class="form-group">
                             <label for="inputOtherContact" class="control-label">其它聯繫方式</label>
                             <div class="">
-                                <input type="text" id="otherContact" class="form-control" placeholder="其它聯繫方式（如 QQ 等）">
+                                <input ng-model="baomingObj.otherContact.value" type="text" id="otherContact" class="form-control" placeholder="其它聯繫方式（如 QQ 等）">
                             </div>
                         </div>
                     </div>
@@ -153,7 +152,7 @@
             </div>
         </div>
         
-        <div class="panel panel-default margin-20">
+        <div class="panel panel-primary margin-20">
             <div class="panel-body">
 
                 <div class="row">
@@ -161,7 +160,7 @@
                         <div class="form-group">
                             <label for="inputPassport" class="control-label">護照號碼 Passport No.</label>
                             <div class="">
-                                <input type="text" id="passport" class="form-control" placeholder="護照號碼 Passport No.">
+                                <input ng-model="baomingObj.passportNo.value" type="text" id="passport" class="form-control" placeholder="護照號碼 Passport No.">
                             </div>
                         </div>
                     </div>
@@ -169,7 +168,7 @@
                         <div class="form-group">
                             <label for="inputIssueDate" class="control-label">護照簽發日期 Date of Issue</label>
                             <div class="">
-                                <input type="text" id="issueDate" class="form-control" placeholder="護照簽發日期 Date of Issue" onclick="WdatePicker()">
+                                <input ng-model="baomingObj.dateOfIssue.value" type="text" id="issueDate" class="form-control" placeholder="護照簽發日期 Date of Issue" onclick="WdatePicker()">
                             </div>
                         </div>
                     </div>
@@ -177,7 +176,7 @@
                         <div class="form-group">
                             <label for="inputExpiryDate" class="control-label">護照有效日期 Date of Expiry</label>
                             <div class="">
-                                <input type="text" id="expiryDate" class="form-control" placeholder="護照有效日期 Date of Expiry (有效期八個月以上)" onclick="WdatePicker()">
+                                <input ng-model="baomingObj.dateOfExpiry.value" type="text" id="expiryDate" class="form-control" placeholder="護照有效日期 Date of Expiry (有效期八個月以上)" onclick="WdatePicker()">
                             </div>
                         </div>
                     </div>
@@ -185,7 +184,7 @@
             </div>
         </div>   
                  
-        <div class="panel panel-default margin-20">
+        <div class="panel panel-primary margin-20">
             <div class="panel-body">
 
                 <div class="row">
@@ -200,11 +199,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="">
-                                <img data-src="holder.js/180x180" class="img-thumbnail" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjAzOWE2NmNlZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2MDM5YTY2Y2VlIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4="
-                                data-holder-rendered="true" style="width: 180px; height: 180px;">
-                                <img data-src="holder.js/180x180" class="img-thumbnail" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjAzOWE2NmNlZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2MDM5YTY2Y2VlIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4="
-                                data-holder-rendered="true" style="width: 180px; height: 180px;">
-                                照片預覽處
+                                <img ng-repeat="pic in baomingObj.pic.picArr" src={{pic.value}} class="img-thumbnail" data-holder-rendered="true" style="width: 180px; height: 180px;">
                             </div>                            
                         </div>
                     </div>
@@ -212,7 +207,7 @@
             </div>
         </div>
         
-        <div class="panel panel-default margin-20">
+        <div class="panel panel-primary margin-20">
             <div class="panel-body">
                 <div class="row">                    
                     <div class="col-md-12">
@@ -227,7 +222,7 @@
                         <div class="form-group">                                
                             <div class="radio">
                                 <label class="control-label">
-                                    <input type="radio" name="schoolRadios" id="schoolRadios0" value="0" checked>小學/Primary School
+                                    <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios0" value="小學">小學/Primary School
                                 </label>
                             </div>
                         </div>
@@ -236,7 +231,7 @@
                         <div class="form-group">                                
                             <div class="radio">
                                 <label class="control-label">
-                                    <input type="radio" name="schoolRadios" id="schoolRadios1" value="1">中學/High School
+                                    <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios1" value="中學">中學/High School
                                 </label>
                             </div>
                         </div>
@@ -245,7 +240,7 @@
                         <div class="form-group">                                
                             <div class="radio">
                                 <label class="control-label">
-                                    <input type="radio" name="schoolRadios" id="schoolRadios2" value="2">大學/University
+                                    <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios2" value="大學">大學/University
                                 </label>
                             </div>
                         </div>
@@ -254,7 +249,7 @@
                         <div class="form-group">                                
                             <div class="radio">
                                 <label class="control-label">
-                                    <input type="radio" name="schoolRadios" id="schoolRadios3" value="3">單位/Company
+                                    <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios3" value="單位">單位/Company
                                 </label>
                             </div>
                         </div>
@@ -265,7 +260,7 @@
                     <div class="col-md-6">
                         <div class="form-group">                                
                             <div class="">
-                                <input type="text" id="school" class="form-control" placeholder="學校/單位 School/Company">
+                                <input ng-model="baomingObj.company.oValue" type="text" id="school" class="form-control" placeholder="學校/單位 School/Company">
                             </div>
                         </div>
                     </div>
@@ -275,7 +270,7 @@
             </div>
         </div>
         
-        <div class="panel panel-default margin-20">
+        <div class="panel panel-primary margin-20">
             <div class="panel-body">
                 <div class="row">                    
                     <div class="col-md-12">
@@ -290,7 +285,7 @@
                         <div class="form-group">                                
                             <div class="radio">
                                 <label class="control-label">
-                                    <input type="radio" name="gradeRadios" id="gradeRadios0" value="0" checked>大專
+                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios0" value="大專">大專
                                 </label>
                             </div>
                         </div>
@@ -299,7 +294,7 @@
                         <div class="form-group">                                
                             <div class="radio">
                                 <label class="control-label">
-                                    <input type="radio" name="gradeRadios" id="gradeRadios1" value="1">大本
+                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios1" value="大本">大本
                                 </label>
                             </div>
                         </div>
@@ -308,7 +303,7 @@
                         <div class="form-group">                                
                             <div class="radio">
                                 <label class="control-label">
-                                    <input type="radio" name="gradeRadios" id="gradeRadios2" value="2">研究生
+                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios2" value="研究生">研究生
                                 </label>
                             </div>
                         </div>
@@ -317,7 +312,7 @@
                         <div class="form-group">                                
                             <div class="radio">
                                 <label class="control-label">
-                                    <input type="radio" name="gradeRadios" id="gradeRadios3" value="3">博士
+                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios3" value="博士">博士
                                 </label>
                             </div>
                         </div>
@@ -329,31 +324,31 @@
                         <div class="form-group">
                             <label for="inputGuardianName" class="control-label">家長姓名/Guardian Name</label>
                             <div class="">
-                                <input type="text" id="guardianName" class="form-control" placeholder="家長電話/Guardian Name">
+                                <input ng-model="baomingObj.guardianName.value" type="text" id="guardianName" class="form-control" placeholder="家長電話/Guardian Name">
                             </div>
                         </div>
                     </div>                   
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="inputGuardianGender" class="control-label">性別/Gender</label>
+                            <label for="inputGuardianGender" class="control-label">家長性別/Gender</label>
                             <div class="">
-                                <input type="text" id="guardianGender" class="form-control" placeholder="性別/Gender">
+                                <input ng-model="baomingObj.guardianGender.value" type="text" id="guardianGender" class="form-control" placeholder="性別/Gender">
                             </div>
                         </div>
                     </div>                   
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="inputGuardianTel" class="control-label">電話號碼/Tel No.</label>
+                            <label for="inputGuardianTel" class="control-label">家長電話號碼/Tel No.</label>
                             <div class="">
-                                <input type="text" id="guardianTel" class="form-control" placeholder="電話號碼/Tel No.">
+                                <input ng-model="baomingObj.guardianTelNo.value" type="text" id="guardianTel" class="form-control" placeholder="電話號碼/Tel No.">
                             </div>
                         </div>
                     </div>                   
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="inputGuardianMobile" class="control-label">手機號碼/Mobile Not.</label>
+                            <label for="inputGuardianMobile" class="control-label">家長手機號碼/Mobile No.</label>
                             <div class="">
-                                <input type="text" id="guardianMobile" class="form-control" placeholder="手機號碼/Mobile Not.">
+                                <input ng-model="baomingObj.guardianMobileNo.value" type="text" id="guardianMobile" class="form-control" placeholder="手機號碼/Mobile No.">
                             </div>
                         </div>
                     </div>
@@ -364,7 +359,7 @@
         </div>
         
         <!-- 參賽方向 start -->
-        <div class="panel panel-default margin-20">
+        <div class="panel panel-primary margin-20">
             <div class="panel-body">
                 <div class="row">                 
                     <div class="col-md-12">
@@ -373,229 +368,1028 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="name">管弦乐大赛</span>
+                            <div class="dropdown fl">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="name" ng-bind="baomingObj.direction.value"></span>
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="javascript:;">钢琴大赛</a></li>
-                                    <li><a href="javascript:;">民乐大赛</a></li>
-                                    <li><a href="javascript:;">声乐大赛</a></li>
-                                    <li><a href="javascript:;">舞蹈大赛</a></li>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu0">
+                                    <li ng-click="chooseDirection('管弦乐大赛')"><a href="javascript:;">管弦乐大赛</a></li>
+                                    <li ng-click="chooseDirection('钢琴大赛')"><a href="javascript:;">钢琴大赛</a></li>
+                                    <li ng-click="chooseDirection('民乐大赛')"><a href="javascript:;">民乐大赛</a></li>
+                                    <li ng-click="chooseDirection('声乐大赛')"><a href="javascript:;">声乐大赛</a></li>
+                                    <li ng-click="chooseDirection('舞蹈大赛')"><a href="javascript:;">舞蹈大赛</a></li>
                                 </ul>
+                            </div>
+                            <div class="fl jianbao">
+                                <a class="btn btn-primary" ng-click="add()">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                    <!-- 兼报 -->
+                                </a>
                             </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        sdfdf
+                    <div class="col-md-12" id="match">
+                        <div class="no-data bg-danger" ng-if="baomingObj.guanxuanyue.array.length == 0 && baomingObj.guanxuanyue.array.length == 0 && baomingObj.gangqin.array.length == 0 && baomingObj.minyue.array.length == 0 && baomingObj.shengyue.array.length == 0 && baomingObj.wudao.array.length == 0">
+                                                           
+                            <h2 style="padding: 10px;">请选择一个参赛方向，然后点击上边的
+                                <a class="btn btn-default">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                    <!-- 兼报 -->
+                                </a>
+                            </h2>
+                            
+                        </div>
+                        <!-- 管弦乐大赛 Start -->
+                        <div ng-repeat="($index, item) in baomingObj.guanxuanyue.array" class="panel panel-primary" style="background:#fff;margin:20px 0">
+                            <div class="panel-heading diplay-flex heading-title">
+                                <span class="flex1" style="line-height: 250%;">
+                                    {{$index+1}}、管弦乐大赛
+                                    <span class="glyphicon glyphicon-triangle-bottom" style="margin-left:20px;"></span>
+                                </span>
+                                <a class="btn btn-danger del-btn" ng-click="del('guanxuanyue', $index, $event)">
+                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                    删除
+                                </a>
+                            </div>
+                            <div class="panel-body match-body">
+                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inputSpecial" class="control-label">參賽專業（所需乐器名称） Special</label>
+                                            <div class="">
+                                                <input ng-model="item.special" type="text" id="special" class="form-control" placeholder="參賽專業（所需乐器名称） Special">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inputSpecial" class="control-label">参赛形式</label>
+                                            <div class="clearfix">
+                                                
+                                                <div class="dropdown fl">
+                                                    <button class="btn btn-default dropdown-toggle" type="button" id="guanxuanyue{{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        <span class="name" ng-bind="item.way"></span>
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="guanxuanyue{{$index}}">
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">独奏</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">重奏</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">大中小型乐团</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="fl jianbao" ng-if="item.way == '重奏' ? true : false">
+                                                    <input type="number" class="form-control" placeholder="人数" ng-model="item.peopleCount">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>                                        
+                                </div>
+
+                                <div class="row">                                        
+                                    <div class="col">
+                                        <div class="form-group group-table-wrap">
+                                            <table class="table table-bordered">
+                                                <thead class="bg-color-b0d9fb">
+                                                    <tr>
+                                                        <th colspan="3" class="text-center">成人组</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>                                                        
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputProfessional" class="control-label">職業 Professional</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='演員' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="演員"> 演員
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='教師' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="教師"> 教師
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputGraduate" class="control-label">研究生 Graduate</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="表演"> 表演
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='音效' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="音效"> 音效
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">非職業  Non-professional</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='非職業' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="非職業"> 非職業
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="table table-bordered">
+                                                <thead class="bg-color-b0d9fb">
+                                                    <tr>
+                                                        <th colspan="3" class="text-center">高等院校组</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody> 
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputProfessional" class="control-label">艺术院校 Art colleges of Universities</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='艺术院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校表演"> 表演
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='艺术院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校音教"> 音教
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputGraduate" class="control-label">师范院校 Normal colleges of Universities</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='师范院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校表演"> 表演
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='师范院校音效' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校音效"> 音效
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">普通院校 Colleges of Universities</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='普通院校' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通院校"> 普通院校
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- 其它 -->
+                                            <table class="table table-bordered">
+                                                <thead class="bg-color-b0d9fb">
+                                                    <tr>
+                                                        <th colspan="4" class="text-center">其它</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">藝術高中 Art High School</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='藝術高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術高中组"> 藝術高中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">普通高中 High School  </label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='普通高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通高中组"> 普通高中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">藝術初中 Art Junior High School</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='藝術初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術初中组"> 藝術初中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">普通初中组 Junior High School</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='普通初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通初中组"> 普通初中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">小学高 Primary School Senior</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='小学高' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学高"> 小学高
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">小学中 Primary School Middle</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='小学中' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学中"> 小学中
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">小学低 Primary School Middle Junior</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='小学低' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学低"> 小学低
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">幼儿组 Preschool</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='幼儿组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="幼儿组"> 幼儿组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- ****************** -->
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                
+                                                    <tr>
+                                                        <td>                                                                
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="inputReper" class="control-label">比賽曲目 Repertoire</label>
+                                                                    <div class="">
+                                                                        <input ng-model="item.repertoire" ng-model="item.special" class="form-control" type="text" placeholder="比賽曲目 Repertoire">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                                                                    <div class="">
+                                                                        <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                            </div>
+                        </div>
+                        <!-- 管弦乐大赛 End -->
+
+                        
+                        <!-- 钢琴大赛 Start -->
+                        <div ng-repeat="($index, item) in baomingObj.gangqin.array" class="panel panel-primary" style="background:#fff;margin:20px 0">
+                            <div class="panel-heading diplay-flex heading-title">
+                                <span class="flex1" style="line-height: 250%;">
+                                    {{$index+1}}、钢琴大赛
+                                    <span class="glyphicon glyphicon-triangle-bottom" style="margin-left:20px;"></span>
+                                </span>
+                                <a class="btn btn-danger del-btn" ng-click="del('gangqin', $index, $event)">
+                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                    删除
+                                </a>
+                            </div>
+                            <div class="panel-body match-body">
+                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inputSpecial" class="control-label">參賽專業（所需乐器名称） Special</label>
+                                            <div class="form-group">
+                                                <!-- <label for="inputSpecial" class="control-label">參賽專業</label> -->
+                                                <div class="clearfix">
+                                                    
+                                                    <div class="dropdown fl">
+                                                        <button class="btn btn-default dropdown-toggle" type="button" id="gangqin{{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                            <span class="name" ng-bind="item.special"></span>
+                                                            <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="gangqin{{$index}}">
+                                                            <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">钢琴</a></li>
+                                                            <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">手风琴</a></li>
+                                                            <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">电子管风琴</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- <div class="fl jianbao duoren">
+                                                        <input type="text" class="form-control" placeholder="人数" style="display:none;">
+                                                    </div> -->
+    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inputSpecial" class="control-label">参赛形式</label>
+                                            <div class="clearfix">
+                                                
+                                                <div class="dropdown fl">
+                                                    <button class="btn btn-default dropdown-toggle" type="button" id="gangqinxingshi{{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        <span class="name" ng-bind="item.way"></span>
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="gangqinxingshi{{$index}}">
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">独奏</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">四手联弹</a></li>
+                                                    </ul>
+                                                </div>
+                                                <!-- <div class="fl jianbao">
+                                                    <input type="text" class="form-control" placeholder="人数" style="display:none;">
+                                                </div> -->
+
+                                            </div>
+                                        </div>
+                                    </div>                                        
+                                </div>
+
+                                <div class="row">                                        
+                                    <div class="col">
+                                        <div class="form-group group-table-wrap">
+                                            <table class="table table-bordered">
+                                                <thead class="bg-color-b0d9fb">
+                                                    <tr>
+                                                        <th colspan="3" class="text-center">成人组</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>                                                        
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputProfessional" class="control-label">職業 Professional</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='演員' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="演員"> 演員
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='教師' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="教師"> 教師
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputGraduate" class="control-label">研究生 Graduate</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="表演"> 表演
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='音效' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="音效"> 音效
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">非職業  Non-professional</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='非職業' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="非職業"> 非職業
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="table table-bordered">
+                                                <thead class="bg-color-b0d9fb">
+                                                    <tr>
+                                                        <th colspan="3" class="text-center">高等院校组</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody> 
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputProfessional" class="control-label">艺术院校 Art colleges of Universities</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='艺术院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校表演"> 表演
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='艺术院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校音教"> 音教
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputGraduate" class="control-label">师范院校 Normal colleges of Universities</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='师范院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校表演"> 表演
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='师范院校音效' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校音效"> 音效
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">普通院校 Colleges of Universities</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='普通院校' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通院校"> 普通院校
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- 其它 -->
+                                            <table class="table table-bordered">
+                                                <thead class="bg-color-b0d9fb">
+                                                    <tr>
+                                                        <th colspan="4" class="text-center">其它</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">藝術高中 Art High School</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='藝術高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術高中组"> 藝術高中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">普通高中 High School  </label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='普通高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通高中组"> 普通高中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">藝術初中 Art Junior High School</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='藝術初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術初中组"> 藝術初中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">普通初中组 Junior High School</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='普通初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通初中组"> 普通初中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">小学高 Primary School Senior</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='小学高' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学高"> 小学高
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">小学中 Primary School Middle</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='小学中' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学中"> 小学中
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">小学低 Primary School Middle Junior</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='小学低' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学低"> 小学低
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">幼儿组 Preschool</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='幼儿组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="幼儿组"> 幼儿组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- ****************** -->
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                
+                                                    <tr>
+                                                        <td>                                                                
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="inputReper" class="control-label">比賽曲目 Repertoire</label>
+                                                                    <div class="">
+                                                                        <input ng-model="item.repertoire" ng-model="item.special" class="form-control" type="text" placeholder="比賽曲目 Repertoire">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                                                                    <div class="">
+                                                                        <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                            </div>
+                        </div>
+                        <!-- 钢琴大赛 End -->
+
+                        
+                        <!-- 民乐大赛 Start -->
+                        <div ng-repeat="($index, item) in baomingObj.minyue.array" class="panel panel-primary" style="background:#fff;margin:20px 0">
+                            <div class="panel-heading diplay-flex heading-title">
+                                <span class="flex1" style="line-height: 250%;">
+                                    {{$index+1}}、民乐大赛
+                                    <span class="glyphicon glyphicon-triangle-bottom" style="margin-left:20px;"></span>
+                                </span>
+                                <a class="btn btn-danger del-btn" ng-click="del('minyue', $index, $event)">
+                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                    删除
+                                </a>
+                            </div>
+                            <div class="panel-body match-body">
+                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inputSpecial" class="control-label">參賽專業（所需乐器名称） Special</label>
+                                            <div class="">
+                                                <input ng-model="item.special" type="text" id="special" class="form-control" placeholder="參賽專業（所需乐器名称） Special">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inputSpecial" class="control-label">参赛形式</label>
+                                            <div class="clearfix">
+                                                
+                                                <div class="dropdown fl">
+                                                    <button class="btn btn-default dropdown-toggle" type="button" id="minyuexingshi{{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        <span class="name" ng-bind="item.way"></span>
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="minyuexingshi{{$index}}">
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">独奏</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">重奏</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">大中小型乐轩</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="fl jianbao" ng-if="item.way == '重奏' ? true : false">
+                                                    <input type="number" class="form-control" placeholder="人数" ng-model="item.peopleCount">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>                                        
+                                </div>
+
+                                <div class="row">                                        
+                                    <div class="col">
+                                        <div class="form-group group-table-wrap">
+                                            <table class="table table-bordered">
+                                                <thead class="bg-color-b0d9fb">
+                                                    <tr>
+                                                        <th colspan="3" class="text-center">成人组</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>                                                        
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputProfessional" class="control-label">職業 Professional</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='演員' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="演員"> 演員
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='教師' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="教師"> 教師
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputGraduate" class="control-label">研究生 Graduate</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="表演"> 表演
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='音效' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="音效"> 音效
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">非職業  Non-professional</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='非職業' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="非職業"> 非職業
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="table table-bordered">
+                                                <thead class="bg-color-b0d9fb">
+                                                    <tr>
+                                                        <th colspan="3" class="text-center">高等院校组</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody> 
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputProfessional" class="control-label">艺术院校 Art colleges of Universities</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='艺术院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校表演"> 表演
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='艺术院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校音教"> 音教
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputGraduate" class="control-label">师范院校 Normal colleges of Universities</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='师范院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校表演"> 表演
+                                                                </label>
+                                                                &nbsp;&nbsp;
+                                                                <label class="control-label {{item.classItem=='师范院校音效' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校音效"> 音效
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">普通院校 Colleges of Universities</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='普通院校' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通院校"> 普通院校
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- 其它 -->
+                                            <table class="table table-bordered">
+                                                <thead class="bg-color-b0d9fb">
+                                                    <tr>
+                                                        <th colspan="4" class="text-center">其它</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">藝術高中 Art High School</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='藝術高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術高中组"> 藝術高中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">普通高中 High School  </label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='普通高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通高中组"> 普通高中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">藝術初中 Art Junior High School</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='藝術初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術初中组"> 藝術初中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">普通初中组 Junior High School</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='普通初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通初中组"> 普通初中组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">小学高 Primary School Senior</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='小学高' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学高"> 小学高
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">小学中 Primary School Middle</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='小学中' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学中"> 小学中
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">小学低 Primary School Middle Junior</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='小学低' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学低"> 小学低
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <label for="inputNonProfessional" class="control-label">幼儿组 Preschool</label>
+                                                            <div class="">
+                                                                <label class="control-label {{item.classItem=='幼儿组' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="幼儿组"> 幼儿组
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- ****************** -->
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                
+                                                    <tr>
+                                                        <td>                                                                
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="inputReper" class="control-label">比賽曲目 Repertoire</label>
+                                                                    <div class="">
+                                                                        <input ng-model="item.repertoire" ng-model="item.special" class="form-control" type="text" placeholder="比賽曲目 Repertoire">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                                                                    <div class="">
+                                                                        <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                            </div>
+                        </div>
+                        <!-- 民乐大赛 End -->
+                        
+                        <!-- 声乐大赛 Start -->
+                        <div ng-repeat="($index, item) in baomingObj.shengyue.array" class="panel panel-primary" style="background:#fff;margin:20px 0">
+                            <div class="panel-heading diplay-flex heading-title">
+                                <span class="flex1" style="line-height: 250%;">
+                                    {{$index+1}}、声乐大赛
+                                    <span class="glyphicon glyphicon-triangle-bottom" style="margin-left:20px;"></span>
+                                </span>
+                                <a class="btn btn-danger del-btn" ng-click="del('shengyue', $index, $event)">
+                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                    删除
+                                </a>
+                            </div>
+                            <div class="panel-body match-body">
+                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="inputSpecial" class="control-label">參賽專業（所需乐器名称） Special</label>
+                                                <div class="form-group">
+                                                    <!-- <label for="inputSpecial" class="control-label">參賽專業</label> -->
+                                                    <div class="clearfix">
+                                                        
+                                                        <div class="dropdown fl">
+                                                            <button class="btn btn-default dropdown-toggle" type="button" id="shengyue{{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                <span class="name" ng-bind="item.special"></span>
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu" aria-labelledby="shengyue{{$index}}">
+                                                                <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">美声</a></li>
+                                                                <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">民族</a></li>
+                                                                <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">通俗</a></li>
+                                                                <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">合唱</a></li>
+                                                                <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">小组唱</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <!-- <div class="fl jianbao duoren">
+                                                            <input type="text" class="form-control" placeholder="人数" style="display:none;">
+                                                        </div> -->
+        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inputSpecial" class="control-label">参赛形式</label>
+                                            <div class="clearfix">
+                                                
+                                                <div class="dropdown fl">
+                                                    <button class="btn btn-default dropdown-toggle" type="button" id="shengyueshi{{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        <span class="name" ng-bind="item.way"></span>
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="shengyueshi{{$index}}">
+                                                        <li ng-click="chooseWay($event, item)" ng-if="item.special != '合唱' && item.special !='小组唱'"><a href="javascript:;">独唱</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">重唱</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">合唱</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">小组唱</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="fl jianbao" ng-if="item.way != '独唱' ? true : false">
+                                                    <input type="number" class="form-control" placeholder="人数" ng-model="item.peopleCount">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>                                        
+                                </div>
+
+                                <div class="row">                                        
+                                    <div class="col">
+                                        <div class="form-group group-table-wrap">
+                                            <!-- ****************** -->
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                
+                                                    <tr>
+                                                        <td>                                                                
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="inputReper" class="control-label">比賽曲目 Repertoire</label>
+                                                                    <div class="">
+                                                                        <input ng-model="item.repertoire" ng-model="item.special" class="form-control" type="text" placeholder="比賽曲目 Repertoire">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                                                                    <div class="">
+                                                                        <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                            </div>
+                        </div>
+                        <!-- 声乐大赛 End -->
+                        
+                        <!-- 舞蹈大赛 Start -->
+                        <div ng-repeat="($index, item) in baomingObj.wudao.array" class="panel panel-primary" style="background:#fff;margin:20px 0">
+                            <div class="panel-heading diplay-flex heading-title">
+                                <span class="flex1" style="line-height: 250%;">
+                                    {{$index+1}}、舞蹈大赛
+                                    <span class="glyphicon glyphicon-triangle-bottom" style="margin-left:20px;"></span>
+                                </span>
+                                <a class="btn btn-danger del-btn" ng-click="del('wudao', $index, $event)">
+                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                    删除
+                                </a>
+                            </div>
+                            <div class="panel-body match-body">
+                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="inputSpecial" class="control-label">參賽專業（所需乐器名称） Special</label>
+                                                <div class="form-group">
+                                                    <!-- <label for="inputSpecial" class="control-label">參賽專業</label> -->
+                                                    <div class="clearfix">
+                                                        
+                                                        <div class="dropdown fl">
+                                                            <button class="btn btn-default dropdown-toggle" type="button" id="wudao{{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                <span class="name" ng-bind="item.special"></span>
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu" aria-labelledby="wudao{{$index}}">
+                                                                <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">中国舞（民族民间舞、中国古典舞）</a></li>
+                                                                <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">芭蕾舞（现代芭蕾舞、古典芭蕾舞）</a></li>
+                                                                <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">现代舞（各种题材现代舞）</a></li>
+                                                                <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">国际标准舞（标准舞、拉丁美洲舞、队形舞）</a></li>
+                                                                <li ng-click="chooseSpecial($event, item)"><a href="javascript:;">青少年舞蹈（青少儿舞蹈、幼儿舞蹈）</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <!-- <div class="fl jianbao duoren">
+                                                            <input type="text" class="form-control" placeholder="人数" style="display:none;">
+                                                        </div> -->
+        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inputSpecial" class="control-label">参赛形式</label>
+                                            <div class="clearfix">
+                                                
+                                                <div class="dropdown fl">
+                                                    <button class="btn btn-default dropdown-toggle" type="button" id="wudaoshi{{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        <span class="name" ng-bind="item.way"></span>
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="wudaoshi{{$index}}">
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">独舞</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">双人舞</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">三人舞</a></li>
+                                                        <li ng-click="chooseWay($event, item)"><a href="javascript:;">群舞</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="fl jianbao" ng-if="item.way != '独舞' ? true : false">
+                                                    <input type="number" class="form-control" placeholder="人数" ng-model="item.peopleCount">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>                                        
+                                </div>
+
+                                <div class="row">                                        
+                                    <div class="col">
+                                        <div class="form-group group-table-wrap">
+                                            <!-- ****************** -->
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                
+                                                    <tr>
+                                                        <td>                                                                
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="inputReper" class="control-label">比賽曲目 Repertoire</label>
+                                                                    <div class="">
+                                                                        <input ng-model="item.repertoire" ng-model="item.special" class="form-control" type="text" placeholder="比賽曲目 Repertoire">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                                                                    <div class="">
+                                                                        <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                            </div>
+                        </div>
+                        <!-- 舞蹈大赛 End -->
                     </div>
                 </div>
 
             </div>
+            
         </div>
         <!-- 參賽方向 end -->
         
-        
-        <div class="panel panel-default margin-20">
-            <div class="panel-body">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="inputSchool" class="control-label">參賽組別名  Competition Category Name</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="inputAdult" class="control-label">成人組 Adult</label>                            
-                            <!-- <label class="control-label">
-                                <input type="checkbox" id="adult" value="adult"> 成人組 Adult
-                            </label> -->
-                        </div>                         
-                        <div class="form-group col-sm-4">
-                            <label for="inputProfessional" class="control-label">職業 Professional</label>
-                            <div class="">
-                                <label class="control-label" style="font-weight:normal;">
-                                    <input type="checkbox" id="actor" value="actor"> 演員
-                                </label>
-                                &nbsp;&nbsp;
-                                <label class="control-label" style="font-weight:normal;">
-                                    <input type="checkbox" id="teacher" value="teacher"> 教師
-                                </label>
-                            </div>
-                        </div>                   
-                        <div class="form-group col-sm-4">
-                            <label for="inputGraduate" class="control-label">研究生 Graduate</label>
-                            <div class="">
-                                <label class="control-label" style="font-weight:normal;">
-                                    <input type="checkbox" id="performance" value="performance"> 表演
-                                </label>
-                                &nbsp;&nbsp;
-                                <label class="control-label" style="font-weight:normal;">
-                                    <input type="checkbox" id="sound" value="sound"> 音效
-                                </label>
-                            </div>
-                        </div>
-                                   
-                        <div class="form-group col-sm-4">
-                            <label for="inputNonProfessional" class="control-label">非職業  Non-professional</label>
-                            <div class="">
-                                <label class="control-label" style="font-weight:normal;">
-                                    <input type="checkbox" id="nonProfessional" value="nonProfessional"> 非職業
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="inputSchool" class="control-label">高等院校組 Colleges or Universities</label>
-                        </div>                      
-                        <div class="form-group col-sm-4">
-                            <label for="inputArtCollegesOrUniversities" class="control-label">藝術院校 Art colleges or Universities</label>
-                            <div class="">
-                                <label class="control-label" style="font-weight:normal;">
-                                    <input type="checkbox" id="performance1" value="performance1"> 表演
-                                </label>
-                                &nbsp;&nbsp;
-                                <label class="control-label" style="font-weight:normal;">
-                                    <input type="checkbox" id="sound1" value="sound1"> 音效
-                                </label>
-                            </div>
-                        </div>                   
-                        <div class="form-group col-sm-4">
-                            <label for="inputNormalCollegesOrUniversities" class="control-label">師範院校 Normal colleges or Universities</label>
-                            <div class="">
-                                <label class="control-label" style="font-weight:normal;">
-                                    <input type="checkbox" id="performance2" value="performance2"> 表演
-                                </label>
-                                &nbsp;&nbsp;
-                                <label class="control-label" style="font-weight:normal;">
-                                    <input type="checkbox" id="sound2" value="sound2"> 音效
-                                </label>
-                            </div>
-                        </div>
-                                   
-                        <div class="form-group col-sm-4">
-                                <label for="inputCollegesOrUniversities" class="control-label">普通院校 Colleges or Universities</label>
-                            <div class="">
-                                <label class="control-label" style="font-weight:normal;">
-                                    <input type="checkbox" id="collegesOrUniversities" value="collegesOrUniversities"> 普通院校
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <label class="control-label" style="font-weight:normal;">
-                            <input type="checkbox" id="artHellSchool" value="artHellSchool"> 藝術高中 Art High School
-                        </label>
-                        &nbsp;&nbsp;
-                        <label class="control-label" style="font-weight:normal;">
-                            <input type="checkbox" id="highSchool" value="highSchool"> 普通高中 High School
-                        </label>
-                        &nbsp;&nbsp;
-                        <label class="control-label" style="font-weight:normal;">
-                            <input type="checkbox" id="artJuniorHighSchool" value="artJuniorHighSchool"> 藝術初中 Art Junior High School
-                        </label>
-                        &nbsp;&nbsp;
-                        <label class="control-label" style="font-weight:normal;">
-                            <input type="checkbox" id="juniorHighSchool" value="juniorHighSchool"> 普通初中 Junior High School
-                        </label>
-                        &nbsp;&nbsp;
-                        <label class="control-label" style="font-weight:normal;">
-                            <input type="checkbox" id="primarySchoolSenior" value="primarySchoolSenior"> 小學高 Primary School Senior
-                        </label>
-                        &nbsp;&nbsp;
-                        <label class="control-label" style="font-weight:normal;">
-                            <input type="checkbox" id="primarySchoolMiddle" value="primarySchoolMiddle"> 小學中 Primary School Middle
-                        </label>
-                        &nbsp;&nbsp;
-                        <label class="control-label" style="font-weight:normal;">
-                            <input type="checkbox" id="primarySchoolJunior" value="primarySchoolJunior"> 小學低 Primary School Junior
-                        </label>
-                        &nbsp;&nbsp;
-                        <label class="control-label" style="font-weight:normal;">
-                            <input type="checkbox" id="preschool" value="preschool"> 幼兒組 Preschool
-                        </label>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        
-        <div class="panel panel-default margin-20">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="inputSpecial" class="control-label">參賽專業 Special</label>
-                            <div class="">
-                                <input type="text" id="special" class="form-control" placeholder="參賽專業 Special">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="inputReper" class="control-label">比賽曲目 Repertoire</label>
-                            <div class="">
-                                <textarea class="form-control" id="repertoire" rows="5" placeholder="比賽曲目 Repertoire"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
-                            <div class="">
-                                <input type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="panel panel-default margin-20">
-            <div class="panel-body">
-                <div class="row">                    
-                    <div class="col-md-12">             
-                        <div class="form-group">
-                            <label for="inputOtherProfessional" class="control-label">兼報 Other Professional</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    
-                    <div class="col-md-12">
-                        <label class="control-label" style="font-weight:normal;">
-                            <input type="checkbox" id="hasOtherPressional" value="hasOtherPressional"> 有兼報
-                        </label>
-                        &nbsp;&nbsp;
-                        <label class="control-label" style="font-weight:normal;">
-                            <input type="checkbox" id="notHasOtherPressional" value="notHasOtherPressional"> 無兼報
-                        </label>
-                        &nbsp;&nbsp;
-                        【凡有兼報的選手請另行詳細填寫一張報名表，並在報名表的左上方清晰注明“兼報”二字，並一起提交。】兼報選手需另行交費                        
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="panel panel-default margin-20">
+        <div class="panel panel-primary margin-20">
             <div class="panel-body">
                 
                     <div class="row">
@@ -604,11 +1398,11 @@
                                 <label for="inputapplyForCreationPize" class="control-label">申請編創獎 Apply For Creation Pize （需另行交費）</label>
                             <div class="">
                                 <label class="control-label" style="font-weight:normal;">
-                                    <input type="radio" name="pize" id="applyPize" value="applyPize"> 是
+                                    <input ng-model="baomingObj.creationPize.value" type="radio" name="pize" id="applyPize" value="是"> 是
                                 </label>
                                 &nbsp;&nbsp;
                                 <label class="control-label" style="font-weight:normal;">
-                                    <input type="radio" name="pize" id="unapplyPize" value="unapplyPize" checked> 否
+                                    <input ng-model="baomingObj.creationPize.value" type="radio" name="pize" id="unapplyPize" value="否"> 否
                                 </label>
                             </div>
                         </div>                   
@@ -616,11 +1410,11 @@
                             <label for="inputApplyForGuidancePrize" class="control-label">申請指導獎 Apply For Guidance Prize （需另行交費）</label>
                             <div class="">
                                 <label class="control-label" style="font-weight:normal;">
-                                    <input type="radio" name="guidancePize" id="applyGuidancePize" value="applyGuidancePize"> 是
+                                    <input ng-model="baomingObj.guidancePize.value" type="radio" name="guidancePize" id="applyGuidancePize" value="申請教师指導獎"> 申請教师指導獎
                                 </label>
                                 &nbsp;&nbsp;
                                 <label class="control-label" style="font-weight:normal;">
-                                    <input type="radio" name="guidancePize" id="unapplyGuidancePize" value="unapplyGuidancePize" checked> 否
+                                    <input ng-model="baomingObj.guidancePize.value" type="radio" name="guidancePize" id="unapplyGuidancePize" value="申請艺术指導獎"> 申請艺术指導獎 
                                 </label>
                             </div>
                         </div>
@@ -629,14 +1423,50 @@
             </div>
         </div>
 
-        <div class="panel margin-20">
+        <div class="margin-20" id="optBtns">
             <div class="panel-body">
                 <div class="row text-center">
-                    <button type="button" id="submit" class="btn btn-primary">確定提交</button>
+                    <button type="button" class="btn btn-primary" ng-click="submit()">確定提交</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveToPng()">保存到本地</button>
                 </div>
             </div>
         </div>
 
+        <div class="margin-20">
+            <div class="panel-body" style="color:red;">
+                <div class="row">
+                    <span style="display:inline-block; width:30px;">注： </span>1：所有隨行人員所交資料均與參賽者相同，其中照片背面須標注姓名；
+                </div>
+                <div class="row">
+                    <span style="display:inline-block; width:30px;"></span>2：以上填寫資料如有任何變動，均需及時與組委會聯繫； 
+                </div>
+                <div class="row">
+                    <span style="display:inline-block; width:30px;"></span>3：請參賽選手及隨行人員詳細閱讀報名須知（可在組委會指定官網下載） 
+                </div>
+                <div class="row">
+                    <span style="display:inline-block; width:30px;"></span>4：報名表一經填寫上交，即被視為報名者本人及家長已詳細閱讀報名須知，認可並將遵守報名須知中的所有條款內容。
+                </div>
+            </div>
+        </div>
+
+        <!-- modal -->
+        <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" style="font-weight:bold;">鼠标右键点击下面的参赛报名表，可选择&emsp;图片另存为&emsp;到本地。<div class="alert alert-warning" role="alert">注意：保存到本地后，鼠标右键点击保存的文件，然后&emsp;重命名&emsp;为&emsp;报名表.png</div></h4>
+                </div>
+                <div class="modal-body">
+                  <p><img  style="width:100%;" id="capture" src="" title="右键点击图片，保存图片到本地" alt="右键点击图片，保存图片到本地" /></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+        
     </form>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -645,7 +1475,9 @@
     <script src="js/bootstrap.min.js"></script>
     <script language="JavaScript" type="text/javascript" src="../js/datejs/WdatePicker.js"></script>
     
+    <script src="js/angular.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/html2canvas.min.js"></script>
 </body>
 
 </html>

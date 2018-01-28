@@ -1,3 +1,6 @@
+*{
+    /* font-size: 16px; */
+}
 .margin-top-20{
   margin-top: 20px;
 }
@@ -12,4 +15,50 @@
 }
 .panel {
     background-color: #f7f7f9;
+}
+
+/* ************ */
+.jianbao{
+    margin-left: 10px;
+}
+/* ************ */
+.group-table-wrap{
+    margin:0 15px;
+    background: #e9f5ff;
+    border: 1px solid #b0d9fb;
+    border-radius: 4px;
+}
+.group-table-wrap table{
+    border-bottom: 2px solid #b0d9fb;
+}
+.group-table-wrap table th, .group-table-wrap table td{
+    border-color:#b0d9fb!important;
+}
+
+.label-select{
+    background: #337ab7;
+    border-radius: 5px;
+    padding: 5px;
+    /* border: 1px solid #ffffff; */
+    color: #fff;
+}
+
+
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.bg-color-f7f7f9{
+    background-color: #f7f7f9;
+}
+.bg-color-b0d9fb {
+    background-color: #b0d9fb;
+}
+.diplay-flex{
+    display: flex;
+}
+.flex1{
+    flex: 1;
 }
