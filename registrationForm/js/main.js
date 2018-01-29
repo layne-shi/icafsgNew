@@ -148,13 +148,13 @@ app.controller('myctrl',['$scope',function($scope){
         // 学校、公司
         company: {   
             id: "companyId" + common.createRandomId(),
-            value: "小學",
+            value: "单位",
             oValue: ""
         },
         // 年級/職務
         duty: {   
             id: "dutyId" + common.createRandomId(),
-            value: "大專"
+            value: ""
         },
         // 家长姓名 拼音（英文姓名）
         guardianName: {   
