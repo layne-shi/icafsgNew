@@ -202,16 +202,6 @@ app.controller('myctrl',['$scope',function($scope){
         }
     };
 
-    // 提交
-    $scope.submit = function(){
-        var truthBeTold = window.confirm("確認提交？");
-        if(truthBeTold){
-            window.alert("已提交！");
-        }else{
-            // window.alert("再见啦！");
-        }
-    };
-
     // 删除
     $scope.del = function(what, index, $event){
         $event.stopPropagation();
@@ -295,7 +285,7 @@ app.controller('myctrl',['$scope',function($scope){
     };
 
 
-    // 保存到本了图片
+    // 保存图片到本地
     $scope.saveToPng = function(){
         $('#optBtns').hide();
         $('.del-btn').hide();
@@ -324,6 +314,17 @@ app.controller('myctrl',['$scope',function($scope){
             $('#capture').attr('src',imgUri);
             $('#myModal').modal('show');
         });  
+    };
+
+    // 提交
+    $scope.submit = function(){
+        var truthBeTold = window.confirm("请检查报名表是否填写正确，提交后如需更改请联系客服。\n\n是否提交？");
+        if(truthBeTold){
+            window.alert("已提交！");
+            window.location = './complete.html';
+        }else{
+            // window.alert("再见啦！");
+        }
     };
 }]);
 
