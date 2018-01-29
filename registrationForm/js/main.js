@@ -300,12 +300,17 @@ app.controller('myctrl',['$scope',function($scope){
             $('#optBtns').show();
             $('.del-btn').show();
             angular.forEach($('.match-body'), function(item, index){
-                for(var j=0,jlen=indexArr.length;j<jlen;j++){
-                    if(index == indexArr[j]){
-                        item.style.display = 'block';
-                    }else{
-                        item.style.display = 'none';
-                    }
+                if(indexArr.length >0 ){
+                    
+                    for(var j=0,jlen=indexArr.length;j<jlen;j++){
+                        if(index == indexArr[j]){
+                            item.style.display = 'block';
+                        }else{
+                            item.style.display = 'none';
+                        }
+                    } 
+                }else{
+                    item.style.display = 'none';
                 }
             });
             var imgUri = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); // 获取生成的图片的url  
