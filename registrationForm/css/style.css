@@ -2,7 +2,7 @@
     /* font-size: 16px; */
 }
 .margin-top-20{
-  margin-top: 20px;
+  margin-top: 20px!important;
 }
 .border-top-1{
     border-top: 1px solid #ddd;
@@ -61,4 +61,10 @@
 }
 .flex1{
     flex: 1;
+}
+.color-red{
+    color: #ec1717!important;
+}
+.margin-right-5px{
+    margin-right: 5px;
 }

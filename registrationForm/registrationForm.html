@@ -22,22 +22,64 @@
     <link href="../js/datejs/skin/WdatePicker.css" rel="stylesheet" type="text/css">
 </head>
 
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="myctrl">
     <h1 class="text-center">參賽報名表</h1>
-
-    <form ng-controller="myctrl">
+    <h3 class="text-center">
+        
+        <div class="dropdown" style="margin: 0 auto; width:150px;">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu00" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    举办地：<span class="name" ng-bind="baomingObj.hostCity.value"></span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu00">
+                <li ng-click="chooseHostCity(item)" ng-repeat="item in baomingObj.hostCity.valueArr"><a href="javascript:;">{{item}}</a></li>
+            </ul>
+        </div>
+    </h3>
+    
+    <form>
+        <div class="panel panel-primary margin-20">
+            <div class="panel-body">
+            
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputOtherContact" class="control-label"><span class="color-red margin-right-5px">★</span>参赛性质</label>
+                            <div class="">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu00" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            参赛人性质：<span class="name" ng-bind="baomingObj.xingzhi.value"></span>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu00">
+                                        <li ng-click="choosexingzhi(item)" ng-repeat="item in baomingObj.xingzhi.valueArr"><a href="javascript:;">{{item}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="panel panel-primary margin-20">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="inputName" class="control-label">姓名 name</label>
+                            <label for="inputName" class="control-label"><span class="color-red margin-right-5px">★</span>姓名 name</label>
                             <div class="">
                                 <input ng-model="baomingObj.name.value" type="text" id="name" class="form-control" placeholder="姓名 name">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="inputName" class="control-label"><span class="color-red margin-right-5px">★</span>拼音（英文姓名）第一个字母大写，并用空格隔开。如：Zhang Wei</label>
+                            <div class="">
+                                <input ng-model="baomingObj.name.enValue" type="text" id="name" class="form-control" placeholder="拼音（英文姓名）">
+                            </div>
+                        </div>
                         <div class="form-group clearfix">
-                            <label for="inputBirthday" class="control-label">出生日期 Date of birth</label>
+                            <label for="inputBirthday" class="control-label"><span class="color-red margin-right-5px">★</span>出生日期 Date of birth</label>
                             <div class="">
                                 <input ng-model="baomingObj.birth.value" type="text" id="birthday" class="form-control" placeholder="出生日期 Date of birth" onclick="WdatePicker()">
                             </div>
@@ -45,7 +87,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="inputGender" class="control-label">性別 Gender</label>
+                            <label for="inputGender" class="control-label"><span class="color-red margin-right-5px">★</span>性別 Gender</label>
                             <div class="" style="height: 34px;">
                                 <label style="margin-right:50px;" class="control-label">
                                     <input ng-model="baomingObj.gender.value" type="radio" checked name="gender" id="gender0" value="男">&nbsp;男
@@ -56,7 +98,7 @@
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label for="inputNationality" class="control-label">國籍 Nationality</label>
+                            <label for="inputNationality" class="control-label"><span class="color-red margin-right-5px">★</span>國籍 Nationality</label>
                             <div class="">
                                 <input ng-model="baomingObj.nationality.value" type="text" id="nationality" class="form-control" placeholder="國籍 Nationality">
                             </div>
@@ -64,13 +106,13 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="inputAge" class="control-label">年齡 Age</label>
+                            <label for="inputAge" class="control-label"><span class="color-red margin-right-5px">★</span>年齡 Age</label>
                             <div class="">
                                 <input ng-model="baomingObj.age.value" type="number" id="age" class="form-control" placeholder="年齡 Age">
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label for="inputNational" class="control-label">民族 National</label>
+                            <label for="inputNational" class="control-label"><span class="color-red margin-right-5px">★</span>民族 National</label>
                             <div class="">
                                 <input ng-model="baomingObj.national.value" type="text" id="national" class="form-control" placeholder="民族 National">
                             </div>
@@ -78,7 +120,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="inputAge" class="control-label">照片 Photo（兩寸白底彩色免冠照片）</label>
+                            <label for="inputAge" class="control-label"><span class="color-red margin-right-5px">★</span>照片 Photo（兩寸白底彩色免冠照片）</label>
                             <div class="">
                                 <img src="{{baomingObj.avatar.value}}" class="img-thumbnail" alt="兩寸白底彩色免冠照片" data-holder-rendered="true" style="height: 140px;">
                             </div>
@@ -102,7 +144,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="inputMobileNo" class="control-label">手機號碼Mobile No.</label>
+                                <label for="inputMobileNo" class="control-label"><span class="color-red margin-right-5px">★</span>手機號碼Mobile No.</label>
                                 <div class="">
                                     <input ng-model="baomingObj.mobileNo.value" type="text" id="mobile" class="form-control" placeholder="手機號碼Mobile No.">
                                 </div>
@@ -110,7 +152,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="inputId" class="control-label">身份證 ID</label>
+                                <label for="inputId" class="control-label"><span class="color-red margin-right-5px">★</span>身份證 ID</label>
                                 <div class="">
                                     <input ng-model="baomingObj.identity.value" type="text" id="identity" class="form-control" placeholder="身份證 ID">
                                 </div>
@@ -190,7 +232,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="exampleInputFile" class="control-label">身份證照片、護照照片上傳（身份證照片和護照照片各1張）</label>
+                            <label for="exampleInputFile" class="control-label"><span class="color-red margin-right-5px">★</span>身份證照片、護照照片上傳（身份證照片和護照照片各1張）</label>
                             <div class="margin-top-20">
                                 <input type="file" id="exampleInputFile">
                             </div>
@@ -205,119 +247,110 @@
                     </div>
                 </div>
             </div>
+        
         </div>
         
-        <div class="panel panel-primary margin-20">
+        
+        <div class="panel panel-primary margin-20" ng-if="baomingObj.xingzhi.value == '选手'">
             <div class="panel-body">
-                <div class="row">                    
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="inputSchool" class="control-label">學校單位 School/Company</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">                                
-                            <div class="radio">
-                                <label class="control-label">
-                                    <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios0" value="小學">小學/Primary School
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">                                
-                            <div class="radio">
-                                <label class="control-label">
-                                    <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios1" value="中學">中學/High School
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">                                
-                            <div class="radio">
-                                <label class="control-label">
-                                    <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios2" value="大學">大學/University
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">                                
-                            <div class="radio">
-                                <label class="control-label">
-                                    <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios3" value="單位">單位/Company
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">                
-                    <div class="col-md-6">
-                        <div class="form-group">                                
-                            <div class="">
-                                <input ng-model="baomingObj.company.oValue" type="text" id="school" class="form-control" placeholder="學校/單位 School/Company">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+                <table class="table table-bordered" style="background-color: #f8fcff;">
+                    <tbody>
+                            <tr>
+                                <td rowspan="4" colspan="1" style="word-break: break-all;vertical-align: middle;">
+                                    <div class="form-group">
+                                        <label for="inputSchool" class="control-label">學校單位 School/Company</label>
+                                    </div>
+                                </td>
+                                <td>                          
+                                    <div class="radio">
+                                        <label class="control-label">
+                                            <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios0" value="单位">单位/Company
+                                        </label>
+                                    </div>            
+                                </td>
+                                <td rowspan="4" colspan="1" style="word-break: break-all;vertical-align: middle;">                                    
+                                    <div class="form-group">
+                                        <label for="inputSchool" class="control-label">年級/職務 Grade/Duty</label>
+                                    </div>
+                                </td>
+                                <td rowspan="3" colspan="1" style="vertical-align: middle;">                  
+                                    <div class="">
+                                        <input ng-model="baomingObj.company.oValue" type="text" id="school" class="form-control" placeholder="學校/單位 School/Company">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>                          
+                                    <div class="radio">
+                                        <label class="control-label">
+                                            <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios0" value="小學">小學/Primary School
+                                        </label>
+                                    </div>            
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>                   
+                                    <div class="radio">
+                                        <label class="control-label">
+                                            <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios1" value="中學">中學/High School
+                                        </label>
+                                    </div>              
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>    
+                                    <div class="radio">
+                                        <label class="control-label">
+                                            <input ng-model="baomingObj.company.value" type="radio" name="schoolRadios" id="schoolRadios2" value="大學">大學/University
+                                        </label>
+                                    </div>                 
+                                </td>
+                                <td>
+                                    <div class="col-md-2">
+                                        <div class="form-group">                                
+                                            <div class="radio">
+                                                <label class="control-label">
+                                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios0" value="大專">大專
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">                                
+                                            <div class="radio">
+                                                <label class="control-label">
+                                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios1" value="大本">大本
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">                                
+                                            <div class="radio">
+                                                <label class="control-label">
+                                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios2" value="研究生">研究生
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">                                
+                                            <div class="radio">
+                                                <label class="control-label">
+                                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios3" value="博士">博士
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         
-        <div class="panel panel-primary margin-20">
+        <div class="panel panel-primary margin-20" ng-if="baomingObj.xingzhi.value == '选手'">
             <div class="panel-body">
-                <div class="row">                    
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="inputSchool" class="control-label">年級/職務 Grade/Duty</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">                                
-                            <div class="radio">
-                                <label class="control-label">
-                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios0" value="大專">大專
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">                                
-                            <div class="radio">
-                                <label class="control-label">
-                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios1" value="大本">大本
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">                                
-                            <div class="radio">
-                                <label class="control-label">
-                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios2" value="研究生">研究生
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">                                
-                            <div class="radio">
-                                <label class="control-label">
-                                    <input ng-model="baomingObj.duty.value" type="radio" name="gradeRadios" id="gradeRadios3" value="博士">博士
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="row">                        
                     <div class="col-md-3">
@@ -359,7 +392,7 @@
         </div>
         
         <!-- 參賽方向 start -->
-        <div class="panel panel-primary margin-20">
+        <div class="panel panel-primary margin-20" ng-if="baomingObj.xingzhi.value == '选手'">
             <div class="panel-body">
                 <div class="row">                 
                     <div class="col-md-12">
@@ -370,7 +403,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                            <div class="dropdown fl">
+                            <div class="dropdown fl"><span class="color-red margin-right-5px">★</span>
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     <span class="name" ng-bind="baomingObj.direction.value"></span>
                                     <span class="caret"></span>
@@ -395,7 +428,7 @@
                     <div class="col-md-12" id="match">
                         <div class="no-data bg-danger" ng-if="baomingObj.guanxuanyue.array.length == 0 && baomingObj.guanxuanyue.array.length == 0 && baomingObj.gangqin.array.length == 0 && baomingObj.minyue.array.length == 0 && baomingObj.shengyue.array.length == 0 && baomingObj.wudao.array.length == 0">
                                                            
-                            <h2 style="padding: 10px;">请选择一个参赛方向，然后点击上边的
+                            <h2 style="padding: 10px;">请选择一个参赛方向，然后点击蓝色的
                                 <a class="btn btn-default">
                                     <span class="glyphicon glyphicon-plus-sign"></span>
                                     <!-- 兼报 -->
@@ -420,7 +453,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputSpecial" class="control-label">參賽專業（所需乐器名称） Special</label>
+                                            <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px">★</span>參賽專業（所需乐器名称） Special</label>
                                             <div class="">
                                                 <input ng-model="item.special" type="text" id="special" class="form-control" placeholder="參賽專業（所需乐器名称） Special">
                                             </div>
@@ -428,7 +461,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputSpecial" class="control-label">参赛形式</label>
+                                            <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px">★</span>参赛形式</label>
                                             <div class="clearfix">
                                                 
                                                 <div class="dropdown fl">
@@ -443,7 +476,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="fl jianbao" ng-if="item.way == '重奏' ? true : false">
-                                                    <input type="number" class="form-control" placeholder="人数" ng-model="item.peopleCount">
+                                                        <input type="number" class="form-control" placeholder="人数" ng-model="item.peopleCount">
                                                 </div>
 
                                             </div>
@@ -454,6 +487,7 @@
                                 <div class="row">                                        
                                     <div class="col">
                                         <div class="form-group group-table-wrap">
+                                            <span class="color-red margin-right-5px">&nbsp;必选&nbsp;★</span>
                                             <table class="table table-bordered">
                                                 <thead class="bg-color-b0d9fb">
                                                     <tr>
@@ -466,11 +500,11 @@
                                                             <label for="inputProfessional" class="control-label">職業 Professional</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='演員' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="演員"> 演員
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="演員"> 演員
                                                                 </label>
                                                                 &nbsp;&nbsp;
                                                                 <label class="control-label {{item.classItem=='教師' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="教師"> 教師
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="教師"> 教師
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -478,11 +512,11 @@
                                                             <label for="inputGraduate" class="control-label">研究生 Graduate</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='表演' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="表演"> 表演
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="表演"> 表演
                                                                 </label>
                                                                 &nbsp;&nbsp;
-                                                                <label class="control-label {{item.classItem=='音效' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="音效"> 音效
+                                                                <label class="control-label {{item.classItem=='音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="音教"> 音教
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -490,7 +524,7 @@
                                                             <label for="inputNonProfessional" class="control-label">非職業  Non-professional</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='非職業' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="非職業"> 非職業
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="非職業"> 非職業
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -506,34 +540,34 @@
                                                 <tbody> 
                                                     <tr>
                                                         <td>
-                                                            <label for="inputProfessional" class="control-label">艺术院校 Art colleges of Universities</label>
+                                                            <label for="inputProfessional" class="control-label">高等艺术院校 Art colleges of Universities</label>
                                                             <div class="">
-                                                                <label class="control-label {{item.classItem=='艺术院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校表演"> 表演
+                                                                <label class="control-label {{item.classItem=='高等艺术院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="高等艺术院校表演"> 表演
                                                                 </label>
                                                                 &nbsp;&nbsp;
-                                                                <label class="control-label {{item.classItem=='艺术院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校音教"> 音教
+                                                                <label class="control-label {{item.classItem=='高等艺术院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="高等艺术院校音教"> 音教
                                                                 </label>
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <label for="inputGraduate" class="control-label">师范院校 Normal colleges of Universities</label>
+                                                            <label for="inputGraduate" class="control-label">高等师范院校 Normal colleges of Universities</label>
                                                             <div class="">
-                                                                <label class="control-label {{item.classItem=='师范院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校表演"> 表演
+                                                                <label class="control-label {{item.classItem=='高等师范院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="高等师范院校表演"> 表演
                                                                 </label>
                                                                 &nbsp;&nbsp;
-                                                                <label class="control-label {{item.classItem=='师范院校音效' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校音效"> 音效
+                                                                <label class="control-label {{item.classItem=='高等师范院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="师范院校音教"> 音教
                                                                 </label>
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <label for="inputNonProfessional" class="control-label">普通院校 Colleges of Universities</label>
+                                                            <label for="inputNonProfessional" class="control-label">高等普通院校 Colleges of Universities</label>
                                                             <div class="">
-                                                                <label class="control-label {{item.classItem=='普通院校' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通院校"> 普通院校
+                                                                <label class="control-label {{item.classItem=='高等普通院校' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="高等普通院校"> 普通院校
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -553,7 +587,7 @@
                                                             <label for="inputNonProfessional" class="control-label">藝術高中 Art High School</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='藝術高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術高中组"> 藝術高中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="藝術高中组"> 藝術高中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -561,7 +595,7 @@
                                                             <label for="inputNonProfessional" class="control-label">普通高中 High School  </label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='普通高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通高中组"> 普通高中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="普通高中组"> 普通高中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -569,7 +603,7 @@
                                                             <label for="inputNonProfessional" class="control-label">藝術初中 Art Junior High School</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='藝術初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術初中组"> 藝術初中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="藝術初中组"> 藝術初中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -577,7 +611,7 @@
                                                             <label for="inputNonProfessional" class="control-label">普通初中组 Junior High School</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='普通初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通初中组"> 普通初中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="普通初中组"> 普通初中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -587,7 +621,7 @@
                                                             <label for="inputNonProfessional" class="control-label">小学高 Primary School Senior</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='小学高' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学高"> 小学高
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="小学高"> 小学高
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -595,7 +629,7 @@
                                                             <label for="inputNonProfessional" class="control-label">小学中 Primary School Middle</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='小学中' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学中"> 小学中
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="小学中"> 小学中
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -603,7 +637,7 @@
                                                             <label for="inputNonProfessional" class="control-label">小学低 Primary School Middle Junior</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='小学低' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学低"> 小学低
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="小学低"> 小学低
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -611,14 +645,16 @@
                                                             <label for="inputNonProfessional" class="control-label">幼儿组 Preschool</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='幼儿组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="幼儿组"> 幼儿组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio{{$index}}" value="幼儿组"> 幼儿组
                                                                 </label>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <!-- ****************** -->
+                                        </div>
+                                        <!-- ****************** -->
+                                        <div class="form-group group-table-wrap margin-top-20">
                                             <table class="table table-bordered">
                                                 <tbody>
                                                 
@@ -633,10 +669,25 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col">
-                                                                <div class="form-group">
-                                                                    <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
-                                                                    <div class="">
-                                                                        <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                                
+                                                                        <div class="form-group">
+                                                                            <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                                                                            <div class="">
+                                                                                <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                            
+                                                                        <div class="form-group">
+                                                                            <span class="color-red margin-right-5px">★</span>
+                                                                            <label for="inputName" class="control-label">推荐教师</label>
+                                                                            <div class="">
+                                                                                <input ng-model="item.teacherT" type="text" id="name" class="form-control" placeholder="推荐教师">
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -670,7 +721,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputSpecial" class="control-label">參賽專業（所需乐器名称） Special</label>
+                                            <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px"></span>★</span>參賽專業（所需乐器名称） Special</label>
                                             <div class="form-group">
                                                 <!-- <label for="inputSpecial" class="control-label">參賽專業</label> -->
                                                 <div class="clearfix">
@@ -696,7 +747,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputSpecial" class="control-label">参赛形式</label>
+                                            <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px">★</span>参赛形式</label>
                                             <div class="clearfix">
                                                 
                                                 <div class="dropdown fl">
@@ -721,6 +772,7 @@
                                 <div class="row">                                        
                                     <div class="col">
                                         <div class="form-group group-table-wrap">
+                                            <span class="color-red margin-right-5px">&nbsp;必选&nbsp;★</span>
                                             <table class="table table-bordered">
                                                 <thead class="bg-color-b0d9fb">
                                                     <tr>
@@ -733,11 +785,11 @@
                                                             <label for="inputProfessional" class="control-label">職業 Professional</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='演員' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="演員"> 演員
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="演員"> 演員
                                                                 </label>
                                                                 &nbsp;&nbsp;
                                                                 <label class="control-label {{item.classItem=='教師' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="教師"> 教師
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="教師"> 教師
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -745,11 +797,11 @@
                                                             <label for="inputGraduate" class="control-label">研究生 Graduate</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='表演' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="表演"> 表演
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="表演"> 表演
                                                                 </label>
                                                                 &nbsp;&nbsp;
-                                                                <label class="control-label {{item.classItem=='音效' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="音效"> 音效
+                                                                <label class="control-label {{item.classItem=='音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="音教"> 音教
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -757,7 +809,7 @@
                                                             <label for="inputNonProfessional" class="control-label">非職業  Non-professional</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='非職業' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="非職業"> 非職業
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="非職業"> 非職業
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -773,34 +825,34 @@
                                                 <tbody> 
                                                     <tr>
                                                         <td>
-                                                            <label for="inputProfessional" class="control-label">艺术院校 Art colleges of Universities</label>
+                                                            <label for="inputProfessional" class="control-label">高等艺术院校 Art colleges of Universities</label>
                                                             <div class="">
-                                                                <label class="control-label {{item.classItem=='艺术院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校表演"> 表演
+                                                                <label class="control-label {{item.classItem=='高等艺术院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="高等艺术院校表演"> 表演
                                                                 </label>
                                                                 &nbsp;&nbsp;
-                                                                <label class="control-label {{item.classItem=='艺术院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校音教"> 音教
+                                                                <label class="control-label {{item.classItem=='高等艺术院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="高等艺术院校音教"> 音教
                                                                 </label>
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <label for="inputGraduate" class="control-label">师范院校 Normal colleges of Universities</label>
+                                                            <label for="inputGraduate" class="control-label">高等师范院校 Normal colleges of Universities</label>
                                                             <div class="">
-                                                                <label class="control-label {{item.classItem=='师范院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校表演"> 表演
+                                                                <label class="control-label {{item.classItem=='高等师范院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="高等师范院校表演"> 表演
                                                                 </label>
                                                                 &nbsp;&nbsp;
-                                                                <label class="control-label {{item.classItem=='师范院校音效' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校音效"> 音效
+                                                                <label class="control-label {{item.classItem=='高等师范院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="高等师范院校音教"> 音教
                                                                 </label>
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <label for="inputNonProfessional" class="control-label">普通院校 Colleges of Universities</label>
+                                                            <label for="inputNonProfessional" class="control-label">高等普通院校 Colleges of Universities</label>
                                                             <div class="">
-                                                                <label class="control-label {{item.classItem=='普通院校' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通院校"> 普通院校
+                                                                <label class="control-label {{item.classItem=='高等普通院校' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="高等普通院校"> 高等普通院校
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -820,7 +872,7 @@
                                                             <label for="inputNonProfessional" class="control-label">藝術高中 Art High School</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='藝術高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術高中组"> 藝術高中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="藝術高中组"> 藝術高中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -828,7 +880,7 @@
                                                             <label for="inputNonProfessional" class="control-label">普通高中 High School  </label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='普通高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通高中组"> 普通高中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="普通高中组"> 普通高中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -836,7 +888,7 @@
                                                             <label for="inputNonProfessional" class="control-label">藝術初中 Art Junior High School</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='藝術初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術初中组"> 藝術初中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="藝術初中组"> 藝術初中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -844,7 +896,7 @@
                                                             <label for="inputNonProfessional" class="control-label">普通初中组 Junior High School</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='普通初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通初中组"> 普通初中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="普通初中组"> 普通初中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -854,7 +906,7 @@
                                                             <label for="inputNonProfessional" class="control-label">小学高 Primary School Senior</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='小学高' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学高"> 小学高
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="小学高"> 小学高
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -862,7 +914,7 @@
                                                             <label for="inputNonProfessional" class="control-label">小学中 Primary School Middle</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='小学中' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学中"> 小学中
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="小学中"> 小学中
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -870,7 +922,7 @@
                                                             <label for="inputNonProfessional" class="control-label">小学低 Primary School Middle Junior</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='小学低' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学低"> 小学低
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="小学低"> 小学低
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -878,13 +930,15 @@
                                                             <label for="inputNonProfessional" class="control-label">幼儿组 Preschool</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='幼儿组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="幼儿组"> 幼儿组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiogq{{$index}}" value="幼儿组"> 幼儿组
                                                                 </label>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            </div>
+                                            <div class="form-group group-table-wrap margin-top-20">
                                             <!-- ****************** -->
                                             <table class="table table-bordered">
                                                 <tbody>
@@ -900,10 +954,25 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col">
-                                                                <div class="form-group">
-                                                                    <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
-                                                                    <div class="">
-                                                                        <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                                
+                                                                        <div class="form-group">
+                                                                            <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                                                                            <div class="">
+                                                                                <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                            
+                                                                        <div class="form-group">
+                                                                            <span class="color-red margin-right-5px">★</span>
+                                                                            <label for="inputName" class="control-label">推荐教师</label>
+                                                                            <div class="">
+                                                                                <input ng-model="item.teacherT" type="text" id="name" class="form-control" placeholder="推荐教师">
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -937,7 +1006,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputSpecial" class="control-label">參賽專業（所需乐器名称） Special</label>
+                                            <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px">★</span>參賽專業（所需乐器名称） Special</label>
                                             <div class="">
                                                 <input ng-model="item.special" type="text" id="special" class="form-control" placeholder="參賽專業（所需乐器名称） Special">
                                             </div>
@@ -945,7 +1014,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputSpecial" class="control-label">参赛形式</label>
+                                            <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px">★</span>参赛形式</label>
                                             <div class="clearfix">
                                                 
                                                 <div class="dropdown fl">
@@ -960,7 +1029,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="fl jianbao" ng-if="item.way == '重奏' ? true : false">
-                                                    <input type="number" class="form-control" placeholder="人数" ng-model="item.peopleCount">
+                                                        <input type="number" class="form-control" placeholder="人数" ng-model="item.peopleCount">
                                                 </div>
 
                                             </div>
@@ -971,6 +1040,7 @@
                                 <div class="row">                                        
                                     <div class="col">
                                         <div class="form-group group-table-wrap">
+                                            <span class="color-red margin-right-5px">&nbsp;必选&nbsp;★</span>
                                             <table class="table table-bordered">
                                                 <thead class="bg-color-b0d9fb">
                                                     <tr>
@@ -983,11 +1053,11 @@
                                                             <label for="inputProfessional" class="control-label">職業 Professional</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='演員' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="演員"> 演員
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="演員"> 演員
                                                                 </label>
                                                                 &nbsp;&nbsp;
                                                                 <label class="control-label {{item.classItem=='教師' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="教師"> 教師
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="教師"> 教師
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -995,11 +1065,11 @@
                                                             <label for="inputGraduate" class="control-label">研究生 Graduate</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='表演' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="表演"> 表演
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="表演"> 表演
                                                                 </label>
                                                                 &nbsp;&nbsp;
-                                                                <label class="control-label {{item.classItem=='音效' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="音效"> 音效
+                                                                <label class="control-label {{item.classItem=='音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="音教"> 音教
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -1007,7 +1077,7 @@
                                                             <label for="inputNonProfessional" class="control-label">非職業  Non-professional</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='非職業' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="非職業"> 非職業
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="非職業"> 非職業
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -1023,34 +1093,34 @@
                                                 <tbody> 
                                                     <tr>
                                                         <td>
-                                                            <label for="inputProfessional" class="control-label">艺术院校 Art colleges of Universities</label>
+                                                            <label for="inputProfessional" class="control-label">高等艺术院校 Art colleges of Universities</label>
                                                             <div class="">
-                                                                <label class="control-label {{item.classItem=='艺术院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校表演"> 表演
+                                                                <label class="control-label {{item.classItem=='高等艺术院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="高等艺术院校表演"> 表演
                                                                 </label>
                                                                 &nbsp;&nbsp;
-                                                                <label class="control-label {{item.classItem=='艺术院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="艺术院校音教"> 音教
+                                                                <label class="control-label {{item.classItem=='高等艺术院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="高等艺术院校音教"> 音教
                                                                 </label>
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <label for="inputGraduate" class="control-label">师范院校 Normal colleges of Universities</label>
+                                                            <label for="inputGraduate" class="control-label">高等师范院校 Normal colleges of Universities</label>
                                                             <div class="">
-                                                                <label class="control-label {{item.classItem=='师范院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校表演"> 表演
+                                                                <label class="control-label {{item.classItem=='高等师范院校表演' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="高等师范院校表演"> 表演
                                                                 </label>
                                                                 &nbsp;&nbsp;
-                                                                <label class="control-label {{item.classItem=='师范院校音效' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="师范院校音效"> 音效
+                                                                <label class="control-label {{item.classItem=='高等师范院校音教' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="高等师范院校音教"> 音教
                                                                 </label>
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <label for="inputNonProfessional" class="control-label">普通院校 Colleges of Universities</label>
+                                                            <label for="inputNonProfessional" class="control-label">高等普通院校 Colleges of Universities</label>
                                                             <div class="">
-                                                                <label class="control-label {{item.classItem=='普通院校' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通院校"> 普通院校
+                                                                <label class="control-label {{item.classItem=='高等普通院校' ? 'label-select' : ''}}" style="font-weight:normal;">
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="高等普通院校"> 高等普通院校
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -1070,7 +1140,7 @@
                                                             <label for="inputNonProfessional" class="control-label">藝術高中 Art High School</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='藝術高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術高中组"> 藝術高中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="藝術高中组"> 藝術高中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -1078,7 +1148,7 @@
                                                             <label for="inputNonProfessional" class="control-label">普通高中 High School  </label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='普通高中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通高中组"> 普通高中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="普通高中组"> 普通高中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -1086,7 +1156,7 @@
                                                             <label for="inputNonProfessional" class="control-label">藝術初中 Art Junior High School</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='藝術初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="藝術初中组"> 藝術初中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="藝術初中组"> 藝術初中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -1094,7 +1164,7 @@
                                                             <label for="inputNonProfessional" class="control-label">普通初中组 Junior High School</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='普通初中组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="普通初中组"> 普通初中组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="普通初中组"> 普通初中组
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -1104,7 +1174,7 @@
                                                             <label for="inputNonProfessional" class="control-label">小学高 Primary School Senior</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='小学高' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学高"> 小学高
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="小学高"> 小学高
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -1112,7 +1182,7 @@
                                                             <label for="inputNonProfessional" class="control-label">小学中 Primary School Middle</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='小学中' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学中"> 小学中
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="小学中"> 小学中
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -1120,7 +1190,7 @@
                                                             <label for="inputNonProfessional" class="control-label">小学低 Primary School Middle Junior</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='小学低' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="小学低"> 小学低
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="小学低"> 小学低
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -1128,13 +1198,15 @@
                                                             <label for="inputNonProfessional" class="control-label">幼儿组 Preschool</label>
                                                             <div class="">
                                                                 <label class="control-label {{item.classItem=='幼儿组' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadio" value="幼儿组"> 幼儿组
+                                                                    <input ng-model="item.classItem" type="radio" name="zubieRadiomy{{$index}}" value="幼儿组"> 幼儿组
                                                                 </label>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            </div>
+                                            <div class="form-group group-table-wrap margin-top-20">
                                             <!-- ****************** -->
                                             <table class="table table-bordered">
                                                 <tbody>
@@ -1150,10 +1222,25 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col">
-                                                                <div class="form-group">
-                                                                    <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
-                                                                    <div class="">
-                                                                        <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                                
+                                                                        <div class="form-group">
+                                                                            <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                                                                            <div class="">
+                                                                                <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                            
+                                                                        <div class="form-group">
+                                                                            <span class="color-red margin-right-5px">★</span>
+                                                                            <label for="inputName" class="control-label">推荐教师</label>
+                                                                            <div class="">
+                                                                                <input ng-model="item.teacherT" type="text" id="name" class="form-control" placeholder="推荐教师">
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1186,7 +1273,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="inputSpecial" class="control-label">參賽專業（所需乐器名称） Special</label>
+                                                <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px">★</span>參賽專業（所需乐器名称） Special</label>
                                                 <div class="form-group">
                                                     <!-- <label for="inputSpecial" class="control-label">參賽專業</label> -->
                                                     <div class="clearfix">
@@ -1214,7 +1301,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputSpecial" class="control-label">参赛形式</label>
+                                            <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px">★</span>参赛形式</label>
                                             <div class="clearfix">
                                                 
                                                 <div class="dropdown fl">
@@ -1230,7 +1317,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="fl jianbao" ng-if="item.way != '独唱' ? true : false">
-                                                    <input type="number" class="form-control" placeholder="人数" ng-model="item.peopleCount">
+                                                        <input type="number" class="form-control" placeholder="人数" ng-model="item.peopleCount">
                                                 </div>
 
                                             </div>
@@ -1256,10 +1343,25 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col">
-                                                                <div class="form-group">
-                                                                    <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
-                                                                    <div class="">
-                                                                        <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                                
+                                                                        <div class="form-group">
+                                                                            <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                                                                            <div class="">
+                                                                                <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                            
+                                                                        <div class="form-group">
+                                                                            <span class="color-red margin-right-5px">★</span>
+                                                                            <label for="inputName" class="control-label">推荐教师</label>
+                                                                            <div class="">
+                                                                                <input ng-model="item.teacherT" type="text" id="name" class="form-control" placeholder="推荐教师">
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1292,7 +1394,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="inputSpecial" class="control-label">參賽專業（所需乐器名称） Special</label>
+                                                <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px">★</span>參賽專業（所需乐器名称） Special</label>
                                                 <div class="form-group">
                                                     <!-- <label for="inputSpecial" class="control-label">參賽專業</label> -->
                                                     <div class="clearfix">
@@ -1320,7 +1422,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputSpecial" class="control-label">参赛形式</label>
+                                            <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px">★</span>参赛形式</label>
                                             <div class="clearfix">
                                                 
                                                 <div class="dropdown fl">
@@ -1362,10 +1464,25 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col">
-                                                                <div class="form-group">
-                                                                    <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
-                                                                    <div class="">
-                                                                        <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                                
+                                                                        <div class="form-group">
+                                                                            <label for="inputDirectTeacher" class="control-label">指導教師 Teacher</label>
+                                                                            <div class="">
+                                                                                <input ng-model="item.teacher" type="text" id="directTeacher" class="form-control" placeholder="指導教師 Teacher">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                            
+                                                                        <div class="form-group">
+                                                                            <span class="color-red margin-right-5px">★</span>
+                                                                            <label for="inputName" class="control-label">推荐教师</label>
+                                                                            <div class="">
+                                                                                <input ng-model="item.teacherT" type="text" id="name" class="form-control" placeholder="推荐教师">
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1389,7 +1506,7 @@
         <!-- 參賽方向 end -->
         
 
-        <div class="panel panel-primary margin-20">
+        <div class="panel panel-primary margin-20" ng-if="baomingObj.xingzhi.value == '选手'">
             <div class="panel-body">
                 
                     <div class="row">
@@ -1433,7 +1550,7 @@
         </div>
 
         <div class="margin-20">
-            <div class="panel-body" style="color:red;">
+            <div class="panel-body" style="color:red; font-size:18px;">
                 <div class="row">
                     <span style="display:inline-block; width:30px;">注： </span>1：所有隨行人員所交資料均與參賽者相同，其中照片背面須標注姓名；
                 </div>

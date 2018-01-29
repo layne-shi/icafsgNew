@@ -19,38 +19,73 @@ var app = angular.module('myApp',[]);
 
 app.controller('myctrl',['$scope',function($scope){
     $scope.baomingObj = {
-        // 姓名
-        name: {   
-            id: "nameId" + common.createRandomId(),
+        
+        // 填表人性质
+        xingzhi: {   
+            id: "xingzhiId" + common.createRandomId(),
+            value: "选手",
+            valueArr: [
+                "选手",
+                "老师",
+                "陪同",
+            ]
+        },
+        // 举办地
+        hostCity: {   
+            id: "hostCityId" + common.createRandomId(),
+            value: "新加坡",
+            valueArr: [
+                "新加坡",
+                "日本",
+                "英国",
+                "爱琴海",
+            ]
+        },
+        // 推荐教师
+        teacher: {   
+            id: "teacherId" + common.createRandomId(),
             value: ""
+        },        
+        // 姓名 拼音（英文姓名）
+        name: {   
+            isValidate : true,
+            id: "nameId" + common.createRandomId(),
+            value: "",
+            enValue: "" // 英文名字
         },
         // 生日
         birth: {   
+            isValidate : true,
             id: "birthId" + common.createRandomId(),
             value: ""
         },
         // 性别
         gender: {   
+            isValidate : true,
             id: "genderId" + common.createRandomId(),
             value: "男"
         },
         // 国籍
         nationality: {   
+            isValidate : true,
             id: "nationalityId" + common.createRandomId(),
             value: ""
         },
         // 年龄
         age: {   
+            isValidate : true,
             id: "ageId" + common.createRandomId(),
             value: ""
         },
         // 民族
-        national: {   
+        national: {  
+            isValidate : true, 
             id: "nationalId" + common.createRandomId(),
             value: ""
         },
         // 头像
         avatar: {   
+            isValidate : true,
             id: "avatarId" + common.createRandomId(),
             value: "./images/brain_114.96463932107px_1199703_easyicon.net.png"        
         },
@@ -61,11 +96,13 @@ app.controller('myctrl',['$scope',function($scope){
         },
         // 手机号
         mobileNo: {   
+            isValidate : true,
             id: "mobileNoId" + common.createRandomId(),
             value: ""
         },
         // 身份证
         identity: {   
+            isValidate : true,
             id: "idId" + common.createRandomId(),
             value: ""
         },
@@ -119,7 +156,7 @@ app.controller('myctrl',['$scope',function($scope){
             id: "dutyId" + common.createRandomId(),
             value: "大專"
         },
-        // 家长姓名
+        // 家长姓名 拼音（英文姓名）
         guardianName: {   
             id: "guardianNameId" + common.createRandomId(),
             value: ""
@@ -208,6 +245,14 @@ app.controller('myctrl',['$scope',function($scope){
         $scope.baomingObj[what].array.splice(index, 1);
     };
 
+    // 举办地选择
+    $scope.chooseHostCity = function(what){
+        $scope.baomingObj.hostCity.value = what;
+    };
+    // 性质选择
+    $scope.choosexingzhi = function(what){
+        $scope.baomingObj.xingzhi.value = what;
+    };
     // 参赛方向选择
     $scope.chooseDirection = function(what){
         $scope.baomingObj.direction.value = what;
@@ -240,15 +285,17 @@ app.controller('myctrl',['$scope',function($scope){
                 peopleCount: "",
                 repertoire: "",   // 比賽曲目
                 teacher: "",   // 指導教師
+                teacherT: ""   // 推荐教師
             });
         }else if($scope.baomingObj.direction.value == '钢琴大赛'){
             $scope.baomingObj.gangqin.array.push({
                 id: "guanxuanyueId" + common.createRandomId(),
                 special: "钢琴",    // 參賽專業（所需乐器名称）
-                way: "钢琴",  // 参赛形式
+                way: "独奏",  // 参赛形式
                 classItem: "演員", 
                 repertoire: "",   // 比賽曲目
                 teacher: "",   // 指導教師
+                teacherT: ""   // 推荐教師
             });
 
         }else if($scope.baomingObj.direction.value == '民乐大赛'){
@@ -260,6 +307,7 @@ app.controller('myctrl',['$scope',function($scope){
                 peopleCount: "",
                 repertoire: "",   // 比賽曲目
                 teacher: "",   // 指導教師
+                teacherT: ""   // 推荐教師
             });
 
         }else if($scope.baomingObj.direction.value == '声乐大赛'){
@@ -270,6 +318,7 @@ app.controller('myctrl',['$scope',function($scope){
                 peopleCount: "",
                 repertoire: "",   // 比賽曲目
                 teacher: "",   // 指導教師
+                teacherT: ""   // 推荐教師
             });
 
         }else if($scope.baomingObj.direction.value == '舞蹈大赛'){
@@ -280,6 +329,7 @@ app.controller('myctrl',['$scope',function($scope){
                 peopleCount: "",
                 repertoire: "",   // 比賽曲目
                 teacher: "",   // 指導教師
+                teacherT: ""   // 推荐教師
             });
         }
     };
