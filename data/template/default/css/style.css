@@ -1072,12 +1072,32 @@ dl.sm dd a.sp_tu h4 {
     padding-right: 10px;
 }
 
-/* 精彩回顾 */
-.zhanshi ul li{float:left; width:327px; padding-top:8px; padding-left:15px; padding-right:10px; }
-.zhanshi ul li .tu_fuwu{ padding:3px; background:#dddddd;}
-.zhanshi ul li .wen_fuwu{  padding-top:18px; padding-bottom:18px; text-align:center; color:#5c5c5c; font-size:14px;}
-.zhanshi ul li .wen_fuwu a{color:#666666;}
-.zhanshi ul li .wen_fuwu a:hover {color:#f00;}
+.zhanshi ul li .tu_fuwu {
+    background: #dddddd;
+    background: url(../images/team_de.jpg) no-repeat;
+    display: block;
+    width: 164px;
+    padding: 11px 12px 10px 11px;
+}
+
+.zhanshi ul li .wen_fuwu {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    text-align: center;
+    color: #5c5c5c;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.zhanshi ul li .wen_fuwu a {
+    color: #666666;
+}
+
+.zhanshi ul li .wen_fuwu a:hover {
+    color: #f00;
+}
 
 
 

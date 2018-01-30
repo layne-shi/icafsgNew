@@ -43,7 +43,7 @@
 					<ul class="clearfix">
 						<?php foreach ($list as $item): ?>
 						<li>
-                            <div class="tu_fuwu">
+                            <div class="">
                                 <a href="<?=$item['url']?>">
                                     <img src="<?=$item['thumb']?>" width="320" height="240">
                                 </a>
