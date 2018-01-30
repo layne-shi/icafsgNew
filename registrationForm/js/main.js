@@ -38,7 +38,7 @@ app.controller('myctrl',['$scope',function($scope){
                 "新加坡",
                 "日本",
                 "英国",
-                "爱琴海",
+                "意大利",
             ]
         },
         // 推荐教师
@@ -149,7 +149,8 @@ app.controller('myctrl',['$scope',function($scope){
         company: {   
             id: "companyId" + common.createRandomId(),
             value: "单位",
-            oValue: ""
+            oValue: "",
+            nValue: ""
         },
         // 年級/職務
         duty: {   
