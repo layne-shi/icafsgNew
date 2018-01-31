@@ -54,6 +54,7 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu00">
                                         <li ng-click="choosexingzhi(item)" ng-repeat="item in baomingObj.xingzhi.valueArr"><a href="javascript:;">{{item}}</a></li>
                                     </ul>
+                                    请选择您是“选手”，“老师”，还是“陪同”人员
                                 </div>
                             </div>
                         </div>
@@ -73,7 +74,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputName" class="control-label"><span class="color-red margin-right-5px">★</span>拼音（英文姓名）<span class="color-red">首</span>字母大写，并用空格隔开。如：Zhang Wei</label>
+                            <label for="inputName" class="control-label"><span class="color-red margin-right-5px">★</span>拼音(英文姓名)<span class="color-red">首</span>字母大写，姓与名用空格隔开。如：Zhang Wei</label>
                             <div class="">
                                 <input ng-model="baomingObj.name.enValue" type="text" id="name" class="form-control" placeholder="拼音（英文姓名）">
                             </div>
@@ -101,6 +102,12 @@
                             <label for="inputNationality" class="control-label"><span class="color-red margin-right-5px">★</span>國籍 Nationality</label>
                             <div class="">
                                 <input ng-model="baomingObj.nationality.value" type="text" id="nationality" class="form-control" placeholder="國籍 Nationality">
+                            </div>
+                        </div>
+                        <div class="form-group clearfix" ng-if="baomingObj.xingzhi.value == '陪同'">
+                            <label for="inputNationality" class="control-label"><span class="color-red margin-right-5px">★</span>陪同参赛选手姓名</label>
+                            <div class="">
+                                <input ng-model="baomingObj.beipeitoing.value" type="text" id="nationality" class="form-control" placeholder="陪同参赛选手姓名">
                             </div>
                         </div>
                     </div>
@@ -241,7 +248,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="">
-                                <img ng-repeat="pic in baomingObj.pic.picArr" src={{pic.value}} class="img-thumbnail" data-holder-rendered="true" style="width: 180px; height: 180px;">
+                                <img ng-repeat="pic in baomingObj.pic.picArr" src={{pic.value}} class="img-thumbnail" data-holder-rendered="true" style="height: 180px;">
                             </div>                            
                         </div>
                     </div>

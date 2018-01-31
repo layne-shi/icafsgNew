@@ -87,7 +87,7 @@ app.controller('myctrl',['$scope',function($scope){
         avatar: {   
             isValidate : true,
             id: "avatarId" + common.createRandomId(),
-            value: "./images/brain_114.96463932107px_1199703_easyicon.net.png"        
+            value: "./images/nopic.jpg"        
         },
         // 家庭电话
         telNo: {   
@@ -141,7 +141,7 @@ app.controller('myctrl',['$scope',function($scope){
             picArr: [
                 {
                     id: "pic" + common.createRandomId(),
-                    value: "./images/brain_114.96463932107px_1199703_easyicon.net.png"
+                    value: "./images/nopic.jpg"
                 }
             ]
         },
