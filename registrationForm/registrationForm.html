@@ -24,10 +24,10 @@
 
 <body ng-app="myApp" ng-controller="myctrl">
     <h1 class="text-center">參賽報名表</h1>
-    <h3 class="text-center">
+    <h2 class="text-center">
         
-        <div class="dropdown" style="margin: 0 auto; width:150px;">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu00" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <div class="dropdown" style="margin: 0 auto; width:200px;">
+            <button class="btn btn-default dropdown-toggle" style="font-size:20px; font-weight: bold;" type="button" id="dropdownMenu00" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <span class="color-red margin-right-5px">★</span>举办地：<span class="name" ng-bind="baomingObj.hostCity.value"></span>
                 <span class="caret"></span>
             </button>
@@ -35,7 +35,7 @@
                 <li ng-click="chooseHostCity(item)" ng-repeat="item in baomingObj.hostCity.valueArr"><a href="javascript:;">{{item}}</a></li>
             </ul>
         </div>
-    </h3>
+    </h2>
     
     <form>
         <div class="panel panel-primary margin-20">
@@ -54,6 +54,7 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu00">
                                         <li ng-click="choosexingzhi(item)" ng-repeat="item in baomingObj.xingzhi.valueArr"><a href="javascript:;">{{item}}</a></li>
                                     </ul>
+                                    请选择您是“选手”，“老师”，还是“陪同”人员
                                 </div>
                             </div>
                         </div>
@@ -73,7 +74,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputName" class="control-label"><span class="color-red margin-right-5px">★</span>拼音（英文姓名）第一个字母大写，并用空格隔开。如：Zhang Wei</label>
+                            <label for="inputName" class="control-label"><span class="color-red margin-right-5px">★</span>拼音(英文姓名)<span class="color-red">首</span>字母大写，姓与名用空格隔开。如：Zhang Wei</label>
                             <div class="">
                                 <input ng-model="baomingObj.name.enValue" type="text" id="name" class="form-control" placeholder="拼音（英文姓名）">
                             </div>
@@ -101,6 +102,12 @@
                             <label for="inputNationality" class="control-label"><span class="color-red margin-right-5px">★</span>國籍 Nationality</label>
                             <div class="">
                                 <input ng-model="baomingObj.nationality.value" type="text" id="nationality" class="form-control" placeholder="國籍 Nationality">
+                            </div>
+                        </div>
+                        <div class="form-group clearfix" ng-if="baomingObj.xingzhi.value == '陪同'">
+                            <label for="inputNationality" class="control-label"><span class="color-red margin-right-5px">★</span>陪同参赛选手姓名</label>
+                            <div class="">
+                                <input ng-model="baomingObj.beipeitoing.value" type="text" id="nationality" class="form-control" placeholder="陪同参赛选手姓名">
                             </div>
                         </div>
                     </div>
@@ -136,7 +143,7 @@
                 <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="inputTelNo" class="control-label">家庭電話 TelNo</label>
+                                <label for="inputTelNo" class="control-label">家庭電話 Tel No.</label>
                                 <div class="">
                                     <input ng-model="baomingObj.telNo.value" type="text" id="telNo" class="form-control" placeholder="家庭電話 Tel No.">
                                 </div>
@@ -160,7 +167,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="inputAddress" class="control-label">郵寄地址 Address</label>
+                                <label for="inputAddress" class="control-label"><span class="color-red margin-right-5px">★</span>郵寄地址 Address</label>
                                 <div class="">
                                     <input ng-model="baomingObj.address.value" type="text" id="address" class="form-control" placeholder="郵寄地址 Address">
                                 </div>
@@ -176,7 +183,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="inputEmail" class="control-label">郵箱 Email</label>
+                            <label for="inputEmail" class="control-label"><span class="color-red margin-right-5px">★</span>郵箱 Email</label>
                             <div class="">
                                 <input ng-model="baomingObj.email.value" type="text" id="email" class="form-control" placeholder="郵箱 Email">
                             </div>
@@ -232,7 +239,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="exampleInputFile" class="control-label"><span class="color-red margin-right-5px">★</span>身份證照片、護照照片上傳（身份證照片和護照照片各1張）</label>
+                            <label for="exampleInputFile" class="control-label"><span class="color-red margin-right-5px">★</span>近期证件照片、身份证正反面电子版、护照首页电子版（若香港护照请传护照封皮电子版）</label>
                             <div class="margin-top-20">
                                 <input type="file" id="exampleInputFile">
                             </div>
@@ -241,7 +248,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="">
-                                <img ng-repeat="pic in baomingObj.pic.picArr" src={{pic.value}} class="img-thumbnail" data-holder-rendered="true" style="width: 180px; height: 180px;">
+                                <img ng-repeat="pic in baomingObj.pic.picArr" src={{pic.value}} class="img-thumbnail" data-holder-rendered="true" style="height: 180px;">
                             </div>                            
                         </div>
                     </div>
@@ -268,6 +275,12 @@
                                         </label>
                                     </div>            
                                 </td>
+                                <td rowspan="4" colspan="1" style="vertical-align: middle;">                  
+                                    <div class="">
+                                        <input ng-model="baomingObj.company.nValue" type="text" id="school" class="form-control" placeholder="名称">
+                                    </div>
+                                </td>
+                                </td>
                                 <td rowspan="4" colspan="1" style="word-break: break-all;vertical-align: middle;">                                    
                                     <div class="form-group">
                                         <label for="inputSchool" class="control-label">年級/職務 Grade/Duty</label>
@@ -275,7 +288,8 @@
                                 </td>
                                 <td rowspan="3" colspan="1" style="vertical-align: middle;">                  
                                     <div class="">
-                                        <input ng-model="baomingObj.company.oValue" type="text" id="school" class="form-control" placeholder="學校/單位 School/Company">
+                                        <input ng-if="baomingObj.company.value == '大學'" disabled ng-model="baomingObj.company.oValue" type="text" id="school" class="form-control" placeholder="年級/職務 Grade/Duty">
+                                        <input ng-if="baomingObj.company.value != '大學'" ng-model="baomingObj.company.oValue" type="text" id="school" class="form-control" placeholder="年級/職務 Grade/Duty">
                                     </div>
                                 </td>
                             </tr>
@@ -306,7 +320,7 @@
                                     </div>                 
                                 </td>
                                 <td>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-group">                                
                                             <div class="radio">
                                                 <label class="control-label">
@@ -315,7 +329,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-group">                                
                                             <div class="radio">
                                                 <label class="control-label">
@@ -324,7 +338,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-group">                                
                                             <div class="radio">
                                                 <label class="control-label">
@@ -333,7 +347,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-group">                                
                                             <div class="radio">
                                                 <label class="control-label">
@@ -578,7 +592,7 @@
                                             <table class="table table-bordered">
                                                 <thead class="bg-color-b0d9fb">
                                                     <tr>
-                                                        <th colspan="4" class="text-center">其它</th>
+                                                        <th colspan="4" class="text-center">其它组别</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -721,7 +735,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px"></span>★</span>參賽專業（所需乐器名称） Special</label>
+                                            <label for="inputSpecial" class="control-label"><span class="color-red margin-right-5px">★</span>參賽專業（所需乐器名称） Special</label>
                                             <div class="form-group">
                                                 <!-- <label for="inputSpecial" class="control-label">參賽專業</label> -->
                                                 <div class="clearfix">
@@ -863,7 +877,7 @@
                                             <table class="table table-bordered">
                                                 <thead class="bg-color-b0d9fb">
                                                     <tr>
-                                                        <th colspan="4" class="text-center">其它</th>
+                                                        <th colspan="4" class="text-center">其它组别</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -1131,7 +1145,7 @@
                                             <table class="table table-bordered">
                                                 <thead class="bg-color-b0d9fb">
                                                     <tr>
-                                                        <th colspan="4" class="text-center">其它</th>
+                                                        <th colspan="4" class="text-center">其它组别</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
