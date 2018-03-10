@@ -242,7 +242,7 @@ class Enroll extends CI_Controller
             ,'家长姓名'
             ,'家长联系方式');
 
-
+//echo '<pre>';print_r($data);die;
         // 导出csv
        $this->export->createtable($data,$filename,$header,$indexKey,'csv');
 

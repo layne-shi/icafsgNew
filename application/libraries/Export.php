@@ -251,15 +251,17 @@ class Export
         header("Content-type:application/vnd.ms-excel");
         header("Content-Disposition:filename=".$filename.".".$ext);
         $teble_header = implode(",",$header);
-        $strexport = $teble_header."\r";
+        $strexport = $teble_header."\n";
+
         foreach ($list as $row){
             foreach($index as $val){
                 $strexport.=$row[$val].",";
             }
-            $strexport.="\r";
+            $strexport.="\n";
 
         }
-        $strexport=iconv('UTF-8',"GB2312//IGNORE",$strexport);
+        // $strexport=iconv('UTF-8',"GB2312//IGNORE",$strexport);
+        $strexport= mb_convert_encoding($strexport,"GB2312","UTF-8");
         echo $strexport;
         exit();
     }
