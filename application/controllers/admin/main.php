@@ -7,7 +7,7 @@ class Main extends CI_Controller {
 		$this->load->model('Purview_model');
 		$this->load->model('Cache_model');
 	}
-	
+
 	public function index()
 	{
 		if(!$this->session->userdata('uid')){
@@ -15,7 +15,7 @@ class Main extends CI_Controller {
 		}
 		$this->load->view('main.php');
 	}
-	
+
 	public function main_index()
 	{
 		$usergroupid=$this->session->userdata('usergroup');
@@ -27,7 +27,7 @@ class Main extends CI_Controller {
 		$this->load->vars('defaultfunc',$defaultfunc);
 		$this->load->view('main_index.php');
 	}
-	
+
 	public function main_top()
 	{
 		$usergroupid=$this->session->userdata('usergroup');
@@ -45,9 +45,9 @@ class Main extends CI_Controller {
 		}else{
 			top_redirect(site_aurl('main/logout'));
 		}
-		
+
 	}
-	
+
 	public function main_left()
 	{
 		$usergroupid=$this->session->userdata('usergroup');
@@ -61,22 +61,22 @@ class Main extends CI_Controller {
 			top_redirect(site_aurl('main/logout'));
 		}
 	}
-	
+
 	public function main_center()
 	{
 		$this->load->view('main_center.php');
 	}
-	
+
 	public function main_right()
 	{
 		$this->load->view('main_right.php');
 	}
-	
+
 	public function main_foot()
 	{
 		$this->load->view('main_foot.php');
 	}
-	
+
 	public function ajaxlogin(){
 		$post = $this->input->post(NULL,TRUE);
 		$username = trim($post['user_name']);
@@ -87,7 +87,7 @@ class Main extends CI_Controller {
 			show_jsonmsg(204);
 		}
 	}
-	
+
 	public function login(){
 		$post = $this->input->post(NULL,TRUE);
 		if($post['opt']=='ajax'){
@@ -102,7 +102,7 @@ class Main extends CI_Controller {
 		}
 		$this->load->view('login.php');
 	}
-	
+
 	public function attrlist(){
 		$usergroupid=$this->session->userdata('usergroup');
 		if(!$usergroupid){
@@ -185,7 +185,7 @@ class Main extends CI_Controller {
 		$result['file_list'] = $file_list;
 		echo json_encode($result);
 	}
-	
+
 	function attrupload(){
 		$usergroupid=$this->session->userdata('usergroup');
 		if(!$usergroupid){
@@ -228,7 +228,7 @@ class Main extends CI_Controller {
 				$waterconfig['source_image'] = $save_path.$data['file_name'];
 				$waterconfig['quality'] = $attrconfig['water_quality'];
 				$waterconfig['wm_padding'] = $attrconfig['water_padding'];
-				
+
 				switch($attrconfig['water_position']){
 					case 'topleft':
 						$waterconfig['wm_vrt_alignment'] = 'top';
@@ -289,13 +289,113 @@ class Main extends CI_Controller {
 		}
 		echo json_encode($result);
 	}
-	
+
+	function attrupload2(){
+		$save_path = 'data/attachment/';
+		$ext_arr = array(
+				'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp'),
+				'flash' => array('swf', 'flv'),
+				'media' => array('swf', 'flv', 'mp3', 'wav', 'wma', 'wmv', 'mid', 'avi', 'mpg', 'rm', 'rmvb'),
+				'file' => array('gif', 'jpg', 'jpeg', 'png', 'bmp','doc', 'docx', 'xls', 'xlsx', 'ppt', 'htm', 'html', 'txt', 'zip', 'rar', 'gz', 'bz2'),
+		);
+		$attrconfig = $this->Cache_model->loadConfig('attr');
+		$dir_name = $this->input->get('dir');
+		if(!in_array($dir_name,array('image','flash','media','file'))){
+			$result = array('error'=>1,'message'=>"Invalid Directory name.");
+			echo json_encode($result);
+		}
+		$save_path .= $dir_name.'/';
+		if (!file_exists($save_path)) {
+				mkdir($save_path);
+		}
+		$save_path .= date('Ymd').'/';
+		if (!file_exists($save_path)) {
+			mkdir($save_path);
+		}
+		$uploadconfig['upload_path'] = $save_path;
+		$uploadconfig['allowed_types'] = implode('|',$ext_arr[$dir_name]);
+		$uploadconfig['max_size'] = $attrconfig['attr_maxsize']?$attrconfig['attr_maxsize']:0;
+		$uploadconfig['encrypt_name']  = TRUE;
+		$uploadconfig['remove_spaces']  = TRUE;
+		$this->load->library('upload', $uploadconfig);
+		if(!$this->upload->do_upload('imgFile')){
+			$result = array('error'=>1,'message'=>$this->upload->display_errors('',''));
+		}else{
+			$data = $this->upload->data();
+			if($this->input->post('iswater')==1&&$dir_name=='image'&&$attrconfig['water_type']>0){
+				$this->load->library('image_lib');
+				$waterconfig['source_image'] = $save_path.$data['file_name'];
+				$waterconfig['quality'] = $attrconfig['water_quality'];
+				$waterconfig['wm_padding'] = $attrconfig['water_padding'];
+
+				switch($attrconfig['water_position']){
+					case 'topleft':
+						$waterconfig['wm_vrt_alignment'] = 'top';
+						$waterconfig['wm_hor_alignment'] = 'left';
+						break;
+					case 'topcenter':
+						$waterconfig['wm_vrt_alignment'] = 'top';
+						$waterconfig['wm_hor_alignment'] = 'center';
+						break;
+					case 'topright':
+						$waterconfig['wm_vrt_alignment'] = 'top';
+						$waterconfig['wm_hor_alignment'] = 'right';
+						break;
+					case 'middleleft':
+						$waterconfig['wm_vrt_alignment'] = 'middle';
+						$waterconfig['wm_hor_alignment'] = 'left';
+						break;
+					case 'middlecenter':
+						$waterconfig['wm_vrt_alignment'] = 'middle';
+						$waterconfig['wm_hor_alignment'] = 'center';
+						break;
+					case 'middleright':
+						$waterconfig['wm_vrt_alignment'] = 'middle';
+						$waterconfig['wm_hor_alignment'] = 'right';
+						break;
+					case 'bottomleft':
+						$waterconfig['wm_vrt_alignment'] = 'bottom';
+						$waterconfig['wm_hor_alignment'] = 'left';
+						break;
+					case 'bottomcenter':
+						$waterconfig['wm_vrt_alignment'] = 'bottom';
+						$waterconfig['wm_hor_alignment'] = 'center';
+						break;
+					case 'bottomright':
+						$waterconfig['wm_vrt_alignment'] = 'bottom';
+						$waterconfig['wm_hor_alignment'] = 'right';
+						break;
+					default:
+						$waterconfig['wm_vrt_alignment'] = 'bottom';
+						$waterconfig['wm_hor_alignment'] = 'right';
+						break;
+				}
+				if($attrconfig['water_type']==1){
+					$waterconfig['wm_type'] = 'overlay';
+					$waterconfig['wm_overlay_path'] = $attrconfig['water_image_path'];
+					$waterconfig['wm_opacity'] = $attrconfig['water_opacity'];
+				}elseif($attrconfig['water_type']==2){
+					$waterconfig['wm_type'] = 'text';
+					$waterconfig['wm_text'] = $attrconfig['water_text_value'];
+					$waterconfig['wm_font_path'] = $attrconfig['water_text_font'];
+					$waterconfig['wm_font_size'] = $attrconfig['water_text_size'];
+					$waterconfig['wm_font_color'] = $attrconfig['water_text_color'];
+				}
+				$this->image_lib->initialize($waterconfig);
+				$this->image_lib->watermark();
+			}
+			$result = array('error'=>0,'url'=>base_url($save_path.$data['file_name']));
+		}
+		echo json_encode($result);
+	}
+
+
 	public function logout(){
 		$this->load->model('User_model');
 		$this->User_model->logout();
 		redirect(site_aurl('login'));
 	}
-	
+
 	public function setlang(){
 		$this->load->model('Lang_model');
 		$lang = $this->input->post('lang');

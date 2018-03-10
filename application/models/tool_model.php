@@ -30,4 +30,15 @@ class Tool_model extends CI_Model
         return $this->treeList;
     }
 
+    // 要求数组的key是元素的id
+    public function genTree9($items)
+    {
+        $tree = array(); //格式化好的树
+        foreach ($items as $item)
+            if (isset($items[$item['parent']]))
+                $items[$item['parent']]['son'][] = &$items[$item['id']];
+            else
+                $tree[] = &$items[$item['id']];
+        return $tree;
+    }
 }

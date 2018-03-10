@@ -1,0 +1,32 @@
+
+.dxt_box_hover{margin:10px auto;border:#FDB553 2px solid;padding:20px;}
+.dxt_box_hover dl dt{height:40px; line-height:40px;}
+.dxt_box_hover dl dt b{font-size:14px;color:#333}
+.dxt_box_hover dl dt span{color:#000;margin-left:10px}
+.dxt_box_hover dl dd{height:30px; line-height:30px;}
+.dxt_box_hover dl dd b{margin-right:10px}
+.dxt_box_hover dl dd span{color:#999;margin-left:10px}
+.dxt_box_hover dl dd span a{color:red}
+.dxt_box_hover dl dd font a{color:#3A6EA5;padding-left:10px;font-size:12px}
+.dxt_box_hover em{color:#333;font-style:normal;padding-right:10px;margin-left:10px;}
+
+.dxt_box{margin:10px auto;border:#ddd 2px solid;padding:20px}
+.dxt_box em{color:#333;font-style:normal;padding-right:10px}
+.dxt_box dl dt{height:40px; line-height:40px;}
+.dxt_box dl dt b{font-size:14px;color:#333}
+.dxt_box dl dt span{color:#000;margin-left:10px}
+.dxt_box dl dd{height:30px; line-height:30px;}
+.dxt_box dl dd b{margin-right:10px}
+.dxt_box dl dd span{color:#999;margin-left:10px}
+.dxt_box dl dd span a{color:#666;}
+.dxt_box dl dd font a{color:#3A6EA5;padding-left:20px;font-size:12px}
+
+
+.Pop_unei{}
+.Pop_unei dl{padding:10px 0 0 10px;background:#e5e5e5;margin:0 0 10px 0}
+.Pop_unei dl dt{height:20px; line-height:20px; font-size:12px;}
+.Pop_unei dl dd{height:auto;margin:0;padding:4px 4px 4px 10px; width:606px; display:block}
+.Pop_unei dl dd i{height:30px;font-style:normal;white-space:break-word;margin-right:12px;}
+.Pop_unei dl dd.annbbx{margin:10px 0 0 60px;}
+.Pop_unei dl dd.er_bjt{ background:url(../images/tu_bj2.jpg) no-repeat left top;padding-left:10px;margin-left:10px}
+

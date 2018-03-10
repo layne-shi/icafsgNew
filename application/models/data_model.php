@@ -38,6 +38,20 @@ class Data_model extends CI_Model
 		}
 	}
 
+    // 批量插入
+	public function batchAddData($data,$table='')
+    {
+		$table = $table==''?$this->table:$table;
+        if ($this->db->insert_batch($table,$data))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+	}
+
 	function editData($datawhere,$data,$table=''){
 		$table = $table==''?$this->table:$table;
 		if(!empty($datawhere))

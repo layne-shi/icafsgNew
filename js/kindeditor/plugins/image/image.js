@@ -75,7 +75,7 @@ KindEditor.plugin('image', function(K) {
 			'<iframe name="' + target + '" style="display:none;"></iframe>',
 			'<form class="ke-upload-area ke-form" method="post" enctype="multipart/form-data" target="' + target + '" action="' + uploadJson+'?dir=image' + '">',
 			//file
-			'<div class="ke-dialog-row">',
+			'<div class="ke-dialog-row" style="display:none;">',
 			'<label style="width:80px;">' + lang.iswater + '</label>',
 			'<input type="checkbox" name="iswater" checked=true value="1">&nbsp;',
 			'</div>',

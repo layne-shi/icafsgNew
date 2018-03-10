@@ -34,6 +34,7 @@ class Category extends CI_Controller {
 				$item['funca'] = $isadd?$this->Purview_model->getSingleFunc(site_aurl($this->tablefunc.'/add/'.$item['id']),'add'):'';
 				$newarr[] = $item;
 			}
+
 			$str = "<tr>
 					<td width=40>\$id</td>
 					<td><div class='fl' \$color>\$spacer <input type='hidden' name='ids[]' value='\$id'><input type='text' name='listorder[]' class='input-order' size='3' value='\$listorder'><a href='\$url' target='_blank'> \$name</a></div> \$funca</td>
@@ -42,6 +43,7 @@ class Category extends CI_Controller {
 					<td width=80 align='left'>\$isnavigation</td>
 					<td width=50>\$func</td></tr>";
 			$arr = array('listarr'=>$newarr,'liststr'=>$str);
+
 			$this->load->library('tree', $arr);
 			$liststr = $this->tree->getlist();
 		}else{
