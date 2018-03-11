@@ -33,13 +33,13 @@ class Enroll extends CI_Controller
         if (isset($post['begin_time']) && !empty($post['begin_time']))
         {
             $search['begin_time'] = trim($post['begin_time']);
-            $getwhere['begin_time >='] = $search['begin_time'];
+            $getwhere['begin_time >='] = strtotime($search['begin_time']);
         }
 
         if (isset($post['end_time']) && !empty($post['end_time']))
         {
             $search['end_time'] = trim($post['end_time']);
-            $getwhere['end_time <='] = $search['end_time'];
+            $getwhere['end_time <='] = strtotime($search['end_time']);
         }
 
         if (isset($post['host_id']) && !empty($post['host_id']))
@@ -167,13 +167,32 @@ class Enroll extends CI_Controller
             exit;
         }
 
+        $getwhere = $search = array();
+        $getwhere['id'] = $id;
+
+		$post = $this->input->post(NULL,TRUE);
+        if (isset($post['action']) && $post['action'] == 'search')
+        {
+            if (isset($post['start_time']) && !empty($post['start_time']))
+            {
+                $search['start_time'] = trim($post['start_time']);
+                $getwhere['start_time'] = $search['start_time'];
+            }
+
+            if (isset($post['end_time']) && !empty($post['end_time']))
+            {
+                $search['end_time'] = trim($post['end_time']);
+                $getwhere['end_time'] = $search['end_time'];
+            }
+        }
+
 		$pagearr = array(
 			'currentpage'=>	isset($post['currentpage'])&&$post['currentpage']>0?$post['currentpage']:1,
-			'totalnum'=>$this->Enroll_model->getEnrollNum($id),
+			'totalnum'=>$this->Enroll_model->getEnrollNum($getwhere),
 			'pagenum'=>20
 		);
 
-        $data = $this->Enroll_model->getEnrollList($id,$pagearr['pagenum'],($pagearr['currentpage']-1)*$pagearr['pagenum']);
+        $data = $this->Enroll_model->getEnrollList($getwhere,$pagearr['pagenum'],($pagearr['currentpage']-1)*$pagearr['pagenum']);
 
         $view = $this->Enroll_model->getSingleEnroll(array('id' => $id),'enroll');
 
@@ -182,9 +201,31 @@ class Enroll extends CI_Controller
             'data'      =>  $data,
             'tablefunc' =>  $this->tablefunc,
             'view'      =>  $view,
+            'search'    =>  $search,
         );
 
         $this->load->view('enroll_details',$res);
+    }
+
+    // 查看报名用户的头像和证件
+    public function profile()
+    {
+        // match_signup ID
+        $id = $this->uri->segment(4);
+        if (!$id)
+        {
+            echo '非法操作';
+            exit;
+        }
+
+        $view = $this->Data_model->getSingle(array('id' => $id),'match_signup');
+
+        $res = array(
+            'tpl'       =>  'profile',
+            'tablefunc' =>  $this->tablefunc,
+            'view'      =>  $view,
+        );
+        show_jsonmsg(array('status'=>200,'remsg'=>$this->load->view('enroll_details',$res,true)));
     }
 
     // 下载报名数据
@@ -200,8 +241,24 @@ class Enroll extends CI_Controller
 
         $enroll = $this->Enroll_model->getSingleEnroll(array('id' => $id),'enroll');
 
+        $getwhere = array();
+        $getwhere['id'] = $id;
+
+        $begin = $this->uri->segment(5);
+        $end = $this->uri->segment(6);
+
+        if ($begin)
+        {
+            $getwhere['start_time'] = $begin;
+        }
+
+        if ($end)
+        {
+            $getwhere['end_time'] = $end;
+        }
+
         // 要导出的数据
-        $data = $this->Enroll_model->getEnrollList($id);
+        $data = $this->Enroll_model->getEnrollList($getwhere);
 
         // 要导出的文件名
         $filename = $enroll['title'];
@@ -217,30 +274,8 @@ class Enroll extends CI_Controller
 
         // 表格头部字段
         $header = array(
-            '推荐教师',
-            '姓名',
-            '拼音'
-            ,'性别'
-            ,'生日'
-            ,'年龄'
-            ,'护照'
-            ,'性质'
-            ,'身份證'
-            ,'参赛方向'
-            ,'参赛专业'
-            ,'参赛形式'
-            ,'参赛组别'
-            ,'比赛曲目'
-            ,'指导教师'
-            ,'国籍'
-            ,'民族'
-            ,'手机号'
-            ,'家庭电话'
-            ,'邮箱'
-            ,'其他联系方式'
-            ,'邮寄地址'
-            ,'家长姓名'
-            ,'家长联系方式');
+            '推荐教师','姓名','拼音','性别','生日','年龄','护照','性质','身份證','参赛方向','参赛专业','参赛形式','参赛组别','比赛曲目','指导教师','国籍','民族','手机号','家庭电话','邮箱','其他联系方式','邮寄地址','家长姓名','家长联系方式',
+        );
 
 //echo '<pre>';print_r($data);die;
         // 导出csv

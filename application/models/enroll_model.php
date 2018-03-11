@@ -284,16 +284,29 @@ class Enroll_model extends CI_Model
     /**
      * 获取用户参与的报名表数量
      */
-    public function getEnrollNum($enroll_id)
+    public function getEnrollNum($getwhere = array())
     {
+        $enroll_id = $getwhere['id'];
         $_table1 = $this->db->dbprefix('match_signup');
         $_table2 = $this->db->dbprefix('match_direct');
 
-        $sql = "SELECT count(s.id) AS count
+        $sql = "SELECT count(d.id) AS count
         FROM {$_table1} AS s
         LEFT JOIN {$_table2} AS d
         ON d.match_id=s.id
         WHERE s.enroll_id={$enroll_id} AND s.isdisabled=0 ";
+
+        if (isset($getwhere['start_time']))
+        {
+            $start_time = strtotime(sprintf('%s 00:00:00', $getwhere['start_time']));
+            $sql .= " AND s.create_time >= {$start_time}";
+        }
+
+        if (isset($getwhere['end_time']))
+        {
+            $end_time = strtotime(sprintf('%s 23:59:59', $getwhere['end_time']));
+            $sql .= " AND s.create_time <= {$end_time}";
+        }
 
         $row = $this->db->query($sql)->row_array();
         return $row['count'];
@@ -302,8 +315,10 @@ class Enroll_model extends CI_Model
     /**
      * 获取报名表的报名情况
      */
-    public function getEnrollList($enroll_id,$pagenum = "0",$exnum = "0")
+    public function getEnrollList($getwhere = array(),$pagenum = "0",$exnum = "0")
     {
+        $enroll_id = $getwhere['id'];
+
         $_table1 = $this->db->dbprefix('match_signup');
         $_table2 = $this->db->dbprefix('match_direct');
         $_table3 = $this->db->dbprefix('enroll_direct');
@@ -316,7 +331,8 @@ class Enroll_model extends CI_Model
         s.national AS national, s.mobile AS mobile ,s.tel AS tel,
         s.email AS email, s.other_contact AS other_contact,
         s.address AS address,s.guardian_name AS guardian_name,
-        s.guardian_mobile AS guardian_mobile, d.song AS song,
+        s.guardian_mobile AS guardian_mobile,
+        s.create_time AS create_time, d.song AS song,
         d.id AS list_id, d.referee AS referee, d.guide AS guide,
         d.major AS major, d.form_id AS form_id,
         d.form_number AS form_number, d.group_id AS group_id,
@@ -328,8 +344,21 @@ class Enroll_model extends CI_Model
         ON d.match_id=s.id
         LEFT JOIN {$_table3} AS dir
         ON d.direct_id=dir.id
-        WHERE s.enroll_id={$enroll_id} AND s.isdisabled=0
-        ORDER BY s.create_time DESC ";
+        WHERE s.enroll_id={$enroll_id} AND s.isdisabled=0 ";
+
+        if (isset($getwhere['start_time']))
+        {
+            $start_time = strtotime(sprintf('%s 00:00:00', $getwhere['start_time']));
+            $sql .= " AND s.create_time >= {$start_time}";
+        }
+
+        if (isset($getwhere['end_time']))
+        {
+            $end_time = strtotime(sprintf('%s 23:59:59', $getwhere['end_time']));
+            $sql .= " AND s.create_time <= {$end_time}";
+        }
+
+        $sql .= " ORDER BY d.id DESC ";
 
 		if ($pagenum > 0)
         {
@@ -385,6 +414,9 @@ class Enroll_model extends CI_Model
             $data[$key]['birthday'] = date('Y-m-d',$item['birthday']);
             $data[$key]['type'] = ($item['type']=='1'?'选手':($item['type']=='2'?'老师':'陪同'));
 
+            $data[$key]['create_time'] = date('Y-m-d',$item['create_time']);
+
+                         //
         }
 //echo '<pre>';print_r($data);die;
 

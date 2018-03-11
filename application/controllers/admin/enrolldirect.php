@@ -26,7 +26,7 @@ class Enrolldirect extends CI_Controller
 
 	public function index()
     {
-		$this->Purview_model->checkPurview($this->tablefunc);
+		$this->Purview_model->checkPurview($this->classname);
 		$post = $this->input->post(NULL,TRUE);
 
 		$getwhere = array();
@@ -81,7 +81,7 @@ class Enrolldirect extends CI_Controller
     }
 
 	public function edit(){
-		$this->Purview_model->checkPurviewAjax($this->tablefunc,'edit');
+		$this->Purview_model->checkPurviewAjax($this->classname,'edit');
 		$post = $this->input->post(NULL,TRUE);
 		if($post['id']&&$post['action']==site_aurl($this->classname)){
 
@@ -108,14 +108,14 @@ class Enrolldirect extends CI_Controller
 	}
 
 	public function order(){
-		$this->Purview_model->checkPurviewAjax($this->tablefunc,'order');
+		$this->Purview_model->checkPurviewAjax($this->classname,'order');
 		$data = $this->Data_model->listorder($this->input->post('ids',true),$this->input->post('listorder',true),'listorder');
 		$this->Cache_model->deleteSome($this->tablefunc.'_'.$this->editlang);
 		show_jsonmsg(array('status'=>200,'remsg'=>$this->_setlist($data,true)));
 	}
 
 	public function del(){
-		$this->Purview_model->checkPurviewAjax($this->tablefunc,'del');
+		$this->Purview_model->checkPurviewAjax($this->classname,'del');
 		$ids = $this->input->post('optid',true);
 
 		if($ids){

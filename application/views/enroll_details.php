@@ -2,16 +2,28 @@
 	<?php $this->load->view('admin_head.php');?>
 
     <div id="main_head" class="main_head" style="height:auto;">
-    <form name="formsearch" id="formsearch" action="<?=site_aurl($tablefunc)?>" method="post">
+    <form name="formsearch" id="formsearch" action="<?=site_aurl($tablefunc.'/details/'.$view['id'])?>" method="post">
+      <input type="hidden" name="action" value="search"/>
       <table class="menu">
         <tr>
           <td>
-            <a href="<?=site_aurl($tablefunc)?>" class="current">
-                <?=lang('func_'.$tablefunc)?>
-            </a>
-            <input type="text" size=60 class="input-text" value="<?=$view['title']?>" readonly="" >
+            <?php $ext = mb_strlen($view['title']) > 10 ? '...' : ''?>
 
-            <a href="<?=site_aurl($tablefunc.'/export/'.$view['id'])?>" class="current">导出全部</a>
+            <a href="<?=site_aurl($tablefunc)?>" class="current">
+                <?=mb_substr($view['title'],0,10) . $ext?>
+            </a>
+
+            <input name="start_time" id="start_time" type="text" class="input-text" value="<?=$search['start_time']?>" placeholder="报名日期" readOnly onClick="WdatePicker({dateFmt:'yyyy-MM-dd'});"/>
+            <span>至</span>
+            <input name="end_time" id="end_time" type="text" class="input-text" value="<?=$search['end_time']?>" placeholder="报名日期" readOnly onClick="WdatePicker({dateFmt:'yyyy-MM-dd'});"/>
+
+            <input type="submit" class="btn" value="<?=lang('search')?>">
+            <a onclick="to_export('search')" href="javascript:;" class="current">
+                按日期导出
+            </a>
+            <a onclick="to_export()" href="javascript:;" class="current">
+                导出全部
+            </a>
           </td>
         </tr>
       </table>
@@ -22,12 +34,14 @@
 	  <input type="hidden" name="action" id="action" value="<?=site_aurl($tablefunc)?>">
       <div id="main" class="main" style="padding-top:40px;">
 
-        <table cellSpacing=0 class="content_list" style="text-align:center;width:260%;">
+        <table cellSpacing=0 class="content_list" style="text-align:center;width:230%;">
           <thead>
           <tr>
 <!--             <th width="30" align="left">
                 <input type="checkbox" onclick="checkAll(this)">
             </th> -->
+            <th width=40><?=lang('id')?></th>
+            <th>报名时间</th>
             <th>推荐教师</th>
             <th>姓名</th>
             <th>拼音</th>
@@ -61,8 +75,14 @@
 <!--             <td width="30" align="left">
                 <input type="checkbox" name="optid[]" value="<?=$item['list_id']?>">
             </td> -->
+            <td width=40><?=$item['list_id']?></td>
+            <td><?=$item['create_time']?></td>
             <td><?=$item['referee']?></td>
-            <td><?=$item['name']?></td>
+            <td>
+            <a href="javascript:;" onclick="show_profile('<?=$item['sign_id']?>')">
+                <font color="green"><?=$item['name']?></font>
+            </a>
+            </td>
             <td><?=$item['py_name']?></td>
             <td><?=$item['gender']?></td>
             <td><?=$item['birthday']?></td>
@@ -106,4 +126,101 @@
 	</div>
 
 	<?php $this->load->view('admin_foot.php');?>
+
+    <script>
+    function to_export(type)
+    {
+        var $url = "<?=site_aurl($tablefunc.'/export/'.$view['id'])?>";
+
+        if (type && type == 'search')
+        {
+            var start_time = $("#start_time").val();
+            var end_time = $("#end_time").val();
+            $url += "/" + start_time + "/" + end_time;
+        }
+
+        window.location.href = $url;
+    }
+
+    function show_profile($id)
+    {
+        var url = "<?=site_aurl($tablefunc.'/profile')?>";
+        url += "/" + $id;
+
+        var throughBox = $.dialog.through;
+        var myDialog = throughBox({title:'查看详情',lock:true});
+        $.ajax({type: "POST",url:url,dataType: 'json',
+            success: function (data) {
+                if(data.status==200){
+                    var win = $.dialog.top;
+                    myDialog.content(data.remsg);
+                    win.$("#formview").validform();
+                    var editors = setEditer(win);
+
+                    myDialog.button({name:"确定",
+                        callback:function(){
+                            if(win.$("#formview").validform('validall')){
+                                if(editors){
+                                    var len = editors.length;
+                                    for(var i=0;i<len;i++){
+                                        editors[i].sync();
+                                    }
+                                }
+				                myDialog.close();
+                            }else{
+
+                            }
+                            return false;
+                        },
+                        focus: true
+                    });
+
+                }else{
+                    showmsg(myDialog,data);
+                }
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                debugging(myDialog,url,XMLHttpRequest,textStatus,errorThrown,'profile');
+            }
+        });
+    }
+
+    </script>
+
+<?php elseif ($tpl=='profile'):?>
+
+<form name="formview" id="formview" action="" method="post">
+<input type="hidden" name="action" id="action" value="">
+<input type="hidden" name="id" value="<?=isset($view['id'])?$view['id']:'';?>">
+<div id="main_view" class="main_view">
+    <table cellSpacing=0 width="100%" class="content_view">
+      <tr>
+        <td width="100">姓名</td>
+        <td width="620"><?=isset($view['name'])?$view['name']:'';?></td>
+      </tr>
+      <tr>
+        <td width="100">头像</td>
+        <td><img src="<?=$view['portrait']?>" width="200"/></td>
+      </tr>
+      <tr>
+        <td width="100">证件</td>
+        <td>
+        <?php if($view['certificate1']):?>
+            <img src="<?=$view['certificate1']?>" width="600"/> <br>
+        <?php endif;?>
+        <?php if($view['certificate2']):?>
+            <img src="<?=$view['certificate2']?>" width="600"/> <br>
+        <?php endif;?>
+        <?php if($view['certificate3']):?>
+            <img src="<?=$view['certificate3']?>" width="600"/> <br>
+        <?php endif;?>
+        <?php if($view['certificate4']):?>
+            <img src="<?=$view['certificate4']?>" width="600"/> <br>
+        <?php endif;?>
+        </td>
+      </tr>
+    </table>
+</div>
+</form>
+
 <?php endif;?>
