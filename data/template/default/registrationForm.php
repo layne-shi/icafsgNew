@@ -28,7 +28,7 @@
     <h1 class="text-center"><?=$view['title']?></h1>
     <h2 class="text-center">
 
-        <div class="dropdown" style="margin: 0 auto; width:200px;">
+        <!-- <div class="dropdown" style="margin: 0 auto; width:200px;">
             <button class="btn btn-default dropdown-toggle" style="font-size:20px; font-weight: bold;" type="button" id="dropdownMenu00" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <span class="color-red margin-right-5px">★</span>举办地：<span class="name" ng-bind="baomingObj.hostCity.value"></span>
                 <span class="caret"></span>
@@ -36,6 +36,9 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu00">
                 <li ng-click="chooseHostCity(item)" ng-repeat="item in baomingObj.hostCity.valueArr"><a href="javascript:;">{{item}}</a></li>
             </ul>
+        </div> -->
+        <div style="font-size:20px; font-weight: bold;" type="button" id="dropdownMenu00" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            举办地：<span class="name" ng-bind="baomingObj.hostCity.value"></span>
         </div>
     </h2>
 
@@ -46,7 +49,7 @@
             <div class="panel-body">
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="inputOtherContact" class="control-label"><span class="color-red margin-right-5px">★</span>参赛性质</label>
                             <div class="">
@@ -715,6 +718,7 @@
           </div><!-- /.modal -->
 
     </form>
+        <a href="{{baomingObj.imgSrc}}" id="dw" download="报名表.png"></a>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
