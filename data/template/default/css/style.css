@@ -1059,6 +1059,9 @@ dl.sm dd a.sp_tu h4 {
 .maincen2 {
     padding: 0px 10px 0px 25px;
 }
+.maincen2 img{
+    max-width: 719px!important;
+}
 
 .zhanshi {
     padding: 22px 0px 0px 0px;
