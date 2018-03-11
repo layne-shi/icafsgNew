@@ -311,11 +311,17 @@ app.controller('myctrl',['$scope',function($scope){
                     item.style.display = 'none';
                 }
             });
-            var imgUri = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); // 获取生成的图片的url  
+                // var imgUri = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); // 获取生成的图片的url  
+                var imgUri = canvas.toDataURL(); // 获取生成的图片的url  
+                
+            $('#dw').attr('href',imgUri);
+            $('#capture').attr('src',imgUri);
+            // $('#myModal').modal('show');
             // console.log(imgUri);
             // window.location.href= 'imgUri'; // 下载图片  
-            $('#capture').attr('src',imgUri);
-            $('#myModal').modal('show');
+        }).then(function(){
+
+            document.getElementById("dw").click();
         });  
     };
 
