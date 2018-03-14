@@ -17,9 +17,16 @@
             <span>至</span>
             <input name="end_time" id="end_time" type="text" class="input-text" value="<?=$search['end_time']?>" placeholder="报名日期" readOnly onClick="WdatePicker({dateFmt:'yyyy-MM-dd'});"/>
 
+            <select name="type" id="type">
+            <option value="">人员类型</option>
+            <?php foreach($typearr as $key => $type):?>
+            <option value="<?=$key?>"<?php if ($search['type']==$key): ?>selected<?php endif; ?>><?=$type?></option>
+            <?php endforeach;?>
+            </select>
+
             <input type="submit" class="btn" value="<?=lang('search')?>">
             <a onclick="to_export('search')" href="javascript:;" class="current">
-                按日期导出
+                按条件导出
             </a>
             <a onclick="to_export()" href="javascript:;" class="current">
                 导出全部
@@ -40,7 +47,7 @@
 <!--             <th width="30" align="left">
                 <input type="checkbox" onclick="checkAll(this)">
             </th> -->
-            <th width=40><?=lang('id')?></th>
+            <th width=40>序号</th>
             <th>报名时间</th>
             <th>推荐教师</th>
             <th>姓名</th>
@@ -75,7 +82,7 @@
 <!--             <td width="30" align="left">
                 <input type="checkbox" name="optid[]" value="<?=$item['list_id']?>">
             </td> -->
-            <td width=40><?=$item['list_id']?></td>
+            <td width=40><?=$k+1?></td>
             <td><?=$item['create_time']?></td>
             <td><?=$item['referee']?></td>
             <td>
@@ -136,7 +143,22 @@
         {
             var start_time = $("#start_time").val();
             var end_time = $("#end_time").val();
-            $url += "/" + start_time + "/" + end_time;
+            var user_type = $("#type").val();
+
+            if (!start_time)
+            {
+                start_time = 0;
+            }
+            if (!end_time)
+            {
+                end_time = 0;
+            }
+            if (!user_type)
+            {
+                user_type = 0;
+            }
+
+            $url += "/" + start_time + "/" + end_time + "/" + user_type;
         }
 
         window.location.href = $url;

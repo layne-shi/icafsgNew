@@ -15,6 +15,68 @@ var common = {
     }
 };
 
+var LANG_Validate={
+    'required':'红星为必填项',
+    'number':'请录入数值',
+    'digits':'请录入整数',
+    'unsignedint':'请录入正整数',
+    'unsigned':'请输入大于等于0的数值',
+    'positive':'请输入大于0的数值',
+    'alpha':'请输入英文字母',
+    'alphaint':'请输入英文字母或数字',
+    'alphanum':'请输入英文字母,中文及数字',
+    'date':'请录入日期格式yyyy-mm-dd',
+    'email':'请录入正确的Email地址',
+    'url':'请录入正确的网址',
+    'mobile':'请录入正确的手机号码',
+    'tel':'请录入正确的固定电话',
+    'phone':'请录入正确的电话或手机',
+    'zip':'请录入正确的邮编',
+    'area':'请选择完整的地区',
+    'greater':'不能小于前一项',
+    'requiredonly':'必须选择一项',
+    'identity':'请输入合法身份证'
+};
+
+/** 
+ * 表单验证规则
+ *
+ * 使用方法： validatorMap[key][1](element, element.value)
+ *
+ * 验证函数： function(element, v){}
+ *            @parames     element     jQuery对象
+ *            @parames     v           表单元素的值
+ *            @return      true 验证通过, flase验证失败
+ */
+var validatorMap = {
+    'required': [LANG_Validate['required'], function(element, v) {
+        return v != null && v != '' && $.trim(v) != '';
+    }],
+    'requiredradio': [LANG_Validate['requiredonly'], function(element, v) {
+        var name = $(element).attr("name");
+        var radio = $("input[type=radio][name='" + name + "']");
+        var falg = false;
+        radio.each(function(index,element){
+            if (element.checked == true)
+            {
+                falg = true;
+                return false;
+            }
+        });
+        return falg;
+    }],
+    'mobile': [LANG_Validate['mobile'], function(element, v) {
+        return /^0?1[34578]\d{9}$/.test(v);
+    }],
+    'identity':[LANG_Validate['identity'], function(element, v) {
+        return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(v);
+    }],
+    'email': [LANG_Validate['email'], function(element, v) {
+        return /^[a-z\d][a-z\d_.]*@[\w-]+(?:\.[a-z]{2,})+$/i.test(v);
+    }]
+};
+
+
 var app = angular.module('myApp',[]);
 
 app.controller('myctrl',['$scope',function($scope){
@@ -328,9 +390,72 @@ app.controller('myctrl',['$scope',function($scope){
     // 提交
     $scope.submit = function(){
         var truthBeTold = window.confirm("请检查报名表是否填写正确，提交后如需更改请联系客服。\n\n是否提交？");
-        if(truthBeTold){
-            //window.alert("已提交！");
+        if(truthBeTold)
+        {
+            var user_type = document.getElementById("enroll[type]").value;
 
+            // 判断选手是否选择了参赛方向
+            if (user_type == '1')
+            {
+                var flag = false;
+                for (var key in $scope.baomingObj.directarr)
+                {
+                    if ($scope.baomingObj.directarr[key].array.length > 0)
+                    {
+                        flag = true;
+                    }
+                }
+
+                if (!flag)
+                {
+                    window.alert("选手必须选择参赛方向");
+                    return false;
+                }
+            }
+
+            var errflag = false;
+            var errmsg  = '';
+            var formElements = $('#signupForm').find('[vtype]');
+            formElements.each(function(i,element)
+            {
+                // 表单元素为可见元素或不是隐藏域
+                if ($(element).is(':visible') || $(element).attr('type') == 'hidden')
+                {
+                    var vtype = $(element).attr("vtype");
+                    if (vtype)
+                    {
+                        var valiteArr = vtype.split('&&');
+                        $(valiteArr).each(function(i,key) {
+                            if (!validatorMap[key][1](element, element.value))
+                            {
+                                errflag = true;
+                                errmsg = validatorMap[key][0];
+                                return false;
+                            }
+                        });
+                    }
+                }
+
+                if (errflag)
+                {
+                    return false;
+                }
+            });
+
+            if (errflag)
+            {
+                window.alert(errmsg);
+                return false;
+            }
+
+            if (window.certarr.length == 0)
+            {
+                window.alert("必须上传电子版证件！");
+                return false;
+            }
+
+//            console.log(formElements);
+/*
             var $name = document.getElementById("enroll[name]").value;
             var $pyname = document.getElementById("enroll[py_name]").value;
             var $birthday = document.getElementById("enroll[birthday]").value;
@@ -342,23 +467,32 @@ app.controller('myctrl',['$scope',function($scope){
             var $address = document.getElementById("enroll[address]").value;
             var $email = document.getElementById("enroll[email]").value;
 
-            if (!$name || !$pyname || !$birthday || !$nationality || !$age || !$national || !$mobile || !$identity || !$address || !$email)
+            var $portrait = document.getElementById("enroll[portrait]").value;
+
+            if (!$name || !$pyname || !$birthday || !$nationality || !$age || !$national || !$mobile || !$identity || !$address || !$email || !$portrait)
             {
                 window.alert("红星为必填项！");
-                return;
+                return false;
             }
 
             if ($mobile.length != 11 || isNaN($mobile))
             {
                 window.alert("手机号错误！");
-                return;
+                return false;
             }
 
             if ($identity.length != 18)
             {
                 window.alert("身份证号错误！");
-                return;
+                return false;
             }
+
+            if (window.certarr.length == 0)
+            {
+                window.alert("必须上传电子版证件！");
+                return false;
+            }
+*/
 
             document.getElementById("signupForm").submit();
         }else{

@@ -78,19 +78,19 @@
                         <div class="form-group">
                             <label for="inputName" class="control-label"><span class="color-red margin-right-5px">★</span>姓名 name</label>
                             <div class="">
-                                <input ng-model="baomingObj.name.value" type="text" name="enroll[name]" id="enroll[name]" maxlength=60 class="form-control" placeholder="姓名 name" required>
+                                <input ng-model="baomingObj.name.value" type="text" name="enroll[name]" id="enroll[name]" maxlength=60 class="form-control" placeholder="姓名 name" vtype="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputName" class="control-label"><span class="color-red margin-right-5px">★</span>拼音(英文姓名)<span class="color-red">首</span>字母大写，姓与名用空格隔开。如：Zhang Wei</label>
                             <div class="">
-                                <input ng-model="baomingObj.name.enValue" type="text" name="enroll[py_name]" id="enroll[py_name]" class="form-control" placeholder="拼音（英文姓名）">
+                                <input ng-model="baomingObj.name.enValue" type="text" name="enroll[py_name]" id="enroll[py_name]" class="form-control" vtype="required" placeholder="拼音（英文姓名）">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label for="inputBirthday" class="control-label"><span class="color-red margin-right-5px">★</span>出生日期 Date of birth</label>
                             <div class="">
-                                <input ng-model="baomingObj.birth.value" type="text" name="enroll[birthday]" id="enroll[birthday]" class="form-control" placeholder="出生日期 Date of birth" onclick="WdatePicker()">
+                                <input ng-model="baomingObj.birth.value" type="text" name="enroll[birthday]" id="enroll[birthday]" class="form-control" vtype="required" placeholder="出生日期 Date of birth" onclick="WdatePicker()">
                             </div>
                         </div>
                     </div>
@@ -109,13 +109,13 @@
                         <div class="form-group clearfix">
                             <label for="inputNationality" class="control-label"><span class="color-red margin-right-5px">★</span>國籍 Nationality</label>
                             <div class="">
-                                <input ng-model="baomingObj.nationality.value" type="text" name="enroll[nationality]" id="enroll[nationality]" class="form-control" placeholder="國籍 Nationality">
+                                <input ng-model="baomingObj.nationality.value" type="text" name="enroll[nationality]" id="enroll[nationality]" class="form-control" vtype="required" placeholder="國籍 Nationality">
                             </div>
                         </div>
                         <div class="form-group clearfix" ng-if="baomingObj.xingzhi.value == '陪同'">
                             <label for="inputNationality" class="control-label"><span class="color-red margin-right-5px">★</span>陪同参赛选手姓名</label>
                             <div class="">
-                                <input ng-model="baomingObj.beipeitoing.value" type="text" name="enroll[entourage]" id="nationality" class="form-control" placeholder="陪同参赛选手姓名">
+                                <input ng-model="baomingObj.beipeitoing.value" type="text" vtype="required" name="enroll[entourage]" id="nationality" class="form-control" placeholder="陪同参赛选手姓名">
                             </div>
                         </div>
                     </div>
@@ -123,13 +123,13 @@
                         <div class="form-group">
                             <label for="inputAge" class="control-label"><span class="color-red margin-right-5px">★</span>年齡 Age</label>
                             <div class="">
-                                <input ng-model="baomingObj.age.value" type="number" name="enroll[age]" id="enroll[age]" class="form-control" placeholder="年齡 Age">
+                                <input ng-model="baomingObj.age.value" type="number" name="enroll[age]" id="enroll[age]" vtype="required" class="form-control" placeholder="年齡 Age">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label for="inputNational" class="control-label"><span class="color-red margin-right-5px">★</span>民族 National</label>
                             <div class="">
-                                <input ng-model="baomingObj.national.value" type="text" name="enroll[national]" id="enroll[national]" class="form-control" placeholder="民族 National">
+                                <input ng-model="baomingObj.national.value" type="text" name="enroll[national]" id="enroll[national]" class="form-control" vtype="required" placeholder="民族 National">
                             </div>
                         </div>
                     </div>
@@ -137,8 +137,8 @@
                         <div class="form-group">
                             <label for="inputAge" class="control-label"><span class="color-red margin-right-5px">★</span>照片 Photo（兩寸白底彩色免冠照片）</label>
                             <div class="">
-                                <img onclick="uploadpic(this,'portrait')" src="{{baomingObj.avatar.value}}" class="img-thumbnail" alt="兩寸白底彩色免冠照片" data-holder-rendered="true" style="cursor:pointer;height: 140px;">
-                                <input type="hidden" name="enroll[portrait]" id="portrait" value="">
+                                <img onclick="uploadpic(this,'enroll[portrait]','portrait')" src="<?=$config['site_templateurl'];?>/registrationForm/images/nopic.jpg" class="img-thumbnail" alt="兩寸白底彩色免冠照片" data-holder-rendered="true" style="cursor:pointer;height: 140px;">
+                                <input type="hidden" name="enroll[portrait]" id="enroll[portrait]" vtype="required" value="">
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                             <div class="form-group">
                                 <label for="inputMobileNo" class="control-label"><span class="color-red margin-right-5px">★</span>手機號碼Mobile No.</label>
                                 <div class="">
-                                    <input ng-model="baomingObj.mobileNo.value" name="enroll[mobile]" type="text" id="enroll[mobile]" class="form-control" placeholder="手機號碼Mobile No.">
+                                    <input ng-model="baomingObj.mobileNo.value" name="enroll[mobile]" type="text" id="enroll[mobile]" class="form-control" vtype="required&&mobile" placeholder="手機號碼Mobile No.">
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                             <div class="form-group">
                                 <label for="inputId" class="control-label"><span class="color-red margin-right-5px">★</span>身份證 ID</label>
                                 <div class="">
-                                    <input ng-model="baomingObj.identity.value" name="enroll[identity]" type="text" id="enroll[identity]" maxlength="18" class="form-control" placeholder="身份證 ID">
+                                    <input ng-model="baomingObj.identity.value" name="enroll[identity]" type="text" id="enroll[identity]" maxlength="18" class="form-control" vtype="required&&identity" placeholder="身份證 ID">
                                 </div>
                             </div>
                         </div>
@@ -178,7 +178,7 @@
                             <div class="form-group">
                                 <label for="inputAddress" class="control-label"><span class="color-red margin-right-5px">★</span>郵寄地址 Address</label>
                                 <div class="">
-                                    <input ng-model="baomingObj.address.value" type="text" name="enroll[address]" id="enroll[address]" class="form-control" placeholder="郵寄地址 Address">
+                                    <input ng-model="baomingObj.address.value" type="text" name="enroll[address]" id="enroll[address]" class="form-control" vtype="required" placeholder="郵寄地址 Address">
                                 </div>
                             </div>
                         </div>
@@ -194,7 +194,7 @@
                         <div class="form-group">
                             <label for="inputEmail" class="control-label"><span class="color-red margin-right-5px">★</span>郵箱 Email</label>
                             <div class="">
-                                <input ng-model="baomingObj.email.value" type="text" name="enroll[email]" id="enroll[email]" class="form-control" placeholder="郵箱 Email">
+                                <input ng-model="baomingObj.email.value" type="text" name="enroll[email]" id="enroll[email]" class="form-control" vtype="required&&email" placeholder="郵箱 Email">
                             </div>
                         </div>
                     </div>
@@ -250,16 +250,22 @@
                         <div class="form-group">
                             <label for="exampleInputFile" class="control-label"><span class="color-red margin-right-5px">★</span>近期证件照片、身份证正反面电子版、护照首页电子版（若香港护照请传护照封皮电子版）</label>
                             <div class="margin-top-20">
-                                <!-- <input type="file" id="exampleInputFile"> -->
+                                <button type="button" class="btn btn-primary" onclick="uploadpic('','','cert')">上传图片</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <div class="">
-                                <img onclick="uploadpic(this,'certificate')" ng-repeat="pic in baomingObj.pic.picArr" src={{pic.value}} class="img-thumbnail" data-holder-rendered="true" style="cursor:pointer;height: 180px;">
-                                <input type="hidden" name="enroll[certificate]" id="certificate" value="">
+                            <div id="cert_wrap" class="">
+                                <img id="cert_tpl" src="<?=$config['site_templateurl'];?>/registrationForm/images/nopic.jpg" class="img-thumbnail" data-holder-rendered="true" style="cursor:pointer;height: 180px;">
+
+                                <input type="hidden" name="enroll[certificate1]" id="enroll[certificate1]" value="">
+                                <input type="hidden" name="enroll[certificate2]" id="enroll[certificate2]" value="">
+                                <input type="hidden" name="enroll[certificate3]" id="enroll[certificate3]" value="">
+                                <input type="hidden" name="enroll[certificate4]" id="enroll[certificate4]" value="">
+
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -460,15 +466,13 @@
         </div>
         <div class="row">
             <div class="col-md-12" id="match">
-                <div class="no-data bg-danger" ng-if="baomingObj.guanxuanyue.array.length == 0 && baomingObj.guanxuanyue.array.length == 0 && baomingObj.gangqin.array.length == 0 && baomingObj.minyue.array.length == 0 && baomingObj.shengyue.array.length == 0 && baomingObj.wudao.array.length == 0">
-
+                <div class="no-data bg-danger">
                     <h2 style="padding: 10px;">请选择一个参赛方向，然后点击蓝色的
                         <a class="btn btn-default">
                             <span class="glyphicon glyphicon-plus-sign"></span>
                             <!-- 兼报 -->
                         </a>
                     </h2>
-
                 </div>
 
 
@@ -492,7 +496,7 @@
                 <label for="direct[{{$index+1}}][<?=$direct['id']?>][major]" class="control-label"><span class="color-red margin-right-5px">★</span>參賽專業（所需乐器名称） Special</label>
                 <div class="<?=($direct['special_type'] == 0?'clearfix':'')?>">
                 <?php if($direct['special_type'] == 1):?>
-                    <input type="text" name="direct[{{$index+1}}][<?=$direct['id']?>][major]" id="direct[{{$index+1}}][<?=$direct['id']?>][major]" class="form-control" placeholder="參賽專業（所需乐器名称） Special">
+                    <input type="text" vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][major]" id="direct[{{$index+1}}][<?=$direct['id']?>][major]" class="form-control" placeholder="參賽專業（所需乐器名称） Special">
                 <?php elseif($direct['special_type'] == 0):?>
                     <div class="dropdown fl">
                         <button class="btn btn-default dropdown-toggle" type="button" id="<?=$direct['id']?>_{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -529,7 +533,7 @@
                         </ul>
                     </div>
                     <div class="fl jianbao" style="<?=($direct['items']['formData'][0]&&$direct['items']['formData'][0]['need_input']==1?'':'display:none;')?>">
-                        <input type="number" name="direct[{{$index+1}}][<?=$direct['id']?>][form][form_number]" class="form-control" placeholder="人数"/>
+                        <input type="number" name="direct[{{$index+1}}][<?=$direct['id']?>][form][form_number]" vtype="required" class="form-control" placeholder="人数"/>
                     </div>
 
                 </div>
@@ -564,7 +568,7 @@
                             <div class="">
                             <?php foreach($level2['level3'] as $k3 => $lvevel3):?>
                                 <label class="control-label {{item.classItem=='<?=$lvevel3[id]?>' ? 'label-select' : ''}}" style="font-weight:normal;">
-                                    <input ng-model="item.classItem" type="radio" id="direct[{{$index+1}}][<?=$direct['id']?>][group_id]" name="direct[{{$index+1}}][<?=$direct['id']?>][group_id]" value="<?=$lvevel3['id']?>">  <?=$lvevel3['name']?>
+                                    <input ng-model="item.classItem" type="radio" vtype="requiredradio" id="direct[{{$index+1}}][<?=$direct['id']?>][group_id]" name="direct[{{$index+1}}][<?=$direct['id']?>][group_id]" value="<?=$lvevel3['id']?>">  <?=$lvevel3['name']?>
                                 </label>
                                 &nbsp;&nbsp;
                             <?php endforeach;?>
@@ -608,7 +612,7 @@
                                                 <span class="color-red margin-right-5px">★</span>
                                                 <label for="direct[{{$index+1}}][referee]" class="control-label">推荐教师</label>
                                                 <div class="">
-                                                    <input type="text" name="direct[{{$index+1}}][<?=$direct['id']?>][referee]" id="direct[{{$index+1}}][<?=$direct['id']?>][referee]" class="form-control" placeholder="推荐教师">
+                                                    <input vtype="required" type="text" name="direct[{{$index+1}}][<?=$direct['id']?>][referee]" id="direct[{{$index+1}}][<?=$direct['id']?>][referee]" class="form-control" placeholder="推荐教师">
                                                 </div>
                                             </div>
                                         </div>
@@ -736,7 +740,23 @@
     var siteurl = "<?=site_url()?>";
     var siteaurl = "<?=site_aurl()?>";
 
-    function uploadpic(t,picid){
+    // 上传证件
+    window.certarr = [];
+
+    /**
+     * 上传图片
+     * @parames     string      t       img图像id
+     * @parames     string      picid   隐藏域id保存图像src
+     * @parames     string      type    是上传图像还是证件
+     */
+    function uploadpic(t,picid,type)
+    {
+        if (type == 'cert' && window.certarr.length >= 4)
+        {
+            alert("最多上传4张证件");
+            return;
+        }
+
         var editor = KindEditor.editor({
             uploadJson:siteaurl+"/main/attrupload2",
             allowFileManager : true
@@ -746,12 +766,46 @@
             editor.plugin.imageDialog({
                 showRemote : false,
                 imageUrl : KindEditor('#'+picid).val(),
-                    clickFn : function(url, title, width, height, border, align) {
-                        newurl = url.substr(url.indexOf("data"));
-                        $('#'+picid).val(newurl);
-                        if(t){
-                            $(t).attr('src',url);
+                    clickFn : function(url, title, width, height, border, align)
+                    {
+                        var newurl = url.substr(url.indexOf("data"));
+
+                        // 上传头像
+                        if (type == 'portrait')
+                        {
+                            //$('#'+picid).val(newurl);
+                            document.getElementById(picid).value=newurl;
+                            if(t){
+                                $(t).attr('src',url);
+                            }
                         }
+
+                        // 上传证件
+                        if (type == 'cert')
+                        {
+                            if (window.certarr.length == 0)
+                            {
+                                $("#cert_tpl").remove();
+                            }
+                            var index = window.certarr.length;
+                            index++;
+
+                            window.certarr.push({id:index,value:newurl});
+
+                            var id = "enroll[certificate" + index + "]";
+
+                            if ($("#"+id))
+                            {
+                                //$("#"+id).val(newurl);
+
+                                document.getElementById(id).value=newurl;
+                            }
+
+                            var img = '<img src="'+url+'" class="img-thumbnail" style="cursor:pointer;height: 180px;width:300px;margin-right:5px;">';
+
+                            $("#cert_wrap").append(img);
+                        }
+
                         editor.hideDialog();
                     }
                 });

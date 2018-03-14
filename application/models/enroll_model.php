@@ -1,6 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Enroll_model extends CI_Model
 {
+
+    // 报名人员类型
+    public $user_type = array(
+        1 => '选手',
+        2 => '老师',
+        3 => '陪同',
+    );
+
 	public function __construct()
     {
   		parent::__construct();
@@ -252,6 +260,11 @@ class Enroll_model extends CI_Model
         $id = $this->Data_model->addData($data,'match_signup');
         if ($id && $id > 0)
         {
+            if ($data['type'] != '1')
+            {
+                return true;
+            }
+
             $saveData = array();
             $directarr = $post['direct'];
             foreach ($directarr as $k1 => $direct)
@@ -308,6 +321,11 @@ class Enroll_model extends CI_Model
             $sql .= " AND s.create_time <= {$end_time}";
         }
 
+        if (isset($getwhere['type']))
+        {
+            $sql .= " AND s.type = {$getwhere['type']} ";
+        }
+
         $row = $this->db->query($sql)->row_array();
         return $row['count'];
     }
@@ -358,7 +376,12 @@ class Enroll_model extends CI_Model
             $sql .= " AND s.create_time <= {$end_time}";
         }
 
-        $sql .= " ORDER BY d.id DESC ";
+        if (isset($getwhere['type']))
+        {
+            $sql .= " AND s.type = {$getwhere['type']} ";
+        }
+
+        $sql .= " ORDER BY s.create_time ASC ";
 
 		if ($pagenum > 0)
         {
@@ -412,13 +435,11 @@ class Enroll_model extends CI_Model
 
             $data[$key]['gender'] = ($item['gender']==0?'女':'男');
             $data[$key]['birthday'] = date('Y-m-d',$item['birthday']);
-            $data[$key]['type'] = ($item['type']=='1'?'选手':($item['type']=='2'?'老师':'陪同'));
+            $data[$key]['type'] = $this->user_type[$item['type']];
 
             $data[$key]['create_time'] = date('Y-m-d',$item['create_time']);
 
-                         //
         }
-//echo '<pre>';print_r($data);die;
 
         return $data;
     }

@@ -184,6 +184,12 @@ class Enroll extends CI_Controller
                 $search['end_time'] = trim($post['end_time']);
                 $getwhere['end_time'] = $search['end_time'];
             }
+
+            if (isset($post['type']) && !empty($post['type']))
+            {
+                $search['type'] = $post['type'];
+                $getwhere['type'] = $post['type'];
+            }
         }
 
 		$pagearr = array(
@@ -202,6 +208,7 @@ class Enroll extends CI_Controller
             'tablefunc' =>  $this->tablefunc,
             'view'      =>  $view,
             'search'    =>  $search,
+            'typearr'   =>  $this->Enroll_model->user_type,
         );
 
         $this->load->view('enroll_details',$res);
@@ -246,15 +253,21 @@ class Enroll extends CI_Controller
 
         $begin = $this->uri->segment(5);
         $end = $this->uri->segment(6);
+        $user_type = $this->uri->segment(7);
 
-        if ($begin)
+        if ($begin && $begin > 0)
         {
             $getwhere['start_time'] = $begin;
         }
 
-        if ($end)
+        if ($end && $end > 0)
         {
             $getwhere['end_time'] = $end;
+        }
+
+        if ($user_type  && $user_type > 0)
+        {
+            $getwhere['type'] = $user_type;
         }
 
         // 要导出的数据

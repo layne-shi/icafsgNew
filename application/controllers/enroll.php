@@ -153,11 +153,9 @@ class Enroll extends CI_Controller
 
         if ($post['action']==site_url('enroll/signup'))
         {
-            $data = $post['enroll'];
-
-            if (false === $this->check_data($data,$errorMsg))
+            if (false === $this->check_data($post,$errorMsg))
             {
-                show_error($errorMsg);
+                show_error('<a href="javascript:history.back()">返回上一级</a>',500,$errorMsg);
                 exit;
             }
 
@@ -176,21 +174,73 @@ class Enroll extends CI_Controller
         }
     }
 
+    // 报名完成
     public function complete()
     {
         $this->init_view('complete');
     }
 
     /**
+     * 检查报名表时间有效性
+     *
+     * @parames     int      $id    报名表id
+     * @return      boolean
+     */
+    protected function check_time_validity($id,&$msg)
+    {
+        $row = $this->Data_model->getSingle(array('id'=>$id),'enroll');
+        $time = time();
+
+        if ($row['begin_time'] > $time)
+        {
+            $msg = '活动尚未开始';
+            return false;
+        }
+
+        if ($row['end_time'] < $time)
+        {
+            $msg = '报名活动已结束';
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      *  数据安全检测
      */
-    protected function check_data($data,&$msg)
+    protected function check_data($post,&$msg)
     {
-        if (!$data['name'] || !$data['py_name'] || !$data['birthday'] || !$data['nationality'] || !$data['age'] || !$data['national'] || !$data['mobile'] || !$data['identity'] || !$data['address'] || !$data['email'])
+        $data = $post['enroll'];
+
+        if (!$data['name'] || !$data['py_name'] || !$data['birthday'] || !$data['nationality'] || !$data['age'] || !$data['national'] || !$data['mobile'] || !$data['identity'] || !$data['address'] || !$data['email'] || !$data['portrait'])
         {
             $msg = '红星为必填项';
             return false;
         }
+
+        if (!$data['certificate1'] && !$data['certificate2'] && !$data['certificate3'] && !$data['certificate4'])
+        {
+            $msg = '必须上传电子版证件';
+            return false;
+        }
+
+        if (false == $this->check_time_validity($data['enroll_id'],$err))
+        {
+            $msg = $err;
+            return false;
+        }
+
+        // 如果是选手，判断是否选择了参赛方向
+        if ($data['type'] == '1')
+        {
+            if (!isset($post['direct']) || empty($post['direct']))
+            {
+                $msg = '请选择参赛方向';
+                return false;
+            }
+        }
+
 
         return true;
     }
