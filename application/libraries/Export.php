@@ -260,8 +260,9 @@ class Export
             $strexport.="\n";
 
         }
-        // $strexport=iconv('UTF-8',"GB2312//IGNORE",$strexport);
-        $strexport= mb_convert_encoding($strexport,"GB2312","UTF-8");
+
+        //$strexport=iconv('UTF-8',"GBK//IGNORE",$strexport);
+        $strexport= mb_convert_encoding($strexport,"GBK","UTF-8");
         echo $strexport;
         exit();
     }

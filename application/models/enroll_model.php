@@ -350,6 +350,7 @@ class Enroll_model extends CI_Model
         s.email AS email, s.other_contact AS other_contact,
         s.address AS address,s.guardian_name AS guardian_name,
         s.guardian_mobile AS guardian_mobile,
+        s.entourage AS entourage,
         s.create_time AS create_time, d.song AS song,
         d.id AS list_id, d.referee AS referee, d.guide AS guide,
         d.major AS major, d.form_id AS form_id,
@@ -420,17 +421,27 @@ class Enroll_model extends CI_Model
                 if ($form['id'] == $item['form_id'])
                 {
                     $data[$key]['form'] = $form['title'];
+                    if (!empty($item['form_number']))
+                    {
+                        $data[$key]['form'] .= "(".$item['form_number']."人)";
+                    }
                     break;
                 }
             }
 
-            foreach ($groupArr as $group)
+            // 参赛组别
+            if (!empty($item['group_id']))
             {
-                if ($group['group_id'] == $item['id'])
-                {
-                    $data[$key]['group'] = $group['name'];
-                    break;
-                }
+                $tmp = $this->_groupname($groupArr,$item['group_id']);
+                $tmp = explode('|',$tmp);
+                $tmp = array_reverse($tmp);
+                $tmp2 = explode(' ',$tmp[1]);
+                $tmp2 = $tmp2[0];
+                $data[$key]['group'] = $tmp[0].'('.$tmp2.')'.'('.$tmp[2].')';
+            }
+            else
+            {
+                $data[$key]['group'] = '';
             }
 
             $data[$key]['gender'] = ($item['gender']==0?'女':'男');
@@ -442,6 +453,28 @@ class Enroll_model extends CI_Model
         }
 
         return $data;
+    }
+
+    /**
+     * 递归获取分组名称
+     */
+    protected function _groupname($groupArr,$g_id)
+    {
+        $group_name = '';
+        foreach ($groupArr as $group)
+        {
+            if ($group['id'] == $g_id)
+            {
+                $group_name .= $group['name'];
+                if ($group['parent'] > 0)
+                {
+                    $group_name .= '|' . $this->_groupname($groupArr,$group['parent']);
+                }
+                break;
+            }
+        }
+
+        return $group_name;
     }
 
 }

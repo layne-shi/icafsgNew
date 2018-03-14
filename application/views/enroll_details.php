@@ -58,7 +58,7 @@
             <th>护照</th>
             <th>性质</th>
             <th>身份證</th>
-           <!--  <th>陪同人员</th> -->
+            <th>陪同人员</th>
             <th>参赛方向</th>
             <th>参赛专业</th>
             <th>参赛形式</th>
@@ -97,7 +97,7 @@
             <td><?=$item['passport']?></td>
             <td><?=$item['type']?></td>
             <td><?=$item['identity']?></td>
-            <!--  <td> </td>  陪同人员 -->
+            <td><?=$item['entourage']?></td>
             <td><?=$item['dir_name']?></td>
             <td><?=$item['major']?></td>
             <td><?=$item['form']?></td>
