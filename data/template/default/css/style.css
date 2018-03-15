@@ -1077,10 +1077,10 @@ dl.sm dd a.sp_tu h4 {
 
 .zhanshi ul li .tu_fuwu {
     background: #dddddd;
-    background: url(../images/team_de.jpg) no-repeat;
+    /* background: url(../images/team_de.jpg) no-repeat; */
     display: block;
-    width: 164px;
-    padding: 11px 12px 10px 11px;
+    /* width: 164px; */
+    padding: 3px;
 }
 
 .zhanshi ul li .wen_fuwu {

@@ -16,7 +16,7 @@
 <div class="header">
 	<div class="wrap clearfix">
 		<div class="logo">
-			<a href="<?=base_url($langurl);?>"><img src="<?=$config['site_templateurl'];?>/images/logo.jpg"></a>	
+			<a href="<?=base_url($langurl);?>"><img src="<?=$config['site_templateurl'];?>/images/logo.png"></a>	
 		</div>
 		<!-- <div class="headerr">
 			<div class="search">
