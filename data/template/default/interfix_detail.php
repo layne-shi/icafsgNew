@@ -39,7 +39,7 @@
 			<div class="maincen2">
 				<div id="weizhi">所在位 &gt; <?=x6cms_location($category,' > ');?></div>
 
-				<div class="padding-20-65">
+				<div class="">
 					<h1 class="text-align-center"><?=$detail['title']?></h1>
 					<?=$detail['content']?>
 				</div>
