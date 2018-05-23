@@ -18,7 +18,7 @@
 	</div>
 	<!-- slide ad end -->
 	<!-- content -->
-	<div class="main-content">
+	<div class="main-content clearfix">
 		<div class="main_left">
 
 			<div class="clearfix">
