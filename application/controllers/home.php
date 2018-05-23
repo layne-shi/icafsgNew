@@ -24,7 +24,7 @@ class Home extends CI_Controller {
         $artsCouncil = $this->Cache_model->loadCategoryByDir('artscouncil');
 
         // 艺术节项目
-        $artfestival = $this->_getList('artfestival');
+        $artfestival = $this->_getList('artfestival',9);
 
         // 专场演出
         $perform = $this->_getList('specialperformance',4,0,array('to_homepage'=>1));
