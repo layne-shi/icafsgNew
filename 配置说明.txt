@@ -1,0 +1,16 @@
+1. /application\config\config.php 中：
+
+   //$config['base_url'] = 'http://122.14.213.55:8000/';
+   $config['base_url']	= 'http://www.icafsg.com/';     修改为网站的访问地址
+
+2. /application\config\database.php 中,修改下列配置文件为自己数据库的配置：
+
+  $db['default']['hostname'] = '';
+  $db['default']['username'] = '';
+  $db['default']['password'] = '';
+  $db['default']['database'] = ''; 
+
+
+3. /index.html ，因为服务商未绑定index.php，所以系统会先访问根目录下的index.html，
+所以修改如下：
+  <meta http-equiv="refresh" content="0.1;url=http://www.icafsg.com/index.php">
