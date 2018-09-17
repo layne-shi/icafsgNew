@@ -1558,7 +1558,7 @@
             <div class="panel-body">
                 <div class="row text-center">
                     <button type="button" class="btn btn-primary" ng-click="submit()">確定提交</button>
-                    <button type="button" class="btn btn-primary" ng-click="saveToPng()" style="margin-left:30px;">下载报名表</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveToPng()" style="margin-left:30px;">保存到本地</button>
                 </div>
             </div>
         </div>
@@ -1593,13 +1593,12 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" style="margin-left: 30px" ng-click="downLoadImg()">下载报名表</button>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
           </div><!-- /.modal -->
+        
     </form>
-        <a href="{{baomingObj.imgSrc}}" id="dw" download="my.png"></a>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>

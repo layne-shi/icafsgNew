@@ -1,7 +1,7 @@
 <?php $this->load->view($config['site_template'].'/head');?>
 
 <div class="wrap main">
-	<div class="position-relative">
+	<div class="position-relative">		
 		<div class="long1"></div>
 		<div class="long2"></div>
 		<div class="long3"></div>
