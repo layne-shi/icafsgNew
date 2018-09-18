@@ -448,7 +448,12 @@ app.controller('myctrl',['$scope',function($scope){
                 return false;
             }
 
-            if (window.certarr.length == 0)
+            var cert_1 = document.getElementById('enroll[certificate1]');
+            var cert_2 = document.getElementById('enroll[certificate2]');
+            var cert_3 = document.getElementById('enroll[certificate3]');
+            var cert_4 = document.getElementById('enroll[certificate4]');
+
+            if (cert_1.value == '' && cert_2.value == '' && cert_3.value == '' && cert_4.value == '')
             {
                 window.alert("必须上传电子版证件！");
                 return false;
@@ -487,11 +492,6 @@ app.controller('myctrl',['$scope',function($scope){
                 return false;
             }
 
-            if (window.certarr.length == 0)
-            {
-                window.alert("必须上传电子版证件！");
-                return false;
-            }
 */
 
             document.getElementById("signupForm").submit();

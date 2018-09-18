@@ -249,20 +249,23 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleInputFile" class="control-label"><span class="color-red margin-right-5px">★</span>近期证件照片、身份证正反面电子版、护照首页电子版（若香港护照请传护照封皮电子版）</label>
-                            <div class="margin-top-20">
-                                <button type="button" class="btn btn-primary" onclick="uploadpic('','','cert')">上传图片</button>
-                            </div>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <div id="cert_wrap" class="">
-                                <img id="cert_tpl" src="<?=$config['site_templateurl'];?>/registrationForm/images/nopic.jpg" class="img-thumbnail" data-holder-rendered="true" style="cursor:pointer;height: 180px;">
 
-                                <input type="hidden" name="enroll[certificate1]" id="enroll[certificate1]" value="">
-                                <input type="hidden" name="enroll[certificate2]" id="enroll[certificate2]" value="">
-                                <input type="hidden" name="enroll[certificate3]" id="enroll[certificate3]" value="">
-                                <input type="hidden" name="enroll[certificate4]" id="enroll[certificate4]" value="">
+<img id="cert_tpl1" src="<?=$config['site_templateurl'];?>/registrationForm/images/nopic.jpg" class="img-thumbnail" data-holder-rendered="true" style="cursor:pointer;height: 180px;" onclick="uploadpic(this,'enroll[certificate1]','cert')">
+<input type="hidden" name="enroll[certificate1]" id="enroll[certificate1]" value="">
+
+<img id="cert_tpl2" src="<?=$config['site_templateurl'];?>/registrationForm/images/nopic.jpg" class="img-thumbnail" data-holder-rendered="true" style="cursor:pointer;height: 180px;" onclick="uploadpic(this,'enroll[certificate2]','cert')">
+<input type="hidden" name="enroll[certificate2]" id="enroll[certificate2]" value="">
+
+<img id="cert_tpl3" src="<?=$config['site_templateurl'];?>/registrationForm/images/nopic.jpg" class="img-thumbnail" data-holder-rendered="true" style="cursor:pointer;height: 180px;" onclick="uploadpic(this,'enroll[certificate3]','cert')">
+<input type="hidden" name="enroll[certificate3]" id="enroll[certificate3]" value="">
+
+<img id="cert_tpl4" src="<?=$config['site_templateurl'];?>/registrationForm/images/nopic.jpg" class="img-thumbnail" data-holder-rendered="true" style="cursor:pointer;height: 180px;" onclick="uploadpic(this,'enroll[certificate4]','cert')">
+<input type="hidden" name="enroll[certificate4]" id="enroll[certificate4]" value="">
 
                             </div>
 
@@ -295,7 +298,6 @@
                                     <div class="">
                                         <input ng-model="baomingObj.company.nValue" type="text" id="school" name="enroll[school_company]" class="form-control" placeholder="名称">
                                     </div>
-                                </td>
                                 </td>
                                 <td rowspan="4" colspan="1" style="word-break: break-all;vertical-align: middle;">
                                     <div class="form-group">
@@ -467,11 +469,17 @@
         <div class="row">
             <div class="col-md-12" id="match">
                 <div class="no-data bg-danger">
-                    <h2 style="padding: 10px;">请选择一个参赛方向，然后点击蓝色的
+                    <h2 style="padding: 10px;">请选择一个参赛方向，然后点击上方的蓝色
                         <a class="btn btn-default">
                             <span class="glyphicon glyphicon-plus-sign"></span>
                             <!-- 兼报 -->
                         </a>
+                        ，如有兼报，请再次选择一个参赛方向，点击上方的蓝色
+                        <a class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                            <!-- 兼报 -->
+                        </a>
+                        。
                     </h2>
                 </div>
 
@@ -740,23 +748,14 @@
     var siteurl = "<?=site_url()?>";
     var siteaurl = "<?=site_aurl()?>";
 
-    // 上传证件
-    window.certarr = [];
-
     /**
      * 上传图片
-     * @parames     string      t       img图像id
+     * @parames     string      that    img图像this
      * @parames     string      picid   隐藏域id保存图像src
      * @parames     string      type    是上传图像还是证件
      */
-    function uploadpic(t,picid,type)
+    function uploadpic(that,picid,type)
     {
-        if (type == 'cert' && window.certarr.length >= 4)
-        {
-            alert("最多上传4张证件");
-            return;
-        }
-
         var editor = KindEditor.editor({
             uploadJson:siteaurl+"/main/attrupload2",
             allowFileManager : true
@@ -770,40 +769,10 @@
                     {
                         var newurl = url.substr(url.indexOf("data"));
 
-                        // 上传头像
-                        if (type == 'portrait')
-                        {
-                            //$('#'+picid).val(newurl);
-                            document.getElementById(picid).value=newurl;
-                            if(t){
-                                $(t).attr('src',url);
-                            }
-                        }
+                        document.getElementById(picid).value=newurl;
 
-                        // 上传证件
-                        if (type == 'cert')
-                        {
-                            if (window.certarr.length == 0)
-                            {
-                                $("#cert_tpl").remove();
-                            }
-                            var index = window.certarr.length;
-                            index++;
-
-                            window.certarr.push({id:index,value:newurl});
-
-                            var id = "enroll[certificate" + index + "]";
-
-                            if ($("#"+id))
-                            {
-                                //$("#"+id).val(newurl);
-
-                                document.getElementById(id).value=newurl;
-                            }
-
-                            var img = '<img src="'+url+'" class="img-thumbnail" style="cursor:pointer;height: 180px;width:300px;margin-right:5px;">';
-
-                            $("#cert_wrap").append(img);
+                        if(that){
+                            $(that).attr('src',url);
                         }
 
                         editor.hideDialog();
@@ -869,7 +838,7 @@
     <?php foreach($view['directData'] as $index => $dir):?>
         'id<?=$dir["id"]?>' : {
             array:[]
-        }<?=($index != count($view['directData']))?',':''?>
+        }<?=(($index+1) != count($view['directData']))?',':''?>
     <?php endforeach;?>
     };
 
