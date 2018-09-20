@@ -219,11 +219,11 @@ class Enroll extends CI_Controller
             return false;
         }
 
-        if (!$data['certificate1'] && !$data['certificate2'] && !$data['certificate3'] && !$data['certificate4'])
+      /*  if (!$data['certificate1'] && !$data['certificate2'] && !$data['certificate3'] && !$data['certificate4'])
         {
             $msg = '必须上传电子版证件';
             return false;
-        }
+        }*/
 
         if (false == $this->check_time_validity($data['enroll_id'],$err))
         {

@@ -248,7 +248,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="exampleInputFile" class="control-label"><span class="color-red margin-right-5px">★</span>近期证件照片、身份证正反面电子版、护照首页电子版（若香港护照请传护照封皮电子版）</label>
+                            <label for="exampleInputFile" class="control-label"><!-- <span class="color-red margin-right-5px">★</span> -->近期证件照片、身份证正反面电子版、护照首页电子版（若香港护照请传护照封皮电子版）</label>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -511,7 +511,10 @@
                             <span class="name form-txt"><?=($direct['items']['majorData'][0]?$direct['items']['majorData'][0]['title']:'')?></span>
                             <span class="caret"></span>
                         </button>
-                        <input class="hide-form" type="hidden" id="direct[{{$index+1}}][<?=$direct['id']?>][major]" name="direct[{{$index+1}}][<?=$direct['id']?>][major]" value="<?=$direct['items']['majorData'][0]?$direct['items']['majorData'][0]['id']:''?>">
+<!--                         <input class="hide-form" type="hidden" id="direct[{{$index+1}}][<?=$direct['id']?>][major]" name="direct[{{$index+1}}][<?=$direct['id']?>][major]" value="<?=$direct['items']['majorData'][0]?$direct['items']['majorData'][0]['id']:''?>"> -->
+
+<input class="hide-form" type="hidden" id="direct[{{$index+1}}][<?=$direct['id']?>][major]" name="direct[{{$index+1}}][<?=$direct['id']?>][major]" value="<?=$direct['items']['majorData'][0]?$direct['items']['majorData'][0]['title']:''?>">
+
                         <ul class="dropdown-menu" aria-labelledby="<?=$direct['id']?>_{$index}}">
                         <?php foreach($direct['items']['majorData'] as $major):?>
                             <li onclick="choseMajorItem(this,'<?=$major[title]?>','<?=$major[id]?>')"><a href="javascript:;"><?=$major['title']?></a></li>
@@ -534,6 +537,8 @@
                         </button>
                         <!-- 参赛形式 -->
                         <input type="hidden" class="hide-form" id="direct[{{$index+1}}][<?=$direct['id']?>][form][form_id]" name="direct[{{$index+1}}][<?=$direct['id']?>][form][form_id]" value="<?=($direct['items']['formData'][0]?$direct['items']['formData'][0]['id']:'')?>"/>
+
+<input type="hidden" class="hide-form-title" id="direct[{{$index+1}}][<?=$direct['id']?>][form][form_title]" name="direct[{{$index+1}}][<?=$direct['id']?>][form][form_title]" value="<?=($direct['items']['formData'][0]?$direct['items']['formData'][0]['title']:'')?>"/>
                         <ul class="dropdown-menu" aria-labelledby="<?=$direct['id']?>_{{$index}}">
                         <?php foreach($direct['items']['formData'] as $form):?>
                             <li onclick="choseFormItem(this,'<?=$form[title]?>','<?=$form[id]?>','<?=$form[need_input]?>')"><a href="javascript:;"><?=$form['title']?></a></li>
@@ -717,7 +722,10 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" style="font-weight:bold;">鼠标右键点击下面的参赛报名表，可选择&emsp;图片另存为&emsp;到本地。<div class="alert alert-warning" role="alert">注意：保存到本地后，鼠标右键点击保存的文件，然后&emsp;重命名&emsp;为&emsp;报名表.png</div></h4>
+                  <h4 class="modal-title alert alert-danger" style="font-weight:bold; margin-top: 30px;">
+                    鼠标右键点击下面的参赛报名表，可选择&emsp;“图片另存为”&emsp;到本地。
+                    <!-- <div class="alert alert-warning" role="alert" style="display:none;">注意：保存到本地后，鼠标右键点击保存的文件，然后&emsp;重命名&emsp;为&emsp;报名表.png</div> -->
+                  </h4>
                 </div>
                 <div class="modal-body">
                   <p><img  style="width:100%;" id="capture" src="" title="右键点击图片，保存图片到本地" alt="右键点击图片，保存图片到本地" /></p>
@@ -789,7 +797,8 @@
         var obj = $parent.find('.form-txt');
         obj.text(title);
 
-        $parent.find(".hide-form").val(id);
+        //$parent.find(".hide-form").val(id);
+        $parent.find(".hide-form").val(title);
     }
 
     // 选择“参赛形式”
@@ -802,6 +811,7 @@
 
         obj.text(title);
         $parent.find(".hide-form").val(id);
+        $parent.find(".hide-form-title").val(title);
 
         if (need && need == 1)
         {

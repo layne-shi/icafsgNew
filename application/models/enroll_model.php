@@ -267,17 +267,40 @@ class Enroll_model extends CI_Model
 
             $saveData = array();
             $directarr = $post['direct'];
+
+            // 参赛组别
+            $groupArr = $this->Data_model->getData(array('isdisabled' => 0),'','','','enroll_group');
+
             foreach ($directarr as $k1 => $direct)
             {
                 foreach ($direct as $direct_id => $item)
                 {
+                    $group_id = $item['group_id']?$item['group_id']:0;
+
+                    if ($group_id)
+                    {
+                        $group_name = $this->_groupname($groupArr,$group_id);
+                        $tmp = $this->_groupname($groupArr,$group_id);
+                        $tmp = explode('|',$tmp);
+                        $tmp = array_reverse($tmp);
+                        $tmp2 = explode(' ',$tmp[1]);
+                        $tmp2 = $tmp2[0];
+                        $group_name = $tmp[0].'('.$tmp2.')'.'('.$tmp[2].')';
+                    }
+                    else
+                    {
+                        $group_name = '';
+                    }
+
                     $saveData[] = array(
                         'match_id' => $id,
                         'direct_id' => $direct_id,
                         'major' => $item['major'],
+                        'form'  => $item['form']['form_title'],
+                        'group' => $group_name,
                         'form_id' => $item['form']['form_id'],
                         'form_number' => isset($item['form']['form_number'])?$item['form']['form_number']:'',
-                        'group_id ' => $item['group_id']?$item['group_id']:0,
+                        'group_id ' => $group_id,
                         'song' => isset($item['song'])?$item['song']:'',
                         'guide' => isset($item['guide'])?$item['guide']:'',
                         'referee' => isset($item['referee'])?$item['referee']:'',
@@ -354,6 +377,7 @@ class Enroll_model extends CI_Model
         s.create_time AS create_time, d.song AS song,
         d.id AS list_id, d.referee AS referee, d.guide AS guide,
         d.major AS major, d.form_id AS form_id,
+        d.form AS form,d.group AS group_name,
         d.form_number AS form_number, d.group_id AS group_id,
         dir.title AS dir_name,dir.special_type AS special_type
         ";
@@ -404,6 +428,15 @@ class Enroll_model extends CI_Model
 
         foreach ($data as $key => $item)
         {
+            // 参赛人数
+            if (!empty($item['form_number']))
+            {
+                $data[$key]['form'] .= "(".$item['form_number']."人)";
+            }
+
+            $data[$key]['group'] = $data[$key]['group_name'];
+
+            /*
             if ($item['special_type'] == 0)
             {
                 foreach ($majorArr as $major)
@@ -427,8 +460,8 @@ class Enroll_model extends CI_Model
                     }
                     break;
                 }
-            }
-
+            }*/
+/*
             // 参赛组别
             if (!empty($item['group_id']))
             {
@@ -442,7 +475,8 @@ class Enroll_model extends CI_Model
             else
             {
                 $data[$key]['group'] = '';
-            }
+            }*/
+
 
             $data[$key]['gender'] = ($item['gender']==0?'女':'男');
             $data[$key]['birthday'] = date('Y-m-d',$item['birthday']);

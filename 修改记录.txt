@@ -1,0 +1,23 @@
+++++++++++++++++++++++++++++++++++ 2018-9-20 修改 ++++++++++++++++++++++++++++++++++
+
+****************** 数据库修改 ****************************
+
+ 1. 修改 `lee_match_direct` 表：
+
+ ALTER TABLE  `lee_match_direct` ADD  `form` VARCHAR( 50 ) NOT NULL DEFAULT  '' COMMENT  '参赛形式' AFTER  `major` ,
+ADD  `group` VARCHAR( 50 ) NOT NULL DEFAULT  '' COMMENT  '参赛组别' AFTER  `form`
+
+
+****************** 业务逻辑修改 ****************************
+
+ 1. 报名证件改为非必选。涉及文件如下：
+
+ (1). \data\template\default\registrationForm.php
+ (2). \data\template\default\registrationForm\js\main.js
+ (3). \application\controllers\enroll.php   
+
+ 2. 更改“参赛专业”、“参赛形式”、“参赛组别”不再与原数据表绑定，以文字形式记录：
+
+ (1).  \application\models\enroll_model.php
+
+------------------------------------- END  -----------------------------------------

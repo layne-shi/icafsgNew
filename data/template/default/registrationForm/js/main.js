@@ -448,6 +448,7 @@ app.controller('myctrl',['$scope',function($scope){
                 return false;
             }
 
+            /*
             var cert_1 = document.getElementById('enroll[certificate1]');
             var cert_2 = document.getElementById('enroll[certificate2]');
             var cert_3 = document.getElementById('enroll[certificate3]');
@@ -457,7 +458,7 @@ app.controller('myctrl',['$scope',function($scope){
             {
                 window.alert("必须上传电子版证件！");
                 return false;
-            }
+            }*/
 
 //            console.log(formElements);
 /*
