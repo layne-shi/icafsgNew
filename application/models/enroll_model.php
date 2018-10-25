@@ -221,7 +221,7 @@ class Enroll_model extends CI_Model
             return false;
         }
 
-        $level1 = $this->Data_model->getData(array('id'=>$ids),'','','',$table);
+        $level1 = $this->Data_model->getData(array('id'=>$ids),'listorder ASC','','',$table);
 
         foreach ($level1 as &$item)
         {
@@ -279,13 +279,22 @@ class Enroll_model extends CI_Model
 
                     if ($group_id)
                     {
-                        $group_name = $this->_groupname($groupArr,$group_id);
                         $tmp = $this->_groupname($groupArr,$group_id);
+                        $group_name = $tmp;
                         $tmp = explode('|',$tmp);
                         $tmp = array_reverse($tmp);
-                        $tmp2 = explode(' ',$tmp[1]);
-                        $tmp2 = $tmp2[0];
-                        $group_name = $tmp[0].'('.$tmp2.')'.'('.$tmp[2].')';
+
+                        // 如果是3级分类
+                        if (count($tmp) == 3)
+                        {
+                            $tmp2 = explode(' ',$tmp[1]);
+                            $tmp2 = $tmp2[0];
+                            $group_name = $tmp[0].'('.$tmp2.')'.'('.$tmp[2].')';
+                        }
+                        else // 否则按2级分类处理 2018/10/25
+                        {
+                            $group_name = implode(' | ',$tmp);
+                        }
                     }
                     else
                     {

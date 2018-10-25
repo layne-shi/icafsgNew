@@ -22,6 +22,11 @@
     <link href="<?=base_url($langurl);?>/js/datejs/skin/WdatePicker.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" type="text/css" href="<?=base_url('js/kindeditor/themes/default/default.css')?>" />
+    <style>
+        .ke-dialog{
+            top: 110px;
+        }
+    </style>
 </head>
 
 <body ng-app="myApp" ng-controller="myctrl">
@@ -577,6 +582,19 @@
                         $i++;
                     }?>
                         <td>
+                        <!-- 2018/10/25 修改参赛组别为：有3级分类，则第3级分类作为组别选项；否则显示第2级分类为组别选项 -->
+                        <?php
+                            if (empty($level2['level3']))
+                            {
+                        ?>
+                            <label class="control-label">
+                                <input  type="radio" vtype="requiredradio" id="direct[{{$index+1}}][<?=$direct['id']?>][group_id]" name="direct[{{$index+1}}][<?=$direct['id']?>][group_id]" value="<?=$level2['id']?>">
+                                <?=$level2['name']?>
+                            </label>
+
+                        <?php
+                            }else{
+                        ?>
                             <label class="control-label "><?=$level2['name']?></label>
                             <div class="">
                             <?php foreach($level2['level3'] as $k3 => $lvevel3):?>
@@ -586,6 +604,9 @@
                                 &nbsp;&nbsp;
                             <?php endforeach;?>
                             </div>
+                        <?php
+                            }
+                        ?>
                         </td>
                     <?=($i==4 ?'</tr>':'')?>
                     <?php endforeach;?>
@@ -741,7 +762,8 @@
         <a href="{{baomingObj.imgSrc}}" id="dw" download="报名表.png"></a>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <script src="<?=$config['site_templateurl'];?>/registrationForm/js/jquery.1.12.4.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="<?=base_url('js/kindeditor/kindeditor-min.js')?>"></script>
     <script type="text/javascript" src="<?=base_url('js/language/'.$this->Cache_model->defaultAdminLang.'.js')?>"></script>
 
