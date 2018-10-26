@@ -225,11 +225,11 @@ class Enroll_model extends CI_Model
 
         foreach ($level1 as &$item)
         {
-            $item['level2'] = $this->_getChildGroup($item['id']);
+            $item['level2'] = $this->_getChildGroup($item['id'],'listorder ASC');
 
             foreach ($item['level2'] as &$val)
             {
-                $val['level3'] = $this->_getChildGroup($val['id']);
+                $val['level3'] = $this->_getChildGroup($val['id'],'listorder ASC');
             }
         }
 
@@ -239,9 +239,9 @@ class Enroll_model extends CI_Model
     /**
      * 根据父id获取子分类
      */
-    public function _getChildGroup($pid,$table='enroll_group')
+    public function _getChildGroup($pid,$order='',$table='enroll_group')
     {
-        $data = $this->Data_model->getData(array('parent'=>$pid),'','','',$table);
+        $data = $this->Data_model->getData(array('parent'=>$pid),$order,'','',$table);
 
         return $data;
     }
