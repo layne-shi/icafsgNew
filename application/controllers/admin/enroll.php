@@ -296,6 +296,7 @@ class Enroll extends CI_Controller
         foreach ($data as $k => $v)
         {
             $tmp = explode(' | ',$v['group']);
+            $tmp = array_reverse($tmp);
             $new_group = $tmp[0];
 
             $data[$k]['group'] = $new_group;
