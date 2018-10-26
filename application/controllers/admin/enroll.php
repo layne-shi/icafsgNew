@@ -291,6 +291,16 @@ class Enroll extends CI_Controller
         );
 
 //echo '<pre>';print_r($data);die;
+
+        // 导出数据处理
+        foreach ($data as $k => $v)
+        {
+            $tmp = explode(' | ',$v['group']);
+            $new_group = $tmp[0];
+
+            $data[$k]['group'] = $new_group;
+        }
+
         // 导出csv
        $this->export->createtable($data,$filename,$header,$indexKey,'csv');
 

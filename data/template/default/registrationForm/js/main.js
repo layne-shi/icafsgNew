@@ -389,30 +389,35 @@ app.controller('myctrl',['$scope',function($scope){
 
     // 提交
     $scope.submit = function(){
-        var truthBeTold = window.confirm("请检查报名表是否填写正确，提交后如需更改请联系客服。\n\n是否提交？");
-        if(truthBeTold)
+        if (!pre_submit())
         {
-            var user_type = document.getElementById("enroll[type]").value;
+            return false;
+        }
 
-            // 判断选手是否选择了参赛方向
-            if (user_type == '1')
+        var user_type = document.getElementById("enroll[type]").value;
+
+        // 判断选手是否选择了参赛方向
+        if (user_type == '1')
+        {
+            var flag2 = false;
+            for (var key in $scope.baomingObj.directarr)
             {
-                var flag = false;
-                for (var key in $scope.baomingObj.directarr)
+                if ($scope.baomingObj.directarr[key].array.length > 0)
                 {
-                    if ($scope.baomingObj.directarr[key].array.length > 0)
-                    {
-                        flag = true;
-                    }
-                }
-
-                if (!flag)
-                {
-                    window.alert("选手必须选择参赛方向");
-                    return false;
+                    flag2 = true;
                 }
             }
 
+            if (!flag2)
+            {
+                window.alert("选手必须选择参赛方向");
+                return false;
+            }
+        }
+
+        var truthBeTold = window.confirm("请检查报名表是否填写正确，提交后如需更改请联系客服。\n\n是否提交？");
+        if(truthBeTold)
+        {
             var errflag = false;
             var errmsg  = '';
             var formElements = $('#signupForm').find('[vtype]');
@@ -501,6 +506,91 @@ app.controller('myctrl',['$scope',function($scope){
         }
     };
 }]);
+
+// 提交前检查
+function pre_submit()
+{
+    var $flag = true;
+    var $msg = "";
+    var $name = document.getElementById("enroll[name]").value;
+    var $pyname = document.getElementById("enroll[py_name]").value;
+    var $birthday = document.getElementById("enroll[birthday]").value;
+    var $nationality = document.getElementById("enroll[nationality]").value;
+    var $age = document.getElementById("enroll[age]").value;
+    var $national = document.getElementById("enroll[national]").value;
+    var $mobile = document.getElementById("enroll[mobile]").value;
+    var $identity = document.getElementById("enroll[identity]").value;
+    var $address = document.getElementById("enroll[address]").value;
+    var $email = document.getElementById("enroll[email]").value;
+
+    var $portrait = document.getElementById("enroll[portrait]").value;
+
+    if (!$name)
+    {
+        $flag = false;
+        $msg = '姓名为必填项!';
+    }
+    if (!$pyname)
+    {
+        $flag = false;
+        $msg = '拼音(英文姓名)为必填项!';
+    }
+    if (!$birthday)
+    {
+        $flag = false;
+        $msg = '出生日期为必填项!';
+    }
+    if (!$nationality)
+    {
+        $flag = false;
+        $msg = '國籍为必填项!';
+    }
+    if (!$age)
+    {
+        $flag = false;
+        $msg = '年齡为必填项!';
+    }
+    if (!$national)
+    {
+        $flag = false;
+        $msg = '民族为必填项!';
+    }
+    if (!$mobile)
+    {
+        $flag = false;
+        $msg = '手機號碼为必填项!';
+    }
+    if (!$identity)
+    {
+        $flag = false;
+        $msg = '身份證为必填项!';
+    }
+    if (!$address)
+    {
+        $flag = false;
+        $msg = '郵寄地址为必填项!';
+    }
+    if (!$email)
+    {
+        $flag = false;
+        $msg = '郵箱为必填项!';
+    }
+    if (!$portrait)
+    {
+        $flag = false;
+        $msg = '必须上传照片!';
+    }
+
+    if (!$flag)
+    {
+        window.alert($msg);
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 
 $(function(){
     $(document).on('click', '.heading-title', function(){

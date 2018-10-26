@@ -256,7 +256,7 @@ class Export
 
         foreach ($list as $row){
             foreach($index as $val){
-                $strexport.=$row[$val].",";
+                $strexport.="\t".$row[$val].",";
             }
             $strexport.="\n";
 
