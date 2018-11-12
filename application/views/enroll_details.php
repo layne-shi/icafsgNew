@@ -64,6 +64,8 @@
             <th>参赛形式</th>
             <th>参赛组别</th>
             <th>比赛曲目</th>
+            <th>曲作者</th>
+            <th>词作者</th>
             <th>指导教师</th>
             <th>国籍</th>
             <th>民族</th>
@@ -103,6 +105,8 @@
             <td><?=$item['form']?></td>
             <td><?=$item['group']?></td>
             <td><?=$item['song']?></td>
+            <td><?=$item['composer']?></td>
+            <td><?=$item['author']?></td>
             <td><?=$item['guide']?></td>
             <td><?=$item['nationality']?></td>
             <td><?=$item['national']?></td>

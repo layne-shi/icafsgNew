@@ -311,6 +311,8 @@ class Enroll_model extends CI_Model
                         'form_number' => isset($item['form']['form_number'])?$item['form']['form_number']:'',
                         'group_id ' => $group_id,
                         'song' => isset($item['song'])?$item['song']:'',
+                        'composer' => isset($item['composer'])?$item['composer']:'',
+                        'author' => isset($item['author'])?$item['author']:'',
                         'guide' => isset($item['guide'])?$item['guide']:'',
                         'referee' => isset($item['referee'])?$item['referee']:'',
                     );
@@ -384,6 +386,7 @@ class Enroll_model extends CI_Model
         s.guardian_mobile AS guardian_mobile,
         s.entourage AS entourage,
         s.create_time AS create_time, d.song AS song,
+        d.composer AS composer,d.author AS author,
         d.id AS list_id, d.referee AS referee, d.guide AS guide,
         d.major AS major, d.form_id AS form_id,
         d.form AS form,d.group AS group_name,

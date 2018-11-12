@@ -622,12 +622,35 @@
                         <tr>
                             <td>
                                 <div class="col" ng-if="<?=($direct['enable_song'] == 1?'true':'false')?>">
+                                <div class="row">
+                                    <div class="col-md-4">
                                     <div class="form-group">
+                                        <span class="color-red margin-right-5px">★</span>
                                         <label for="direct[{{$index+1}}][<?=$direct['id']?>][song]" class="control-label">比賽曲目 Repertoire</label>
                                         <div class="">
-                                            <input name="direct[{{$index+1}}][<?=$direct['id']?>][song]" id="direct[{{$index+1}}][<?=$direct['id']?>][song]" class="form-control" type="text" placeholder="比賽曲目 Repertoire">
+                                            <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][song]" id="direct[{{$index+1}}][<?=$direct['id']?>][song]" class="form-control" type="text" placeholder="比賽曲目 Repertoire">
                                         </div>
                                     </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="color-red margin-right-5px">★</span>
+                                        <label for="direct[{{$index+1}}][<?=$direct['id']?>][composer]" class="control-label">曲作者</label>
+                                        <div class="">
+                                            <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][composer]" id="direct[{{$index+1}}][<?=$direct['id']?>][composer]" class="form-control" type="text" placeholder="曲作者">
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="color-red margin-right-5px">★</span>
+                                        <label for="direct[{{$index+1}}][<?=$direct['id']?>][author]" class="control-label">词作者</label>
+                                        <div class="">
+                                            <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][author]" id="direct[{{$index+1}}][<?=$direct['id']?>][author]" class="form-control" type="text" placeholder="词作者">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                                 </div>
                                 <div class="col">
                                     <div class="row">
