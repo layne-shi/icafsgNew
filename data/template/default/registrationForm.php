@@ -646,7 +646,7 @@
                                         <span class="color-red margin-right-5px">★</span>
                                         <label for="direct[{{$index+1}}][<?=$direct['id']?>][author]" class="control-label">词作者</label>
                                         <div class="">
-                                            <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][author]" id="direct[{{$index+1}}][<?=$direct['id']?>][author]" class="form-control" type="text" placeholder="词作者">
+                                            <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][author]" id="direct[{{$index+1}}][<?=$direct['id']?>][author]" class="form-control" type="text" placeholder="词作者(仅声乐专业填写，其他专业填“无”)">
                                         </div>
                                     </div>
                                     </div>
