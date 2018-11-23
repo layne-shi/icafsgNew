@@ -194,11 +194,12 @@ class Enroll extends CI_Controller
 
 		$pagearr = array(
 			'currentpage'=>	isset($post['currentpage'])&&$post['currentpage']>0?$post['currentpage']:1,
-			'totalnum'=>$this->Enroll_model->getEnrollNum($getwhere),
-			'pagenum'=>20
+			//'totalnum'=>$this->Enroll_model->getEnrollNum($getwhere),
+			//'pagenum'=>20
 		);
 
-        $data = $this->Enroll_model->getEnrollList($getwhere,$pagearr['pagenum'],($pagearr['currentpage']-1)*$pagearr['pagenum']);
+        //$data = $this->Enroll_model->getEnrollList($getwhere,$pagearr['pagenum'],($pagearr['currentpage']-1)*$pagearr['pagenum']);
+        $data = $this->Enroll_model->getEnrollList($getwhere);
 
         $view = $this->Enroll_model->getSingleEnroll(array('id' => $id),'enroll');
 
@@ -209,6 +210,7 @@ class Enroll extends CI_Controller
             'view'      =>  $view,
             'search'    =>  $search,
             'typearr'   =>  $this->Enroll_model->user_type,
+          //  'pagestr'   =>  show_page($pagearr,$search),
         );
 
         $this->load->view('enroll_details',$res);
