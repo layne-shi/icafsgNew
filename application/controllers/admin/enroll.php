@@ -284,12 +284,12 @@ class Enroll extends CI_Controller
         $indexKey = array('referee','name','py_name','gender',
             'birthday','age','passport','type','identity','dir_name',
             'major','form','group','song','composer','author','guide','nationality',
-            'national','mobile','tel','email','other_contact','address','guardian_name','guardian_mobile',
+            'national','mobile','tel','email','other_contact','address','guardian_name','guardian_mobile','guidance_teacher_pize','guidance_art_pize','creation_pize','school_radios','school_company','grade_duty','university_grade',
         );
 
         // 表格头部字段
         $header = array(
-            '推荐教师','姓名','拼音','性别','生日','年龄','护照','性质','身份證','参赛方向','参赛专业','参赛形式','参赛组别','比赛曲目','曲作者','词作者','指导教师','国籍','民族','手机号','家庭电话','邮箱','其他联系方式','邮寄地址','家长姓名','家长联系方式',
+            '推荐教师','姓名','拼音','性别','生日','年龄','护照','性质','身份證','参赛方向','参赛专业','参赛形式','参赛组别','比赛曲目','曲作者','词作者','指导教师','国籍','民族','手机号','家庭电话','邮箱','其他联系方式','邮寄地址','家长姓名','家长联系方式','申请教师指导奖','申请艺术指导奖','申请编创奖','学校单位','名称','年级或职务','大学年级',
         );
 
 //echo '<pre>';print_r($data);die;
@@ -302,6 +302,42 @@ class Enroll extends CI_Controller
             $new_group = $tmp[0];
 
             $data[$k]['group'] = $new_group;
+
+            $data[$k]['guidance_teacher_pize'] = $v['guidance_teacher_pize']==0?'否':'是';
+            $data[$k]['guidance_art_pize'] = $v['guidance_art_pize']==0?'否':'是';
+            $data[$k]['creation_pize'] = $v['creation_pize']==0?'否':'是';
+
+            switch ($v['school_radios'])
+            {
+                case 'company':
+                    $data[$k]['school_radios'] = '单位';
+                    break;
+                case 'primary':
+                    $data[$k]['school_radios'] = '小学';
+                    break;
+                case 'high':
+                    $data[$k]['school_radios'] = '中学';
+                    break;
+                case 'university':
+                    $data[$k]['school_radios'] = '大学';
+                    break;
+            }
+
+            switch ($v['university_grade'])
+            {
+                case '1':
+                    $data[$k]['university_grade'] = '大专';
+                    break;
+                case '2':
+                    $data[$k]['university_grade'] = '大本';
+                    break;
+                case '3':
+                    $data[$k]['university_grade'] = '研究生';
+                    break;
+                case '4':
+                    $data[$k]['university_grade'] = '博士';
+                    break;
+            }
         }
 
         // 导出csv

@@ -41,7 +41,7 @@
 	  <input type="hidden" name="action" id="action" value="<?=site_aurl($tablefunc)?>">
       <div id="main" class="main" style="padding-top:40px;">
 
-        <table cellSpacing=0 class="content_list" style="text-align:center;width:230%;">
+        <table cellSpacing=0 class="content_list" style="text-align:center;width:320%;">
           <thead>
           <tr>
 <!--             <th width="30" align="left">
@@ -76,6 +76,13 @@
             <th>邮寄地址</th>
             <th>家长姓名</th>
             <th>家长联系方式</th>
+            <th>申请教师指导奖</th>
+            <th>申请艺术指导奖</th>
+            <th>申请编创奖</th>
+            <th>学校单位</th>
+            <th>名称</th>
+            <th>年级或职务</th>
+            <th>大学年级</th>
           </tr>
           </thead>
           <tbody id="content_list">
@@ -117,6 +124,49 @@
             <td><?=$item['address']?></td>
             <td><?=$item['guardian_name']?></td>
             <td><?=$item['guardian_mobile']?></td>
+            <td><?=($item['guidance_teacher_pize']==0?'否':'是')?></td>
+            <td><?=($item['guidance_art_pize']==0?'否':'是')?></td>
+            <td><?=($item['creation_pize']==0?'否':'是')?></td>
+            <td>
+            <?php
+                switch ($item['school_radios'])
+                {
+                    case 'company':
+                        echo '单位';
+                        break;
+                    case 'primary':
+                        echo '小学';
+                        break;
+                    case 'high':
+                        echo '中学';
+                        break;
+                    case 'university':
+                        echo '大学';
+                        break;
+                }
+            ?>
+            </td>
+            <td><?=$item['school_company']?></td>
+            <td><?=$item['grade_duty']?></td>
+            <td>
+            <?php
+                switch ($item['university_grade'])
+                {
+                    case '1':
+                        echo '大专';
+                        break;
+                    case '2':
+                        echo '大本';
+                        break;
+                    case '3':
+                        echo '研究生';
+                        break;
+                    case '4':
+                        echo '博士';
+                        break;
+                }
+            ?>
+            </td>
           </tr>
           <?php endforeach; ?>
           </tbody>

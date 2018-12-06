@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputName" class="control-label"><span class="color-red margin-right-5px">★</span>拼音(英文姓名)<span class="color-red">首</span>字母大写，姓与名用空格隔开。如：Zhang Wei</label>
+                            <label for="inputName" class="control-label"><span class="color-red margin-right-5px">★</span>拼音(英文姓名)<span class="color-red">首</span>字母大写，姓与名用空格隔开。如：张伟 应写为：Zhang Wei；张佳丽 应写为：Zhang Jiali</label>
                             <div class="">
                                 <input ng-model="baomingObj.name.enValue" type="text" name="enroll[py_name]" id="enroll[py_name]" class="form-control" vtype="required" placeholder="拼音（英文姓名）">
                             </div>
@@ -704,7 +704,7 @@
                     <div class="row">
 
                         <div class="form-group col-sm-6">
-                                <label for="inputapplyForCreationPize" class="control-label">申請編創獎 Apply For Creation Pize （需另行交費）</label>
+                                <label for="inputapplyForCreationPize" class="control-label">申請編創獎 Apply For Creation Pize</label>
                             <div class="">
                                 <label class="control-label" style="font-weight:normal;">
                                     <input ng-model="baomingObj.creationPize.value" type="radio" name="enroll[creation_pize]" id="applyPize" value="1"> 是
@@ -716,7 +716,7 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-6">
-                            <label for="inputApplyForGuidancePrize" class="control-label">申請指導獎 Apply For Guidance Prize （需另行交費）</label>
+                            <label for="inputApplyForGuidancePrize" class="control-label">申請指導獎 Apply For Guidance Prize</label>
                             <div class="">
                                 <label class="control-label" style="font-weight:normal;">
                                     <input type="checkbox" name="enroll[guidance_teacher_pize]" id="applyGuidancePize" value="1"> 申請教师指導獎
