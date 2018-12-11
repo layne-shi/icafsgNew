@@ -622,6 +622,7 @@
                         <tr>
                             <td>
                                 <div class="col" ng-if="<?=($direct['enable_song'] == 1?'true':'false')?>">
+                                <!--
                                 <div class="row">
                                     <div class="col-md-4">
                                     <div class="form-group">
@@ -650,7 +651,40 @@
                                         </div>
                                     </div>
                                     </div>
+                                </div>-->
+<!-- 2018/12/11 start -->
+                                <?php for($s_i=0;$s_i<$direct['song_nums']; $s_i++):?>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="color-red margin-right-5px">★</span>
+                                        <label for="direct[{{$index+1}}][<?=$direct['id']?>][song<?=($s_i>0?($s_i+1):'')?>]" class="control-label">比賽曲目 Repertoire</label>
+                                        <div class="">
+                                            <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][song<?=($s_i>0?($s_i+1):'')?>]" id="direct[{{$index+1}}][<?=$direct['id']?>][song<?=($s_i>0?($s_i+1):'')?>]" class="form-control" type="text" placeholder="比賽曲目 Repertoire">
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="color-red margin-right-5px">★</span>
+                                        <label for="direct[{{$index+1}}][<?=$direct['id']?>][composer<?=($s_i>0?($s_i+1):'')?>]" class="control-label">曲作者</label>
+                                        <div class="">
+                                            <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][composer<?=($s_i>0?($s_i+1):'')?>]" id="direct[{{$index+1}}][<?=$direct['id']?>][composer<?=($s_i>0?($s_i+1):'')?>]" class="form-control" type="text" placeholder="曲作者">
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="color-red margin-right-5px">★</span>
+                                        <label for="direct[{{$index+1}}][<?=$direct['id']?>][author<?=($s_i>0?($s_i+1):'')?>]" class="control-label">词作者</label>
+                                        <div class="">
+                                            <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][author<?=($s_i>0?($s_i+1):'')?>]" id="direct[{{$index+1}}][<?=$direct['id']?>][author<?=($s_i>0?($s_i+1):'')?>]" class="form-control" type="text" placeholder="词作者(仅声乐专业填写，其他专业填“无”)">
+                                        </div>
+                                    </div>
+                                    </div>
                                 </div>
+                                <?php endfor;?>
+<!-- 2018/12/11 end -->
                                 </div>
                                 <div class="col">
                                     <div class="row">

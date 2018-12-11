@@ -49,3 +49,41 @@ ADD  `group` VARCHAR( 50 ) NOT NULL DEFAULT  '' COMMENT  '参赛组别' AFTER  `form
 
 
 
+
+
+++++++++++++++++++++++++++++++++++ 2018-12-11 修改 ++++++++++++++++++++++++++++++++++
+
+
+1. 修改参赛方向表 `lee_enroll_direct`：
+ALTER TABLE  `lee_enroll_direct` ADD  `song_nums` TINYINT( 2 ) NOT NULL DEFAULT  '1' COMMENT  '参赛曲目数量' AFTER  `enable_song`
+
+2. 修改用户参赛报名子表 `lee_match_direct`：
+
+ALTER TABLE  `lee_match_direct` ADD  `song2` VARCHAR( 30 ) NOT NULL DEFAULT  '' COMMENT  '比賽曲目2' AFTER  `author` ,
+ADD  `composer2` VARCHAR( 30 ) NOT NULL DEFAULT  '' COMMENT  '曲作者2' AFTER  `song2` ,
+ADD  `author2` VARCHAR( 30 ) NOT NULL DEFAULT  '' COMMENT  '词作者2' AFTER  `composer2` ,
+ADD  `song3` VARCHAR( 30 ) NOT NULL DEFAULT  '' COMMENT  '比賽曲目3' AFTER  `author2` ,
+ADD  `composer3` VARCHAR( 30 ) NOT NULL DEFAULT  '' COMMENT  '曲作者3' AFTER  `song3` ,
+ADD  `author3` VARCHAR( 30 ) NOT NULL DEFAULT  '' COMMENT  '词作者3' AFTER  `composer3`
+
+3. 修改参赛方向：“参赛曲目”可以启用 1-- 3首。
+application\views\enroll_direct.php
+
+4. 修改参赛方向的保存方式 ： 
+application\controllers\admin\enrolldirect.php
+
+5. 修改前台报名页：
+data\template\default\registrationForm.php
+
+6. 修改报名model：
+application\models\enroll_model.php::signup()
+
+7. 后台显示参赛曲目2、3
+application\views\enroll_details.php
+
+8. 导出数据
+application\controllers\admin\enroll.php
+
+------------------------------------- END  -----------------------------------------
+
+

@@ -41,7 +41,7 @@
 	  <input type="hidden" name="action" id="action" value="<?=site_aurl($tablefunc)?>">
       <div id="main" class="main" style="padding-top:40px;">
 
-        <table cellSpacing=0 class="content_list" style="text-align:center;width:320%;">
+        <table cellSpacing=0 class="content_list" style="text-align:center;width:380%;">
           <thead>
           <tr>
 <!--             <th width="30" align="left">
@@ -66,6 +66,12 @@
             <th>比赛曲目</th>
             <th>曲作者</th>
             <th>词作者</th>
+            <th>比赛曲目二</th>
+            <th>曲作者二</th>
+            <th>词作者二</th>
+            <th>比赛曲目三</th>
+            <th>曲作者三</th>
+            <th>词作者三</th>
             <th>指导教师</th>
             <th>国籍</th>
             <th>民族</th>
@@ -114,6 +120,12 @@
             <td><?=$item['song']?></td>
             <td><?=$item['composer']?></td>
             <td><?=$item['author']?></td>
+            <td><?=$item['song2']?></td>
+            <td><?=$item['composer2']?></td>
+            <td><?=$item['author2']?></td>
+            <td><?=$item['song3']?></td>
+            <td><?=$item['composer3']?></td>
+            <td><?=$item['author3']?></td>
             <td><?=$item['guide']?></td>
             <td><?=$item['nationality']?></td>
             <td><?=$item['national']?></td>

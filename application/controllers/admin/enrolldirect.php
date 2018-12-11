@@ -7,7 +7,7 @@ class Enrolldirect extends CI_Controller
 
 	protected $fields = array(
         'title','special_type','enable_group',
-        'enable_song','enable_guide','enable_referee',
+        'enable_song','song_nums','enable_guide','enable_referee',
     );
 
 	protected $funcarr = array('add','del');

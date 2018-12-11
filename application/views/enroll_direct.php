@@ -140,8 +140,18 @@
     <tr>
         <td>参赛曲目</td>
         <td>
-            启用<input <?php if(!isset($view['enable_song'])||$view['enable_song']==1){echo 'checked';} ?> type="radio" name="direct[enable_song]" value="1"/>
-            不启用<input <?php if(isset($view['enable_song'])&&$view['enable_song']==0){echo 'checked';} ?> type="radio" name="direct[enable_song]" value="0"/>
+            启用<input <?php if(!isset($view['enable_song'])||$view['enable_song']==1){echo 'checked';} ?> type="radio" onclick="$('#song_box').show()" name="direct[enable_song]" value="1" />
+            不启用<input <?php if(isset($view['enable_song'])&&$view['enable_song']==0){echo 'checked';} ?> type="radio" onclick="$('#song_box').hide()" name="direct[enable_song]" value="0"/>
+
+            <div id="song_box" class="dxt_box_hover " style="<?php if(isset($view['enable_song'])&&$view['enable_song']==0){echo 'display:none;';} ?>">
+              <dl>
+                <dd>
+                 <em><input type="radio" value="1" name="direct[song_nums]" <?=((!isset($view['song_nums'])||($view['song_nums']==1))?'checked':'')?> >1首</em>
+                 <em><input type="radio" value="2" name="direct[song_nums]" <?=((isset($view['song_nums'])&&($view['song_nums']==2))?'checked':'')?> >2首</em>
+                 <em><input type="radio" value="3" name="direct[song_nums]" <?=((isset($view['song_nums'])&&($view['song_nums']==3))?'checked':'')?> >3首</em>
+                </dd>
+              </dl>
+            </div>
         </td>
     </tr>
     <tr>
