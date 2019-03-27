@@ -199,7 +199,7 @@ KindEditor.plugin('multiimage', function(K) {
 		formatUploadUrl = K.undef(self.formatUploadUrl, true),
 		uploadJson = K.undef(self.uploadJson, self.basePath + 'php/upload_json.php'),
 		imgPath = self.pluginsPath + 'multiimage/images/',
-		imageSizeLimit = K.undef(self.imageSizeLimit, '1MB'),
+		imageSizeLimit = K.undef(self.imageSizeLimit, '2MB'),
 		imageFileTypes = K.undef(self.imageFileTypes, '*.gif;*.jpg;*.jpeg;*.png;*.bmp'),
 		imageUploadLimit = K.undef(self.imageUploadLimit, 20),
 		filePostName = K.undef(self.filePostName, 'imgFile'),
