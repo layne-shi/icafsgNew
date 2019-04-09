@@ -42,7 +42,16 @@ class Category extends CI_Controller {
 		$pageconfig['uri_segment'] = 3;
 		$pageconfig['langurl'] = $this->Cache_model->langurl;
 		$this->pagination->initialize($pageconfig);
-		$list = $this->Data_model->getData($datawhere,'listorder,puttime desc',$pageconfig['per_page'],($currentpage-1)*$pageconfig['per_page'],$thiscategory['model']);
+
+        $orderby = 'listorder,puttime desc';
+
+        /* 媒体报道--改成按发布时间倒序 */
+        if ($thiscategory['dir'] == 'mediareport')
+        {
+            $orderby = 'listorder desc,puttime desc';
+        }
+
+		$list = $this->Data_model->getData($datawhere,$orderby,$pageconfig['per_page'],($currentpage-1)*$pageconfig['per_page'],$thiscategory['model']);
 		$config = $this->Cache_model->loadConfig();
 		$config['seo_title'] = $thiscategory['title']==''?$thiscategory['name']:$thiscategory['title'];
 		$config['seo_keywords'] = $thiscategory['keywords']==''?$thiscategory['name']:$thiscategory['keywords'];
