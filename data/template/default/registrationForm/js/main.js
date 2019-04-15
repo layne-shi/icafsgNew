@@ -66,13 +66,13 @@ var validatorMap = {
         return falg;
     }],
     'mobile': [LANG_Validate['mobile'], function(element, v) {
-        return /^0?1[34578]\d{9}$/.test(v);
+        return /^0?1[023456789]\d{9}$/.test(v);
     }],
     'identity':[LANG_Validate['identity'], function(element, v) {
         return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(v);
     }],
     'email': [LANG_Validate['email'], function(element, v) {
-        return /^[a-z\d][a-z\d_.]*@[\w-]+(?:\.[a-z]{2,})+$/i.test(v);
+        return /^[a-z\d][a-z\d_.-]*@[\w-]+(?:\.[a-z]{2,})+$/i.test(v);
     }]
 };
 
