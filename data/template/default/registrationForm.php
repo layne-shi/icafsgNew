@@ -660,7 +660,12 @@
                                         <span class="color-red margin-right-5px">★</span>
                                         <label for="direct[{{$index+1}}][<?=$direct['id']?>][song<?=($s_i>0?($s_i+1):'')?>]" class="control-label">比賽曲目 Repertoire</label>
                                         <div class="">
+<<<<<<< HEAD
+                                            <input type="hidden" name="direct[{{$index+1}}][<?=$direct['id']?>][requireds][]" value="song<?=($s_i>0?($s_i+1):'')?>"/> <!-- 必填选项 -->
+                                            <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][song<?=($s_i>0?($s_i+1):'')?>]" id="direct[{{$index+1}}][<?=$direct['id']?>][song<?=($s_i>0?($s_i+1):'')?>]" class="form-control" type="text" placeholder="比賽曲目(如古筝专业曲目请填写调式)">
+=======
                                             <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][song<?=($s_i>0?($s_i+1):'')?>]" id="direct[{{$index+1}}][<?=$direct['id']?>][song<?=($s_i>0?($s_i+1):'')?>]" class="form-control" type="text" placeholder="比賽曲目 Repertoire">
+>>>>>>> 5fbbec8acf46a8c25567f5beae0c6bd10631c257
                                         </div>
                                     </div>
                                     </div>
@@ -669,6 +674,10 @@
                                         <span class="color-red margin-right-5px">★</span>
                                         <label for="direct[{{$index+1}}][<?=$direct['id']?>][composer<?=($s_i>0?($s_i+1):'')?>]" class="control-label">曲作者</label>
                                         <div class="">
+<<<<<<< HEAD
+                                            <input type="hidden" name="direct[{{$index+1}}][<?=$direct['id']?>][requireds][]" value="composer<?=($s_i>0?($s_i+1):'')?>"/> <!-- 必填选项 -->
+=======
+>>>>>>> 5fbbec8acf46a8c25567f5beae0c6bd10631c257
                                             <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][composer<?=($s_i>0?($s_i+1):'')?>]" id="direct[{{$index+1}}][<?=$direct['id']?>][composer<?=($s_i>0?($s_i+1):'')?>]" class="form-control" type="text" placeholder="曲作者">
                                         </div>
                                     </div>
@@ -678,6 +687,10 @@
                                         <span class="color-red margin-right-5px">★</span>
                                         <label for="direct[{{$index+1}}][<?=$direct['id']?>][author<?=($s_i>0?($s_i+1):'')?>]" class="control-label">词作者</label>
                                         <div class="">
+<<<<<<< HEAD
+                                            <input type="hidden" name="direct[{{$index+1}}][<?=$direct['id']?>][requireds][]" value="author<?=($s_i>0?($s_i+1):'')?>"/> <!-- 必填选项 -->
+=======
+>>>>>>> 5fbbec8acf46a8c25567f5beae0c6bd10631c257
                                             <input vtype="required" name="direct[{{$index+1}}][<?=$direct['id']?>][author<?=($s_i>0?($s_i+1):'')?>]" id="direct[{{$index+1}}][<?=$direct['id']?>][author<?=($s_i>0?($s_i+1):'')?>]" class="form-control" type="text" placeholder="词作者(仅声乐专业填写，其他专业填“无”)">
                                         </div>
                                     </div>
@@ -698,7 +711,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6" ng-if="<?=($direct['enable_referee'] == 1?'true':'false')?>">
-
+                                            <input type="hidden" name="direct[{{$index+1}}][<?=$direct['id']?>][requireds][]" value="referee"/> <!-- 必填选项 -->
                                             <div class="form-group">
                                                 <span class="color-red margin-right-5px">★</span>
                                                 <label for="direct[{{$index+1}}][referee]" class="control-label">推荐教师</label>

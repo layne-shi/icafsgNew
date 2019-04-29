@@ -239,6 +239,35 @@ class Enroll extends CI_Controller
                 $msg = '请选择参赛方向';
                 return false;
             }
+            
+            /* 参赛方向验证  2019-4-29 add */
+            foreach ($post['direct'] as $k1 => $direct)
+            {
+                foreach ($direct as $direct_id => $item)
+                {
+                    // 验证推荐教师
+                    if (in_array('referee',$item['requireds']) && empty($item['referee']))
+                    {
+                        $msg = '推荐教师为必填项';
+                        return false;
+                    }
+
+                    /*
+                    if (!empty($item['requireds']))
+                    {
+                        foreach ($item['requireds'] as $required_item)
+                        {
+                            if (empty($item[$required_item]))
+                            {
+                                $msg = '红星为必填项';
+                                return false;
+                            }
+                        }
+                    }
+                    */
+                }
+            }
+
         }
 
 
